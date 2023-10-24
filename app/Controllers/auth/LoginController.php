@@ -12,8 +12,8 @@ class LoginController extends Controller
     {
         if (Guard::isUserLoggedIn()) {
             redirect('/home');
+            echo "Create running";
         }
-
         $data = [
             'messages' => session_get_once('messages'),
             'old' => $this->getSavedFormValues(),

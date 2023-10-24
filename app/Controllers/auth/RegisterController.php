@@ -51,7 +51,9 @@ class RegisterController extends Controller
             'name' => $data['name'] ?? null,
             'email' => filter_var($data['email'], FILTER_VALIDATE_EMAIL),
             'password' => $data['password'] ?? null,
-            'password_confirmation' => $data['password_confirmation'] ?? null
+            'password_confirmation' => $data['password_confirmation'] ?? null,
+            'phone' => $data["phone"] ?? null,
+            'address' => $data["address"] ?? null
         ];
     }
 
@@ -60,7 +62,9 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => password_hash($data['password'], PASSWORD_DEFAULT)
+            'password' => password_hash($data['password'], PASSWORD_DEFAULT),
+            'phone' => $data["phone"],
+            'address' => $data["address"]
         ]);
     }
 }
