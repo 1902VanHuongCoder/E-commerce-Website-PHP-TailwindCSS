@@ -14,14 +14,21 @@ $router = new \Bramus\Router\Router();
 
 // Auth routes
 $router->post('/logout', '\App\Controllers\Auth\LoginController@destroy');
+
 $router->get('/register', '\App\Controllers\Auth\RegisterController@create');
 $router->post('/register', '\\App\Controllers\Auth\RegisterController@store');
+
 $router->get('/login', '\App\Controllers\Auth\LoginController@create');
 $router->post('/login', '\App\Controllers\Auth\LoginController@store');
+
+$router->get('/admin/login', '\App\Controllers\Auth\AdminLoginController@create');
+$router->post('/admin/login', '\App\Controllers\Auth\AdminLoginController@store');
 
 // Contact routes
 $router->get('/', '\App\Controllers\HomeController@index');
 $router->get('/home', '\App\Controllers\HomeController@index');
+
+$router->get('/admin', '\App\Controllers\AdminController@index');
 
 // $router->get('/contacts/create', '\App\Controllers\ContactsController@create');
 // $router->post('/contacts', '\App\Controllers\ContactsController@store');

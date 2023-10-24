@@ -71,8 +71,6 @@
                         </li>
                         <li class="px-[15px] lg:px-[20px] text-[18px]"><a href="#" class="no-underline font-semibold text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Stickers</a>
                         </li>
-                        <li class="px-[15px] lg:px-[20px] text-[18px]"><a href="Login.html" class="no-underline font-semibold text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Login</a>
-                        </li>
                     </ul>
                     <div class="ml-[50px] hidden md:block">
                         <input type="text" placeholder="Search for products..." class="relative border-[1px] border-[#646464] bg-transparent w-[200px] lg:w-[420px] p-[6px] rounded-e-[5px] rounded-s-[5px] placeholder:text-[#808080]">
@@ -85,6 +83,26 @@
                     </div>
                     <div class="absolute top-[-25%] right-[-20%] bg-[#1E90FF] w-6 h-6 flex justify-center items-center rounded-[50%] font-medium text-[#fff]">0</div>
                 </button>
+                <ul>
+                    <?php if (!\App\SessionGuard::isUserLoggedIn()) : ?>
+                        <li class=""><a class="" href="/login">Login</a></li>
+                        <li class=""><a class="" href="/register">Register</a></li>
+                    <?php else : ?>
+                        <li class="">
+                            <a class="" href="#" role="button" data-toggle="dropdown">
+                                <?= $this->e(\App\SessionGuard::user()->name) ?> <span class="caret"></span>
+                            </a>
+
+                            <div class="">
+                                <a class="" href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+                                <form id="logout-form" class="d-none" action="/logout" method="POST">
+                                </form>
+                            </div>
+                        </li>
+                    <?php endif ?>
+                </ul>
             </nav>
         </div>
     </header>

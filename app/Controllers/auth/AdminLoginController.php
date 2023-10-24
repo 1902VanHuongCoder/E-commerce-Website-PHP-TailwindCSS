@@ -2,17 +2,16 @@
 
 namespace App\Controllers\Auth;
 
-use App\Models\User;
+use App\Models\Admin;
 use App\Controllers\Controller;
 use App\SessionGuard as Guard;
 
-class LoginController extends Controller
+class AdminLoginController extends Controller
 {
     public function create()
     {
-        if (Guard::isUserLoggedIn()) {
-            redirect('/home');
-            echo "Create running";
+        if (Guard::isAdminLoggedIn()) {
+            redirect('/admin');
         }
         $data = [
             'messages' => session_get_once('messages'),
@@ -20,21 +19,22 @@ class LoginController extends Controller
             'errors' => session_get_once('errors')
         ];
 
-        $this->sendPage('auth/login', $data);
+        $this->sendPage('auth/adminlogin', $data);
     }
 
     public function store()
     {
         $user_credentials = $this->filterUserCredentials($_POST);
         $errors = [];
-        $user = User::where('email', $user_credentials['email'])->first();
+        $user = Admin::where('email', $user_credentials['email'])->first();
         
         if (!$user) {
             // Người dùng không tồn tại...
             $errors['email'] = 'Invalid email';
-        } else if (Guard::login($user, $user_credentials)) {
+        } else if (Guard::adminlogin($user, $user_credentials)) {
             // Đăng nhập thành công...
-            redirect('/home');
+            redirect('/admin');
+
         } else {
             // Sai mật khẩu...
             $errors['password'] = 'Invalid password.';
@@ -42,13 +42,13 @@ class LoginController extends Controller
 
         // Đăng nhập không thành công: lưu giá trị trong form, trừ password
         $this->saveFormValues($_POST, ['password']);
-        redirect('/login', ['errors' => $errors]);
+        redirect('admin/login', ['errors' => $errors]);
     }
 
     public function destroy()
     {
         Guard::logout();
-        redirect('/login');
+        redirect('admin/login');
     }
 
     protected function filterUserCredentials(array $data)

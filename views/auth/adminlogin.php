@@ -1,4 +1,4 @@
-<?php $this->layout("layouts/auth", ["title" => "Log in"]) ?>
+<?php $this->layout("layouts/auth", ["title" => "Admin Log In"]) ?>
 
 <?php $this->start("page") ?>
 <div class="w-full min-h-screen flex justify-center items-center">
@@ -6,9 +6,9 @@
         <div class="w-1/2 h-full overflow-hidden hidden lg:block">
             <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D" alt="">
         </div>
-        <form action="/login" method="POST" class="lg:w-1/2 flex justify-center items-center bg-[#00BFFF] w-full lg:p-3">
+        <form action="admin/login" method="POST" class="lg:w-1/2 flex justify-center items-center bg-[#00BFFF] w-full lg:p-3">
             <div class="sm:w-[450px] w-[90%] bg-[#fff] flex flex-col justify-center rounded-md p-6 shadow-xl gap-y-3">
-                <h1 class="font-bold text-center text-[25px]">Login</h1>
+                <h1 class="font-bold text-center text-[25px]">Admin Log In</h1>
 
                 <label for="" class="font-medium text-[16px]">Your Email</label>
                 <input name="email" id="email" type="text" required autofocus placeholder="name@gmail.com" class="<?= isset($errors['email']) ? 'border-red-500' : '' ?>  block text-[#333] border border-[#333] p-2 focus:outline-none focus:border-sky-700 focus:ring-sky-700 rounded-lg" name="email" value="<?= isset($old['email']) ? $this->e($old['email']) : '' ?>">
