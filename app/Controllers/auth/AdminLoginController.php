@@ -16,7 +16,8 @@ class AdminLoginController extends Controller
         $data = [
             'messages' => session_get_once('messages'),
             'old' => $this->getSavedFormValues(),
-            'errors' => session_get_once('errors')
+            'errors' => session_get_once('errors'),
+            'checkLogin' => session_get_once("checkLogin")
         ];
 
         $this->sendPage('auth/adminlogin', $data);
@@ -24,30 +25,30 @@ class AdminLoginController extends Controller
 
     public function store()
     {
-        $user_credentials = $this->filterUserCredentials($_POST);
+        $admin_credentials = $this->filterUserCredentials($_POST);
         $errors = [];
-        $user = Admin::where('email', $user_credentials['email'])->first();
+        $admin = Admin::where('email', $admin_credentials['email'])->first();
         
-        if (!$user) {
+        if (!$admin) {
             // Người dùng không tồn tại...
             $errors['email'] = 'Invalid email';
-        } else if (Guard::adminlogin($user, $user_credentials)) {
+        } else if (Guard::adminlogin($admin, $admin_credentials)) {
             // Đăng nhập thành công...
             redirect('/admin');
-
         } else {
             // Sai mật khẩu...
             $errors['password'] = 'Invalid password.';
         }
 
+        $checkLogin = "Index.php return";
         // Đăng nhập không thành công: lưu giá trị trong form, trừ password
         $this->saveFormValues($_POST, ['password']);
-        redirect('admin/login', ['errors' => $errors]);
+        redirect('/admin/login', ['errors' => $errors, 'checkLogin' => $checkLogin]);
     }
 
     public function destroy()
     {
-        Guard::logout();
+        Guard::adminlogout();
         redirect('admin/login');
     }
 

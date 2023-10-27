@@ -24,6 +24,16 @@ $router->post('/login', '\App\Controllers\Auth\LoginController@store');
 $router->get('/admin/login', '\App\Controllers\Auth\AdminLoginController@create');
 $router->post('/admin/login', '\App\Controllers\Auth\AdminLoginController@store');
 
+
+$router->get('/admin/register', '\App\Controllers\Auth\AdminRegisterController@create');
+$router->post('/admin/register', '\App\Controllers\Auth\AdminRegisterController@store');
+
+$router->get('/admin/addproduct', '\App\Controllers\AdminController@create');
+$router->post('/admin/addproduct', '\App\Controllers\AdminController@store');
+
+
+
+
 // Contact routes
 $router->get('/', '\App\Controllers\HomeController@index');
 $router->get('/home', '\App\Controllers\HomeController@index');

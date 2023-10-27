@@ -23,34 +23,26 @@
                     </div>
                 </button>
                 <div class="relative flex items-center justify-center">
-                    <p class="text-[25px] md:text-[18px] font-bold uppercase">JeiKei <span class="text-[#4169E1]">Store</span></p>
-                    <ul class="ml-3 hidden md:flex lg:ml-4">
-                        <li class="px-[15px] lg:px-[20px] text-[18px]"><a href="#" class="no-underline font-semibold text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">All</a>
-                        </li>
-                        <li class="px-[15px] lg:px-[20px] text-[18px]"><a href="#" class="no-underline font-semibold text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Shirts</a>
-                        </li>
-                        <li class="px-[15px] lg:px-[20px] text-[18px]"><a href="#" class="no-underline font-semibold text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Stickers</a>
-                        </li>
-                    </ul>
-                    <div class="ml-[50px] hidden md:block">
-                        <input type="text" placeholder="Search for products..." class="relative border-[1px] border-[#646464] bg-transparent w-[200px] lg:w-[420px] p-[6px] rounded-e-[5px] rounded-s-[5px] placeholder:text-[#808080]">
-                        <i class="fa-solid fa-magnifying-glass absolute top-[10px] left-[95%] translate-x-[50%] cursor-pointer"></i>
-                    </div>
+                    <p class="text-[25px] md:text-[18px] font-bold uppercase"> <span class="text-[#4169E1]">JeiKei</span> Dashboard</p>
                 </div>
-                <button class="relative">
-                    <div class="relative border border-[#a3a3a3] rounded">
-                        <i class="fa-sharp fa-solid fa-cart-shopping p-[12px] ease-out duration-[0.4s] hover:scale-[1.1]"></i>
-                    </div>
-                    <div class="absolute top-[-25%] right-[-20%] bg-[#1E90FF] w-6 h-6 flex justify-center items-center rounded-[50%] font-medium text-[#fff]">0</div>
-                </button>
+                <ul class="ml-3 hidden md:flex lg:ml-4">
+                    <li class="px-[15px] lg:px-[20px] text-[18px]"><a href="/admin/register" class="no-underline font-semibold text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Add Admin User</a>
+                    </li>
+                    <li class="px-[15px] lg:px-[20px] text-[18px]"><a href="#" class="no-underline font-semibold text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Orders</a>
+                    </li>
+                    <li class="px-[15px] lg:px-[20px] text-[18px]"><a href="#" class="no-underline font-semibold text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Customers List</a>
+                    </li>
+                    <li class="px-[15px] lg:px-[20px] text-[18px]"><a href="/admin/addproduct" class="no-underline font-semibold text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Add product</a>
+                    </li>
+                </ul>
                 <ul>
-                    <?php if (!\App\SessionGuard::isUserLoggedIn()) : ?>
+                    <?php if (!\App\SessionGuard::isAdminLoggedIn()) : ?>
                         <li class=""><a class="" href="/login">Login</a></li>
                         <li class=""><a class="" href="/register">Register</a></li>
                     <?php else : ?>
                         <li class="">
                             <a class="" href="#" role="button" data-toggle="dropdown">
-                                <?= $this->e(\App\SessionGuard::user()->name) ?> <span class="caret"></span>
+                                <?= $this->e(\App\SessionGuard::admin()->name) ?> <span class="caret"></span>
                             </a>
 
                             <div class="">

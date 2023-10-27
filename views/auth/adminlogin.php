@@ -6,7 +6,7 @@
         <div class="w-1/2 h-full overflow-hidden hidden lg:block">
             <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8ZmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D" alt="">
         </div>
-        <form action="admin/login" method="POST" class="lg:w-1/2 flex justify-center items-center bg-[#00BFFF] w-full lg:p-3">
+        <form action="/admin/login" method="POST" class="lg:w-1/2 flex justify-center items-center bg-[#00BFFF] w-full lg:p-3">
             <div class="sm:w-[450px] w-[90%] bg-[#fff] flex flex-col justify-center rounded-md p-6 shadow-xl gap-y-3">
                 <h1 class="font-bold text-center text-[25px]">Admin Log In</h1>
 
@@ -36,7 +36,7 @@
                 <button class="block bg-[#00BFFF] p-2 font-bold rounded-2xl transition-all duration-300 hover:bg-[#2ea9d2] focus:ring focus:bg-[#4169E1] active:bg-[#4169E1]">Login</button>
                 <div class="flex items-center gap-1">
                     <p class="text-[15px] text-[#333]">Don’t have an account yet?</p>
-                    <a href="/register" class="text-[16px] text-[#4169E1] font-semibold cursor-pointer hover:underline">Register</a>
+                    <a href="/admin/register" class="text-[16px] text-[#4169E1] font-semibold cursor-pointer hover:underline">Register</a>
                 </div>
             </div>
         </form>

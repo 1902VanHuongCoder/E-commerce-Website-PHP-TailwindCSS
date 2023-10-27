@@ -26,10 +26,6 @@ class Admin extends Model
         } elseif ($data['password'] != $data['password_confirmation']) {
             $errors['password'] = 'Password confirmation does not match.';
         }
-
-        if (!$data["admincode"]) {
-            $errors['admincode'] = 'Invalid name.';
-        }
         return $errors;
     }
 }
