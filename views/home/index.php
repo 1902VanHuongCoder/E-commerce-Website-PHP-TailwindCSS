@@ -89,9 +89,29 @@
         })
 
 
-        $("#dropdownButton").click(function() {
-            $("#dropdownMenu").toggle();
+        $("#user_info").click(function() {
+            $("#user_info_panel").toggleClass("opacity-100");
         });
+        var $carousel = $('.carousel');
+        var $slides = $('.carousel-slide');
+
+        var currentSlide = 0;
+        var slideWidth = $slides.first().width();
+        var totalSlides = $slides.length;
+
+        setInterval(function() {
+            var newPosition = -(currentSlide + 1) * slideWidth;
+            $carousel.find('.carousel-inner').animate({
+                'transform': 'translateX(' + newPosition + 'px)'
+            }, 500, function() {
+                currentSlide++;
+                if (currentSlide === totalSlides - 1) {
+                    $carousel.find('.carousel-inner').css('transform', 'translateX(0)');
+                    currentSlide = 0;
+                }
+            });
+        }, 3000);
+
     });
 </script>
 <?php $this->stop() ?>
