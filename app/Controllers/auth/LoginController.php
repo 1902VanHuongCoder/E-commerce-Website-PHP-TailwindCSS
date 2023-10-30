@@ -28,7 +28,7 @@ class LoginController extends Controller
         $user_credentials = $this->filterUserCredentials($_POST);
         $errors = [];
         $user = User::where('email', $user_credentials['email'])->first();
-        
+
         if (!$user) {
             // Người dùng không tồn tại...
             $errors['email'] = 'Invalid email';

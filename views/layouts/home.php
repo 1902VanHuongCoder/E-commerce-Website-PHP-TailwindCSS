@@ -20,7 +20,7 @@
 
 
 <body class="relative">
-    <div class="relative max-w-[1200px] m-auto md:flex-row min-h-screen overflow-hidden">
+    <div class="relative w-screen max-w-[1200px] m-auto md:flex-row min-h-screen overflow-hidden">
         <header>
             <nav class="flex items-center justify-between top-0 left-0 w-full px-4 py-[15px]">
                 <button class="md:hidden bar">
@@ -31,9 +31,7 @@
                     <p class="text-[25px] md:text-[18px] font-bold uppercase">JeiKei <span class="text-[#4169E1]">Store</span></p>
 
                     <ul class="ml-3 hidden md:flex lg:ml-4">
-                        <li class="px-[15px] lg:px-[20px] text-[18px]"><a href="#" class="no-underline font-semibold text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">All</a>
-                        </li>
-                        <li class="px-[15px] lg:px-[20px] text-[18px]"><a href="#" class="no-underline font-semibold text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Shirts</a>
+                        <li class="px-[15px] lg:px-[20px] text-[18px]"><a href="#" class="no-underline font-semibold text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Orders</a>
                         </li>
                     </ul>
                     <div class="ml-[50px] hidden md:block">
@@ -54,24 +52,8 @@
                     </div>
                 </div>
             </nav>
-
-            <div class="carousel w-full h-[400px] overflow-hidden">
-                <div class="carousel-slide">
-                    <img src="https://images.unsplash.com/photo-1612423284934-2850a4ea6b0f?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzJ8fGNsb3RoZXN8ZW58MHx8MHx8fDA%3D" alt="Image 1">
-                </div>
-                <div class="carousel-slide">
-                    <img src="https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjJ8fGNsb3RoZXN8ZW58MHx8MHx8fDA%3D" alt="Image 2">
-                </div>
-                <div class="carousel-slide">
-                    <img src="https://plus.unsplash.com/premium_photo-1677011778938-47a8fecde397?auto=format&fit=crop&q=60&w=600&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODF8fGNsb3RoZXN8ZW58MHx8MHx8fDA%3D" alt="Image 3">
-                </div>
-            </div>
-
-            <button class="carousel-prev absolute left-0 top-1/2 transform -translate-y-1/2">Previous</button>
-            <button class="carousel-next absolute right-0 top-1/2 transform -translate-y-1/2">Next</button>
-
-
         </header>
+        <?= $this->section("page") ?>
         <!-- cart -->
         <div class="cart-shop fixed top-0 right-0 bg-[#FFFAFA] w-full md:w-[500px] h-full z-20 transition-all duration-500 translate-x-[100%]">
             <div class="w-full overflow-y-auto h-full">
@@ -151,7 +133,7 @@
         </div>
         <div class="opacity-toggle absolute top-0 left-0 w-full opacity-50 bg-[#333] h-full z-10 hidden transition-all duration-500"></div>
         <!-- Dropdown Menu -->
-        <div id="user_info_panel" class="absolute right-4 top-14 opacity-0 z-10 mt-2 w-60 divide-y divide-gray-100 rounded-lg border border-gray-100 bg-white text-left text-sm shadow-lg">
+        <div id="user_info_panel" class="absolute top-14 right-[-100%] transition-all z-10 mt-2 w-60 divide-y divide-gray-100 rounded-lg border border-gray-100 bg-white text-left text-sm shadow-lg">
             <div class="py-3 px-4">
                 <div class="flex items-center gap-3">
                     <div class="relative h-10 w-10">
@@ -218,7 +200,7 @@
                 </a>
             </div>
             <div class="p-1">
-                <a href="#" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-gray-700 hover:bg-gray-100">
+                <a href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-gray-700 hover:bg-gray-100">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
                     </svg>
@@ -228,20 +210,23 @@
                         <kbd class="min-w-[1em] font-sans">⇧</kbd>
                         <kbd class="min-w-[1em] font-sans">Q</kbd>
                     </span>
+                    <form id="logout-form" class="d-none" action="/logout" method="POST">
+
+                    </form>
                 </a>
             </div>
         </div>
-        <!-- <footer class="mt-28 bg-[#333] text-[#fff] p-5">
-        <div class="max-w-[1200px] mx-auto flex justify-center flex-col md:flex-row md:justify-between items-center">
-            <div class="flex flex-col md:flex-row md:text-sm">
-                <p class="mr-5">© 2023 JeiKei, Inc. All rights reserved.</p>
-                <p class="md:border-l-2 md:border-l-[#fff] px-4">Designed by JeiKei & PaulTo</p>
+        <footer class="bg-[#333] text-[#fff] p-5 absolute bottom-0 left-0 w-full">
+            <div class="max-w-[1200px] mx-auto flex justify-center flex-col md:flex-row md:justify-between items-center">
+                <div class="flex flex-col md:flex-row md:text-sm">
+                    <p class="mr-5">© 2023 JeiKei, Inc. All rights reserved.</p>
+                    <p class="md:border-l-2 md:border-l-[#fff] px-4">Designed by JeiKei & PaulTo</p>
+                </div>
+                <div class="md:text-sm">
+                    <p>The last upgrade was on August 26, 2023</p>
+                </div>
             </div>
-            <div class="md:text-sm">
-                <p>The last upgrade was on August 26, 2023</p>
-            </div>
-        </div>
-    </footer> -->
+        </footer>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <?= $this->section("page_specific_js") ?>

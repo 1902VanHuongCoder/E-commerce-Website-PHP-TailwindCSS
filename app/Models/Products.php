@@ -35,8 +35,8 @@ class Products extends Model
             $errors['quantity'] = 'Color is required.';
         }
 
-        if (strlen($data['description']) > 200) {
-            $errors['description'] = 'Notes must be at most 200 characters.';
+        if (strlen($data['description']) > 2000) {
+            $errors['description'] = 'Notes must be at most 2000 characters.';
         }
 
         if($data['image'] == ''){

@@ -61,6 +61,17 @@ class HomeController extends Controller
         redirect('/orders/' . $productId, ['errors' => $model_errors]);
         // redirect('/admin/addproduct', ['errors' => $data]);
     }
+
+
+    public function detail($productId)
+    {
+        $product = Products::find($productId);
+        if (!$product) {
+            $this->sendNotFound();
+        }
+
+        $this->sendPage("home/detail", ["product" => $product]);
+    }
     // public function create()
     // {
     //     $this->sendPage('contacts/create', [

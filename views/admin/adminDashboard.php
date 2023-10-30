@@ -41,6 +41,7 @@
                                 <td class="px-6 py-4"><?= $this->e($product->price) ?></td>
                                 <td class="px-6 py-4"><?= $this->e($product->size) ?></td>
                                 <td class="px-6 py-4"><?= $this->e($product->color) ?></td>
+                                <td class="px-6 py-4"><?= $this->e($product->type)  ?></td>
 
 
                                 <td class="px-6 py-4"><?= $this->e($product->quantity) ?></td>

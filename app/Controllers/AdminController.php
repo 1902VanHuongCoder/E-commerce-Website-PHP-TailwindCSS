@@ -54,6 +54,8 @@ class AdminController extends Controller
         $data = $this->filterProductData($_POST);
         $model_errors = Products::validate($data);
         $data['created_at'] = date('Y-m-d H:i:s');
+        $data["type"] = $_POST["type"];
+
         if (empty($model_errors)) {
             $product = new Products();
             $product->fill($data);
@@ -113,6 +115,7 @@ class AdminController extends Controller
             }
         }
         $model_errors = Products::validate($data);
+        $data["type"] = $_POST["type"];
         if (empty($model_errors)) {
 
             $product->fill($data);
