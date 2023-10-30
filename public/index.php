@@ -14,41 +14,32 @@ $router = new \Bramus\Router\Router();
 
 // Auth routes
 $router->post('/logout', '\App\Controllers\Auth\LoginController@destroy');
-
 $router->get('/register', '\App\Controllers\Auth\RegisterController@create');
 $router->post('/register', '\\App\Controllers\Auth\RegisterController@store');
-
 $router->get('/login', '\App\Controllers\Auth\LoginController@create');
 $router->post('/login', '\App\Controllers\Auth\LoginController@store');
+$router->get('/orders/(\d+)', '\App\Controllers\HomeController@order');
+$router->post('/orders/(\d+)', '\App\Controllers\HomeController@ordered');
 
+// Admin routes
+$router->post('/admin/logout', '\App\Controllers\Auth\AdminLoginController@destroy');
 $router->get('/admin/login', '\App\Controllers\Auth\AdminLoginController@create');
 $router->post('/admin/login', '\App\Controllers\Auth\AdminLoginController@store');
-
-
 $router->get('/admin/register', '\App\Controllers\Auth\AdminRegisterController@create');
 $router->post('/admin/register', '\App\Controllers\Auth\AdminRegisterController@store');
-
 $router->get('/admin/addproduct', '\App\Controllers\AdminController@create');
 $router->post('/admin/addproduct', '\App\Controllers\AdminController@store');
+$router->get('/admin/editproduct/(\d+)', '\App\Controllers\AdminController@edit');
+$router->post('/admin/(\d+)', '\App\Controllers\AdminController@update');
+$router->post('/admin/delete/(\d+)', '\App\Controllers\AdminController@destroy');
+$router->get('/admin/customers', '\App\Controllers\AdminController@show');
+$router->post('/admin/delete/user/(\d+)', '\App\Controllers\AdminController@deleteuser');
+$router->get('/admin/orders', '\App\Controllers\AdminController@showorders');
 
-
-
-
-// Contact routes
+// Default routes
 $router->get('/', '\App\Controllers\HomeController@index');
 $router->get('/home', '\App\Controllers\HomeController@index');
-
 $router->get('/admin', '\App\Controllers\AdminController@index');
-
-// $router->get('/contacts/create', '\App\Controllers\ContactsController@create');
-// $router->post('/contacts', '\App\Controllers\ContactsController@store');
-
-// $router->get('/contacts/edit/(\d+)','\App\Controllers\ContactsController@edit');
-// $router->post('/contacts/(\d+)','\App\Controllers\ContactsController@update');
-
-// $router->post('/contacts/delete/(\d+)','\App\Controllers\ContactsController@destroy');
-
-
 $router->set404('\App\Controllers\Controller@sendNotFound');
 $router->run();
 

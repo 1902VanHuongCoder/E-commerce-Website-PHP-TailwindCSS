@@ -33,6 +33,9 @@ class RegisterController extends Controller
 
         $data = $this->filterUserData($_POST);
         $model_errors = User::validate($data);
+
+        $data['created_at'] = date('Y-m-d H:i:s');
+
         if (empty($model_errors)) {
             // Dữ liệu hợp lệ...
             $this->createUser($data);
@@ -53,7 +56,7 @@ class RegisterController extends Controller
             'password' => $data['password'] ?? null,
             'password_confirmation' => $data['password_confirmation'] ?? null,
             'phone' => $data["phone"] ?? null,
-            'address' => $data["address"] ?? null
+            'address' => $data["address"] ?? null,
         ];
     }
 
@@ -64,7 +67,8 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => password_hash($data['password'], PASSWORD_DEFAULT),
             'phone' => $data["phone"],
-            'address' => $data["address"]
+            'address' => $data["address"],
+            'created_at' => $data["created_at"]
         ]);
     }
 }

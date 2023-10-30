@@ -5,6 +5,15 @@
     <h1>
         Admin Info
     </h1>
+    <?php
+    if ($success) {
+    ?>
+        <div id="success-notification" class="bg-green-500 text-white px-4 py-2 fixed top-0 right-0 m-4 rounded-md shadow-lg animate__animated animate__backInRight">
+            <p class="font-bold"><i class="fa-solid fa-check"></i> Logged in successfully</p>
+            <p>Welcome to Jeikei Store</p>
+        </div>
+    <?php } ?>
+
     <div class="row">
         <div class="col-12">
             <!-- FLASH MESSAGES -->
@@ -17,9 +26,11 @@
                             <th scope="col" class="px-6 py-4 font-medium text-gray-900">Price</th>
                             <th scope="col" class="px-6 py-4 font-medium text-gray-900">Size</th>
                             <th scope="col" class="px-6 py-4 font-medium text-gray-900">Color</th>
+                            <th scope="col" class="px-6 py-4 font-medium text-gray-900">Category</th>
                             <th scope="col" class="px-6 py-4 font-medium text-gray-900">Quantity</th>
                             <th scope="col" class="px-6 py-4 font-medium text-gray-900">State</th>
                             <th scope="col" class="px-6 py-4 font-medium text-gray-900">Action</th>
+                            <th scope="col" class="px-6 py-4 font-medium text-gray-900">Image</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-100 border-t border-gray-100">
@@ -30,6 +41,8 @@
                                 <td class="px-6 py-4"><?= $this->e($product->price) ?></td>
                                 <td class="px-6 py-4"><?= $this->e($product->size) ?></td>
                                 <td class="px-6 py-4"><?= $this->e($product->color) ?></td>
+
+
                                 <td class="px-6 py-4"><?= $this->e($product->quantity) ?></td>
                                 <td class="px-6 py-4">
                                     <span class="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
@@ -39,7 +52,15 @@
                                         Paid
                                     </span>
                                 </td>
-                                <td class="flex justify-end gap-4 px-6 py-4 font-medium"><a href="">Delete</a><a href="" class="text-primary-700">Edit</a></td>
+                                <td class="flex justify-end gap-4 px-6 py-4 font-medium">
+                                    <a href="/admin/editproduct/<?= $product->id ?>" class="text-primary-700">Edit</a>
+                                    <form class="form-inline ml-1" action="/admin/delete/<?= $product->id ?>" method="POST">
+                                        <button type="submit" class="" name="delete-product">
+                                            <i alt="Delete"></i> Delete
+                                        </button>
+                                    </form>
+                                </td>
+                                <td><img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($product['image']); ?>" /> </td>
                             </tr>
                         <?php endforeach ?>
                     </tbody>
@@ -50,4 +71,17 @@
     </div>
 </div>
 <!-- ALERT BOX -->
+<?php $this->stop() ?>
+<?php $this->start("page_specific_js") ?>
+<script>
+    $(document).ready(function() {
+        const successNotification = $('#success-notification');
+        if (successNotification.length > 0) {
+            successNotification.css('display', 'block');
+        }
+        setTimeout(() => {
+            successNotification.css('display', 'none');
+        }, 5000);
+    });
+</script>
 <?php $this->stop() ?>

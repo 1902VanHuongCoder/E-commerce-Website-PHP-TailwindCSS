@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Products extends Model
 {
     protected $table = 'products';
-    protected $fillable = ['name', 'description', 'price', 'size', 'color'];
+    protected $fillable = ['name', 'description', 'price', 'image', 'size', 'color', 'type', 'quantity', 'created_at', 'updated_at'];
     // public function products()
     // {
     //     return $this->all();
@@ -37,6 +37,10 @@ class Products extends Model
 
         if (strlen($data['description']) > 200) {
             $errors['description'] = 'Notes must be at most 200 characters.';
+        }
+
+        if($data['image'] == ''){
+            $errors["image"] = "Please select an image file to upload.";
         }
         return $errors;
     }

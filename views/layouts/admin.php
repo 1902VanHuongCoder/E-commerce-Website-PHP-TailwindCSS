@@ -10,8 +10,9 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <?= $this->section("page_specific_css") ?>
 </head>
 
 <body>
@@ -28,9 +29,9 @@
                 <ul class="ml-3 hidden md:flex lg:ml-4">
                     <li class="px-[15px] lg:px-[20px] text-[18px]"><a href="/admin/register" class="no-underline font-semibold text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Add Admin User</a>
                     </li>
-                    <li class="px-[15px] lg:px-[20px] text-[18px]"><a href="#" class="no-underline font-semibold text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Orders</a>
+                    <li class="px-[15px] lg:px-[20px] text-[18px]"><a href="/admin/orders" class="no-underline font-semibold text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Orders</a>
                     </li>
-                    <li class="px-[15px] lg:px-[20px] text-[18px]"><a href="#" class="no-underline font-semibold text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Customers List</a>
+                    <li class="px-[15px] lg:px-[20px] text-[18px]"><a href="/admin/customers" class="no-underline font-semibold text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Customers List</a>
                     </li>
                     <li class="px-[15px] lg:px-[20px] text-[18px]"><a href="/admin/addproduct" class="no-underline font-semibold text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Add product</a>
                     </li>
@@ -46,10 +47,11 @@
                             </a>
 
                             <div class="">
-                                <a class="" href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <a class="" href="/admin/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     Logout
                                 </a>
-                                <form id="logout-form" class="d-none" action="/logout" method="POST">
+                                <form id="logout-form" class="d-none" action="/admin/logout" method="POST">
+
                                 </form>
                             </div>
                         </li>
@@ -75,9 +77,7 @@
     </footer>
 
     <!-- Scripts -->
-    <script src='../../public/js/home.js'></script>
-    </script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <?= $this->section("page_specific_js") ?>
 </body>
 

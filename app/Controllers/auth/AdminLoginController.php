@@ -30,26 +30,21 @@ class AdminLoginController extends Controller
         $admin = Admin::where('email', $admin_credentials['email'])->first();
         
         if (!$admin) {
-            // Người dùng không tồn tại...
             $errors['email'] = 'Invalid email';
         } else if (Guard::adminlogin($admin, $admin_credentials)) {
-            // Đăng nhập thành công...
             redirect('/admin');
         } else {
-            // Sai mật khẩu...
             $errors['password'] = 'Invalid password.';
         }
-
-        $checkLogin = "Index.php return";
         // Đăng nhập không thành công: lưu giá trị trong form, trừ password
         $this->saveFormValues($_POST, ['password']);
-        redirect('/admin/login', ['errors' => $errors, 'checkLogin' => $checkLogin]);
+        redirect('/admin/login', ['errors' => $errors]);
     }
 
     public function destroy()
     {
-        Guard::adminlogout();
-        redirect('admin/login');
+        Guard::Adminlogout();
+        redirect('/admin/login');
     }
 
     protected function filterUserCredentials(array $data)

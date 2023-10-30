@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Models;
+use App\Models\Order;
 
 use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
     protected $table = 'customers';
-    protected $fillable = ['name', 'email', 'password', 'phone', 'address'];
+    protected $fillable = ['name', 'email', 'password', 'phone', 'address', 'created_at'];
 
     public static function validate(array $data)
     {

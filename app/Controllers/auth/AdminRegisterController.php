@@ -10,10 +10,6 @@ class AdminRegisterController extends Controller
 {
     public function __construct()
     {
-        if (Guard::isAdminLoggedIn()) {
-            redirect('/admin');
-        }
-
         parent::__construct();
     }
 
@@ -34,14 +30,11 @@ class AdminRegisterController extends Controller
         $data = $this->filterUserData($_POST);
         $model_errors = Admin::validate($data);
         if (empty($model_errors)) {
-            // Dữ liệu hợp lệ...
             $this->createUser($data);
 
             $messages = ['success' => 'User has been created successfully.'];
             redirect('/admin/login', ['messages' => $messages]);
         }
-
-        // Dữ liệu không hợp lệ...
         redirect('/admin/register', ['errors' => $model_errors]);
     }
 
@@ -61,6 +54,7 @@ class AdminRegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => password_hash($data['password'], PASSWORD_DEFAULT),
+            'created_at' =>  date('Y-m-d H:i:s')
         ]);
     }
 }

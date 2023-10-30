@@ -2,7 +2,12 @@
 
 namespace App\Controllers;
 
+use App\Models\Order;
+use App\Models\Products;
+use App\Models\User;
 use App\SessionGuard as Guard;
+use Illuminate\Support\Facades\Process;
+
 // use App\Models\Contact;
 
 class HomeController extends Controller
@@ -19,10 +24,43 @@ class HomeController extends Controller
     public function index()
     {
         $this->sendPage('home/index', [
-            'userinfo' => Guard::user()
+            'userinfo' => Guard::user(),
+            'productinfo' => Products::all(),
         ]);
     }
 
+    public function order($productId)
+    {
+        $product = Products::find($productId);
+        if (!$product) {
+            $this->sendNotFound();
+        }
+
+        $this->sendPage("home/order", ["productinfo" => $product]);
+    }
+
+    public function ordered($productId)
+    {
+        $data = $_POST;
+        $model_errors = Order::validate($data);
+        $total_pay = number_format(floatval($data["total_amount"]) * floatval($data["price"]), 2);
+        $data["total_amount"] = $total_pay;
+        $data["order_date"] = date('Y-m-d H:i:s');
+        $data["username"] = Guard::user()->name;
+        if (empty($model_errors)) {
+            $order = new Order();
+            $order->fill($data);
+            $order->user()->associate(Guard::user());
+            $order->save();
+            redirect('/orders/' . $productId, ["success" => "Ordering succeed!"]);
+        }
+
+        // Lưu các giá trị của form vào $_SESSION['form']
+        $this->saveFormValues($_POST);
+        // Lưu các thông báo lỗi vào $_SESSION['errors']
+        redirect('/orders/' . $productId, ['errors' => $model_errors]);
+        // redirect('/admin/addproduct', ['errors' => $data]);
+    }
     // public function create()
     // {
     //     $this->sendPage('contacts/create', [
