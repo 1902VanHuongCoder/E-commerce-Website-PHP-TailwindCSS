@@ -36,7 +36,7 @@ class HomeController extends Controller
             $this->sendNotFound();
         }
 
-        $this->sendPage("home/order", ["product" => $product]);
+        $this->sendPage("home/order", ["orderState" => false, "product" => $product]);
     }
 
     public function ordered($productId)
@@ -49,6 +49,7 @@ class HomeController extends Controller
         // Receive the product color and size the customer has selected
         $string1 = 'color_';
         $string2 = 'size_';
+        $color = "";
         $filteredColorKeys = array_filter(array_keys($_POST), function ($key) use ($string1) {
             return strpos($key, $string1) !== false;
         });
@@ -59,6 +60,7 @@ class HomeController extends Controller
                 $color = ',' . $_POST[$filteredColorKeys[$i]];
             }
         }
+        $size = "";
         $filteredSizeKeys = array_filter(array_keys($_POST), function ($key) use ($string1) {
             return strpos($key, $string1) !== false;
         });
@@ -98,14 +100,14 @@ class HomeController extends Controller
             // Link the order to the currently logged in user
             $order->user()->associate(Guard::user());
             $order->save();
-            redirect('/orders/' . $productId, ["orderState" => "success"]);
+            $this->sendPage('home/order', ["orderState" => true, "product" => $product]);
         }
 
         // Save the values that the user has entered and selected in the order form.
         $this->saveFormValues($_POST);
 
         // Save errors into $_SESSTION["errors"]
-        redirect('/orders/' . $productId, ['errors' => $model_errors]);
+        $this->sendPage('home/order', ["orderState" => false, 'errors' => $model_errors, "product" => $product]);
     }
 
 
@@ -117,6 +119,14 @@ class HomeController extends Controller
         }
 
         $this->sendPage("home/detail", ["product" => $product]);
+    }
+
+
+    public function orderhistory()
+    {
+        $customer = User::find(Guard::user()->id);
+        $orders = $customer->orders;
+        $this->sendPage("home/orderhistory", ["orders" => $orders]);
     }
     // public function create()
     // {

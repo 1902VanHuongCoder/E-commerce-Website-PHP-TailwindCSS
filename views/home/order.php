@@ -5,10 +5,18 @@
     <a href="/">Home</a>
 
     <?php if ($orderState) {
-        echo "Ordered successfully!";
-    } else {
-        echo "Order is failed!";
-    } ?>
+    ?>
+        <div id="success-notification" class="bg-green-500 text-white px-4 py-2 fixed top-0 right-0 m-4 rounded-md shadow-lg animate__animated animate__backInRight">
+            <p class="font-bold"><i class="fa-solid fa-check"></i> Order success</p>
+            <p>Your order will be quickly delivered to you</p>
+        </div>
+    <?php } else if (!$orderState && isset($errors)) { ?>
+        <div id="success-notification" class="bg-red-500 text-white px-4 py-2 fixed top-0 right-0 m-4 rounded-md shadow-lg animate__animated animate__backInRight">
+            <p class="font-bold"><i class="fa-solid fa-check"></i> Order failed</p>
+            <p>Check order information</p>
+        </div>
+
+    <?php } ?>
 
     <div class="relative w-full flex justify-center mb-3">
         <h1 class="text-[30px] font-semibold">Order</h1>
@@ -85,13 +93,13 @@
                 <div class="flex flex-col gap-2">
                     <input name="address" type="text" placeholder="Address..." class="p-2 border-none outline-none text-[#333]">
                     <?php if (isset($errors['address'])) : ?>
-                        <span class="text-red-500 mt-1 text-sm">
+                        <span class="text-yellow-500 mt-1 text-sm">
                             <strong><i class="fa-solid fa-triangle-exclamation"></i> <?= $this->e($errors['address']) ?></strong>
                         </span>
                     <?php endif ?>
                     <input name="phone" type="text" placeholder="0##-###-####" class="p-2 border-none outline-none text-[#333]">
                     <?php if (isset($errors['phone'])) : ?>
-                        <span class="text-red-500 mt-1 text-sm">
+                        <span class="text-yellow-500 mt-1 text-sm">
                             <strong><i class="fa-solid fa-triangle-exclamation"></i> <?= $this->e($errors['phone']) ?></strong>
                         </span>
                     <?php endif ?>
@@ -148,6 +156,14 @@
             $('.cart-shop').removeClass('translate-x-[100%]');
             $('.opacity-toggle').removeClass('hidden');
         })
+        // Notifications
+        const successNotification = $('#success-notification');
+        if (successNotification.length > 0) {
+            successNotification.css('display', 'block');
+        }
+        setTimeout(() => {
+            successNotification.css('display', 'none');
+        }, 5000);
     });
 </script>
 <?php $this->stop() ?>
