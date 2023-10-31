@@ -67,7 +67,6 @@ class AdminController extends Controller
         $this->saveFormValues($_POST);
         // Lưu các thông báo lỗi vào $_SESSION['errors']
         redirect('/admin/addproduct', ['errors' => $model_errors]);
-        // redirect('/admin/addproduct', ['errors' => $data]);
     }
     protected function filterProductData(array $data)
     {

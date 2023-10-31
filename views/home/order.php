@@ -3,48 +3,103 @@
 <?php $this->start("page") ?>
 <div class="container mx-auto">
     <a href="/">Home</a>
-    <h1>Add product</h1>
-    <form action="/orders/<?= $this->e($productinfo->id) ?>" method="POST" enctype="multipart/form-data">
-        <div class="mx-auto">
-            <div>
-                <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($productinfo->image); ?>" />
+
+    <?php if ($orderState) {
+        echo "Ordered successfully!";
+    } else {
+        echo "Order is failed!";
+    } ?>
+
+    <div class="relative w-full flex justify-center mb-3">
+        <h1 class="text-[30px] font-semibold">Order</h1>
+        <div class="absolute bottom-0 w-24 h-1 bg-[#4169E1]"></div>
+    </div>
+    <div class="max-w-full h-full grid grid-cols-1 md:grid-cols-3 gap-7 border rounded-xl p-5 shadow-md">
+        <div class="w-full flex items-center justify-center">
+            <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($product['image']); ?>" />
+        </div>
+        <form action="/orders/<?= $this->e($product->id) ?>" method="POST" class="col-span-2">
+            <h1 class="text-xl font-semibold py-2"><?php echo $this->e($product->name); ?></h1>
+            <p class="text-[18px] font-normal">Price : <span class="text-red-500">$<?php echo $this->e($product->price); ?></span></p>
+            <div class="flex gap-x-2 items-center py-2">
+                <p class="text-[18px] font-normal">Color :</p>
+                <?php
+                $colorArray = explode(",", $product->color);
+                for ($i = 0; $i < count($colorArray); $i++) {
+                ?>
+                    <span class="flex justify-center items-center ml-2">
+                        <input type="checkbox" name="color_<?= $i  + 1 ?>" value="<?php echo $colorArray[$i] ?>">
+                        <span class="px-2 py-1 transition-all duration-300"><?php echo $colorArray[$i] ?></span>
+                    </span>
+                <?php } ?>
             </div>
-            <div>
-                <h2>Name</h2>
-                <input name="name" value="<?= $this->e($productinfo->name) ?>" />
+            <?php if (isset($errors['color'])) : ?>
+                <span class="text-red-500 mt-1 text-sm">
+                    <strong><i class="fa-solid fa-triangle-exclamation"></i> <?= $this->e($errors['color']) ?></strong>
+                </span>
+            <?php endif ?>
+            <div class="flex gap-x-2 items-center py-2">
+                <p class="text-[18px] font-normal">Size :</p>
+                <?php
+                $sizeArray = explode(",", $product->size);
+                for ($i = 0; $i < count($sizeArray); $i++) {
+                ?>
+                    <span class="flex justify-center items-center ml-2">
+                        <input type="checkbox" name="size_<?= $i + 1 ?>" value="<?php echo $sizeArray[$i] ?>">
+                        <span class="px-2 py-1 transition-all duration-300"><?php echo $sizeArray[$i] ?></span>
+                    </span>
+                <?php } ?>
             </div>
-            <div>
-                <h2>Price</h2>
-                <input name="price" value="<?= $this->e($productinfo->price) ?>" />
-            </div>
-            <div>
-                <h2>Size</h2>
-                <input name="size" value="<?= $this->e($productinfo->size) ?>" />
-            </div>
-            <div>
-                <h2>Color</h2>
-                <input name="color" value="<?= $this->e($productinfo->color) ?>" />
-            </div>
-            <div>
-                <h2>Quantity</h2>
-                <input name="quantity" value="<?= $this->e($productinfo->quantity) ?>" />
-            </div>
-            <div>
-                <h2>Description</h2>
-                <input name="description" value="<?= $this->e($productinfo->description) ?>" />
-            </div>
-            <div>
-                <h2>Amount</h2>
-                <input type="number" name="total_amount" min="1" />
+            <?php if (isset($errors['size'])) : ?>
+                <span class="text-red-500 mt-1 text-sm">
+                    <strong><i class="fa-solid fa-triangle-exclamation"></i> <?= $this->e($errors['size']) ?></strong>
+                </span>
+            <?php endif ?>
+            <p class="text-[18px] font-normal py-2 flex justify-start items-center gap-x-2">Warehouse:<span class="text-[#4169e1] flex justify-center items-center gap-x-1"><?php echo $this->e($product->quantity); ?> <small>products available</small></span></p>
+            <div class="py-2">
+                <p>Choose product quantity: </p>
+                <div class="py-2 flex gap-1">
+                    <button type="button" class="text-xl border border-1 border-slate-950 py-1 px-3">-</button>
+                    <input name="total_amount" value="1" style="appearance: textfield;" type="number" min="1" class="border border-1 border-slate-950 h-10 w-12 flex justify-center items-center" />
+                    <button type="button" class="text-xl border border-1 border-slate-950 py-1 px-3">+</button>
+                </div>
                 <?php if (isset($errors['total_amount'])) : ?>
                     <span class="text-red-500 mt-1 text-sm">
-                        <strong><?= $this->e($errors['total_amount']) ?></strong>
+                        <strong><i class="fa-solid fa-triangle-exclamation"></i> <?= $this->e($errors['total_amount']) ?></strong>
                     </span>
                 <?php endif ?>
             </div>
-        </div>
-        <button type="submit" class="rounded-lg border border-gray-300 bg-white px-5 py-2.5 text-center text-sm font-medium text-gray-700 shadow-sm transition-all hover:bg-gray-100 focus:ring focus:ring-gray-100 disabled:cursor-not-allowed disabled:border-gray-100 disabled:bg-gray-50 disabled:text-gray-400">Buy</button>
-    </form>
+            <p class="font-semibold text-[18px] mb-2">Choose Delivery Method :</p>
+            <select class="relative mb-2" name="payment">
+                <div class="flex justify-between items-center p-[10px] border border-[#7a7a7a] rounded-[10px] cursor-pointer clickdown_2">
+                    <p>Direct payment</p>
+                    <i class="fa-solid fa-caret-down rotate-180 ease-out duration-500 dropdown_2"></i>
+                </div>
+                <div class="bg-[#ededed] p-2 rounded-[10px] hidden list_2">
+                    <option class="transition-all duration-300 hover:text-[#4169E1] cursor-pointer py-1" value="direct payment">Direct payment</option>
+                    <option class="transition-all duration-300 hover:text-[#4169E1] cursor-pointer py-1" value="payment via card">Payment via card</option>
+                </div>
+            </select>
+            <div class="flex flex-col bg-[#4169E1] p-2">
+                <p class="text-[18px] font-semibold pb-2 text-[#fff]">Address :</p>
+                <div class="flex flex-col gap-2">
+                    <input name="address" type="text" placeholder="Address..." class="p-2 border-none outline-none text-[#333]">
+                    <?php if (isset($errors['address'])) : ?>
+                        <span class="text-red-500 mt-1 text-sm">
+                            <strong><i class="fa-solid fa-triangle-exclamation"></i> <?= $this->e($errors['address']) ?></strong>
+                        </span>
+                    <?php endif ?>
+                    <input name="phone" type="text" placeholder="0##-###-####" class="p-2 border-none outline-none text-[#333]">
+                    <?php if (isset($errors['phone'])) : ?>
+                        <span class="text-red-500 mt-1 text-sm">
+                            <strong><i class="fa-solid fa-triangle-exclamation"></i> <?= $this->e($errors['phone']) ?></strong>
+                        </span>
+                    <?php endif ?>
+                </div>
+            </div>
+            <button type="submit" class="bg-yellow-400 p-2 my-3 font-medium hover:bg-[#1E90FF] hover:text-[#fff] transition-all duration-[0.4s]"><i class="fa-solid fa-cart-shopping"></i> Buy Now</button>
+        </form>
+    </div>
 </div>
 <?php $this->stop() ?>
 <?php $this->start("page_specific_js") ?>

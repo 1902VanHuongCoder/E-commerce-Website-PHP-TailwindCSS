@@ -3,15 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\Order;
 class Products extends Model
 {
     protected $table = 'products';
     protected $fillable = ['name', 'description', 'price', 'image', 'size', 'color', 'type', 'quantity', 'created_at', 'updated_at'];
-    // public function products()
-    // {
-    //     return $this->all();
-    // }
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'product_id');
+    }
     public static function validate(array $data) // Sửa hàm  ràng buộc này lại 
     { // Ở đây t chỉ làm cơ bản thôi 
         $errors = [];
