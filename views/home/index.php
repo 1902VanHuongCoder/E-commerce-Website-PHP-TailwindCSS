@@ -1,9 +1,21 @@
 <?php $this->layout("layouts/home", ["title" => APPNAME]) ?>
 
 <?php $this->start("page") ?>
-<div class="container mx-auto w-screen mb-20 ">
-    <div class="w-full flex justify-between items-start p-4 gap-5">
-        <div class="grid grid-cols-4 xl:grid-cols-4 gap-3 gap-y-5 flex-auto">
+<div class="w-full mb-20 mx-auto">
+    <div class="w-full flex justify-between items-start p-4 gap-x-1 md:gap-x-[45px]">
+        <div class="p-2 w-[15%]">
+            <h2 class="py-2"><i class="fa-solid fa-store text-blue-500"></i><strong> Collection</strong></h2>
+            <hr />
+            <ol>
+                <li class="mt-1 ml-5 py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md"> <small class="text-[10px] text-blue-500"><i class="fa-solid fa-greater-than"></i></small> Shirts</li>
+                <li class="ml-5 py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md"> <small class="text-[10px] text-blue-500"><i class="fa-solid fa-greater-than"></i></small> Shoes</li>
+                <li class="ml-5 py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md"> <small class="text-[10px] text-blue-500"><i class="fa-solid fa-greater-than"></i></small> Hats</li>
+                <li class="ml-5 py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md"> <small class="text-[10px] text-blue-500"><i class="fa-solid fa-greater-than"></i></small> Skirts</li>
+                <li class="ml-5 py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md"> <small class="text-[10px] text-blue-500"><i class="fa-solid fa-greater-than"></i></small> Backpacks</li>
+            </ol>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 gap-y-5  w-[80%]">
             <?php
             $type = [
                 ["type" => "shirts", "imgHeight" => "h-64"], ["type" => "shoes", "imgHeight" => "h-36"],
@@ -14,13 +26,11 @@
                 foreach ($productinfo as $product) {
                     if ($product->type == $type[$i]["type"]) {
             ?>
-                        <div class="group flex justify-between flex-col items-center w-full overflow-hidden rounded-md bg-white shadow-md transition-all duration-75 hover:shadow-lg hover:shadow-gray-600/50">
+                        <div class="<?php echo $type[$i]["type"] ?>group flex justify-between flex-col items-center w-full overflow-hidden rounded-md bg-white shadow-md">
                             <div class="p-4">
                                 <div class="<?php echo $type[$i]["imgHeight"] ?> overflow-hidden relative">
                                     <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($product['image']); ?>" />
-                                    <div class="group-hover:top-0 transition-all w-full h-full bg-slate-900 opacity-40 absolute -top-[100%] left-0 flex justify-center items-center">
-                                        <a href="/detail/<?php echo $this->e($product->id) ?>" class="text-white py-1 px-2 border border-1 border-white rounded-md">Detail</a>
-                                    </div>
+                                    <a class="w-full h-full absolute cursor-pointer top-0 left-0" href="/detail/<?php echo $this->e($product->id) ?>"></a>
                                 </div>
                                 <h3 class="text-base font-semibold text-gray-800 py-2"><?php echo $this->e($product->name) ?></h3>
                                 <div class="flex justify-center items-center p-1">
@@ -39,15 +49,6 @@
                 }
             } ?>
         </div>
-        <!-- <div class="order-none w-full flex-none hidden md:block md:max-w-[125px] md:order-last">
-            <p class="text-[#808080] text-sm mb-1">Sort By</p>
-            <ul class="md:d-block">
-                <li class="pb-1"><a href="#" class="no-underline text-[18px] border-b-[2px] border-[#000] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Relevance</a></li>
-                <li class="pb-1"><a href="#" class="no-underline text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Trending</a></li>
-                <li class="pb-1"><a href="#" class="no-underline text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Latest arrivals</a></li>
-                <li class="pb-1"><a href="#" class="no-underline text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Hot</a></li>
-            </ul>
-        </div> -->
     </div>
 
 
