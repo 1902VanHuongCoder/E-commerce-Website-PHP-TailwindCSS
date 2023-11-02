@@ -34,22 +34,24 @@
                         <li class="px-[15px] lg:px-[20px] text-[18px]"><a href="/orderhistory" class="no-underline font-semibold text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Orders</a>
                         </li>
                     </ul>
-                    <div class="ml-[50px] hidden md:block">
-                        <input type="text" placeholder="Search for products..." class="relative border-[1px] border-[#646464] bg-transparent w-[200px] lg:w-[420px] p-[6px] rounded-e-[5px] rounded-s-[5px] placeholder:text-[#808080]">
-                        <i class="fa-solid fa-magnifying-glass absolute top-[10px] left-[95%] translate-x-[50%] cursor-pointer"></i>
-                    </div>
+                    <form action="/search" method="POST" class="ml-[50px] hidden md:block">
+                        <input name="search" type="text" placeholder="Search for products..." class="relative border-[1px] border-[#646464] bg-transparent w-[200px] lg:w-[420px] p-[6px] rounded-e-[5px] rounded-s-[5px] placeholder:text-[#808080]">
+                        <button type="submit"><i class="fa-solid fa-magnifying-glass absolute top-[10px] left-[95%] translate-x-[50%] cursor-pointer"></i>
+                        </button>
+                    </form>
                 </div>
 
-                <div class="flex justify-center items-center gap-8">
+                <div class="flex justify-center items-center gap-4">
+                    <div id="user_info" class="w-10 h-10 border border-1 border-slate-950 rounded-full flex justify-center items-center cursor-pointer">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
                     <button class="relative">
                         <div class="relative border border-[#a3a3a3] rounded">
                             <i class="fa-sharp fa-solid fa-cart-shopping p-[12px] ease-out duration-[0.4s] hover:scale-[1.1]"></i>
                         </div>
                         <div class="absolute top-[-25%] right-[-20%] bg-[#1E90FF] w-6 h-6 flex justify-center items-center rounded-[50%] font-medium text-[#fff]">0</div>
                     </button>
-                    <div id="user_info" class="flex justify-center items-center gap-1 cursor-pointer">
-                        <i class="fa-solid fa-user"></i> <span>User info</span>
-                    </div>
+
                 </div>
             </nav>
         </header>
@@ -137,7 +139,7 @@
             <div class="py-3 px-4">
                 <div class="flex items-center gap-3">
                     <div class="relative h-10 w-10">
-                        <img class="h-full w-full rounded-full object-cover object-center ring ring-white" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
+                        <div class="w-10 h-10 rounded-full bg-slate-200 text-slate-500 flex justify-center items-center"> <i class="fa-solid fa-user"></i> </div>
                         <span class="absolute right-0 bottom-0 h-2 w-2 rounded-full bg-green-400 ring ring-white"></span>
                     </div>
                     <div class="text-xs">

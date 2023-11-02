@@ -128,6 +128,22 @@ class HomeController extends Controller
         $orders = $customer->orders;
         $this->sendPage("home/orderhistory", ["orders" => $orders]);
     }
+
+    public function search(){
+        $products = Products::all();
+        
+        $resultArray = [];
+        foreach($products as $product){
+            if(strpos($product->name, $_POST["search"]) !== false){
+                $resultArray[$product->id] = $product;
+                continue;
+            }else if(strpos($product->type, $_POST["search"]) !== false){
+                $resultArray[$product->id] = $product;
+            }
+        }
+
+        $this->sendPage("home/searchresult", ["resultArray" => $resultArray]);
+    }
     // public function create()
     // {
     //     $this->sendPage('contacts/create', [
