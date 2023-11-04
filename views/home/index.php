@@ -7,28 +7,29 @@
             <h2 class="py-2"><i class="fa-solid fa-store text-blue-500"></i><strong> Collection</strong></h2>
             <hr />
             <ol>
-                <li class="mt-1 ml-5 py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md"> <small class="text-[10px] text-blue-500"><i class="fa-solid fa-greater-than"></i></small> Shirts</li>
-                <li class="ml-5 py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md"> <small class="text-[10px] text-blue-500"><i class="fa-solid fa-greater-than"></i></small> Shoes</li>
-                <li class="ml-5 py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md"> <small class="text-[10px] text-blue-500"><i class="fa-solid fa-greater-than"></i></small> Hats</li>
-                <li class="ml-5 py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md"> <small class="text-[10px] text-blue-500"><i class="fa-solid fa-greater-than"></i></small> Skirts</li>
-                <li class="ml-5 py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md"> <small class="text-[10px] text-blue-500"><i class="fa-solid fa-greater-than"></i></small> Backpacks</li>
+            <li class="mt-1 ml-5 py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md" id="all"> <small class="text-[10px] text-blue-500"><i class="fa-solid fa-greater-than"></i></small> All</li>
+                <li class="mt-1 ml-5 py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md" id="shirts"> <small class="text-[10px] text-blue-500"><i class="fa-solid fa-greater-than"></i></small> Shirts</li>
+                <li class="ml-5 py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md" id="shoes"> <small class="text-[10px] text-blue-500"><i class="fa-solid fa-greater-than"></i></small> Shoes</li>
+                <li class="ml-5 py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md" id="hats"> <small class="text-[10px] text-blue-500"><i class="fa-solid fa-greater-than"></i></small> Hats</li>
+                <li class="ml-5 py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md" id="skirts"> <small class="text-[10px] text-blue-500"><i class="fa-solid fa-greater-than"></i></small> Skirts</li>
+                <li class="ml-5 py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md" id="backpacks"> <small class="text-[10px] text-blue-500"><i class="fa-solid fa-greater-than"></i></small> Backpacks</li>
             </ol>
         </div>
         <div class="relative lg:hidden w-full">
-                <div class="relative border border-[#a3a3a3] rounded p-3 cursor-pointer clickdown_2">
-                    <div class="flex items-center justify-between">
+            <div class="relative border border-[#a3a3a3] rounded p-3 cursor-pointer clickdown_2">
+                <div class="flex items-center justify-between">
                     <h2 class="py-2"><i class="fa-solid fa-store text-blue-500"></i><strong> Collection</strong></h2>
-                        <i class="fa-solid fa-caret-down rotate-180 ease-out duration-500 dropdown_2"></i>
-                    </div>
+                    <i class="fa-solid fa-caret-down rotate-180 ease-out duration-500 dropdown_2"></i>
                 </div>
-                <ul class="absolute top-[100%] left-0 z-40 hidden w-full bg-[#e6e6e6] p-3 rounded list_2">
+            </div>
+            <ul class="absolute top-[100%] left-0 z-40 hidden w-full bg-[#e6e6e6] p-3 rounded list_2">
                 <li class="mt-1 py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md font-medium"> <small class="text-[10px] text-blue-500"></small> Shirts</li>
                 <li class="py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md font-medium"> <small class="text-[10px] text-blue-500"></small> Shoes</li>
                 <li class="py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md font-medium"> <small class="text-[10px] text-blue-500"></small> Hats</li>
                 <li class="py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md font-medium"> <small class="text-[10px] text-blue-500"></small> Skirts</li>
                 <li class="py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md font-medium"> <small class="text-[10px] text-blue-500"></small> Backpacks</li>
-                </ul>
-            </div>
+            </ul>
+        </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 w-[100%] justify-center">
             <?php
@@ -41,7 +42,7 @@
                 foreach ($productinfo as $product) {
                     if ($product->type == $type[$i]["type"]) {
             ?>
-                        <div class="<?php echo $type[$i]["type"] ?>group flex justify-between flex-col items-center w-full overflow-hidden rounded-md bg-white shadow-md">
+                        <div class="<?php echo $type[$i]["type"] ?> group flex justify-between flex-col items-center w-full overflow-hidden rounded-md bg-white shadow-md style">
                             <div class="p-4">
                                 <div class="<?php echo $type[$i]["imgHeight"] ?> overflow-hidden relative transition-all duration-500 hover:scale-110">
                                     <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($product['image']); ?>" />
@@ -102,16 +103,16 @@
             $('.dropdown_2').toggleClass('rotate-180');
         });
 
-        $('.clickdown_1').click(function() {
-            $('.list_2').addClass('hidden');
-            if (!$('.list_1').hasClass('hidden')) {
-                $('.list_1').addClass('hidden');
-            } else {
-                $('.list_1').removeClass('hidden');
-            }
+        // $('.clickdown_1').click(function() {
+        //     $('.list_2').addClass('hidden');
+        //     if (!$('.list_1').hasClass('hidden')) {
+        //         $('.list_1').addClass('hidden');
+        //     } else {
+        //         $('.list_1').removeClass('hidden');
+        //     }
 
-            $('.dropdown_1').toggleClass('rotate-180');
-        });
+        //     $('.dropdown_1').toggleClass('rotate-180');
+        // });
 
         //cart
         $('.close-cart').click(function() {
@@ -128,6 +129,45 @@
         $("#user_info").click(function() {
             $("#user_info_panel").toggleClass("right-4");
         });
+
+        //filter products 
+        $("#shirts").click(function() {
+            $(".shoes").hide();
+            $(".hats").hide();
+            $(".backpacks").hide();
+            $(".skirts").hide();
+        });
+        $("#shoes").click(function() {
+            $(".shoes").show();
+            $(".hats").hide();
+            $(".shirts").hide();
+            $(".backpacks").hide();
+            $(".skirts").hide();
+        });
+        $("#skirts").click(function() {
+            $(".skirts").show();
+            $(".shirts").hide();
+            $(".hats").hide();
+            $(".backpacks").hide();
+            $(".shoes").hide();
+        });
+        $("#hats").click(function() {
+            $(".hats").show();
+            $(".shoes").hide();
+            $(".shirts").hide();
+            $(".backpacks").hide();
+            $(".skirts").hide();
+        });
+        $("#backpacks").click(function() {
+            $(".backpacks").show();
+            $(".shoes").hide();
+            $(".hats").hide();
+            $(".shirts").hide();
+            $(".skirts").hide();
+        });
+        $("#all").click(function() {
+            $(".style").show();
+        })
     });
 </script>
 <?php $this->stop() ?>
