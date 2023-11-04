@@ -1,9 +1,9 @@
 <?php $this->layout("layouts/home", ["title" => APPNAME]) ?>
 
 <?php $this->start("page") ?>
-<div class="w-full mb-20 mx-auto">
-    <div class="w-full flex justify-between items-start p-4 gap-x-1 md:gap-x-[45px]">
-        <div class="p-2 w-[15%] hidden lg:block flex-col">
+<div class="w-full mx-auto mb-[150px]">
+    <div class="w-full flex justify-between items-start flex-col lg:flex-row p-4 gap-3 lg:gap-1 md:gap-x-[45px]">
+        <div class="p-2 w-[20%] hidden lg:block flex-col">
             <h2 class="py-2"><i class="fa-solid fa-store text-blue-500"></i><strong> Collection</strong></h2>
             <hr />
             <ol>
@@ -14,6 +14,21 @@
                 <li class="ml-5 py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md"> <small class="text-[10px] text-blue-500"><i class="fa-solid fa-greater-than"></i></small> Backpacks</li>
             </ol>
         </div>
+        <div class="relative lg:hidden w-full">
+                <div class="relative border border-[#a3a3a3] rounded p-3 cursor-pointer clickdown_2">
+                    <div class="flex items-center justify-between">
+                    <h2 class="py-2"><i class="fa-solid fa-store text-blue-500"></i><strong> Collection</strong></h2>
+                        <i class="fa-solid fa-caret-down rotate-180 ease-out duration-500 dropdown_2"></i>
+                    </div>
+                </div>
+                <ul class="absolute top-[100%] left-0 z-40 hidden w-full bg-[#e6e6e6] p-3 rounded list_2">
+                <li class="mt-1 py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md font-medium"> <small class="text-[10px] text-blue-500"></small> Shirts</li>
+                <li class="py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md font-medium"> <small class="text-[10px] text-blue-500"></small> Shoes</li>
+                <li class="py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md font-medium"> <small class="text-[10px] text-blue-500"></small> Hats</li>
+                <li class="py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md font-medium"> <small class="text-[10px] text-blue-500"></small> Skirts</li>
+                <li class="py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md font-medium"> <small class="text-[10px] text-blue-500"></small> Backpacks</li>
+                </ul>
+            </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 w-[100%] justify-center">
             <?php

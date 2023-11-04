@@ -15,13 +15,13 @@
             <p class="text-[#333] text-[20px] font-medium">Price :<span class="font-normal text-[#DC143C]">
                     $<?php echo $this->e($product->price); ?></span></p>
         </div>
-        <div class="flex gap-x-4 items-center">
-            <p class="text-[20px]">Color :</p>
+        <div class="flex gap-x-4 justify-start flex-wrap md:flex-row">
+            <p class="text-[20px] font-medium">Color :</p>
             <?php
             $colorArray = explode(",", $product->color);
             for ($i = 0; $i < count($colorArray); $i++) {
             ?>
-                <button class="border border-[#A9A9A9] px-2 py-1 transition-all duration-300 hover:bg-black hover:text-[#fff]"><?php echo $colorArray[$i] ?></button>
+            <input type="checkbox"><?php echo $colorArray[$i] ?></input>
             <?php } ?>
         </div>
         <div>
@@ -31,7 +31,7 @@
                 $sizeArray = explode("/", $product->size);
                 for ($i = 0; $i < count($sizeArray); $i++) {
                 ?>
-                    <button class="border border-[#A9A9A9] px-5 py-1 transition-all duration-300 hover:bg-black hover:text-[#fff]"><?php echo $sizeArray[$i] ?></button>
+                <input type="checkbox"><?php echo $sizeArray[$i] ?></input>
                 <?php } ?>
             </div>
         </div>

@@ -51,10 +51,45 @@
                         </div>
                         <div class="absolute top-[-25%] right-[-20%] bg-[#1E90FF] w-6 h-6 flex justify-center items-center rounded-[50%] font-medium text-[#fff]">0</div>
                     </button>
-
                 </div>
             </nav>
+            <div class="sidebar fixed top-0 left-[-100%] bg-[#fff] p-4 w-full h-full z-1000">
+                <div class="mb-4">
+                    <button class="closed">
+                        <div class="relative border border-[#a3a3a3] rounded w-[40px] h-[40px]">
+                            <i class="fa-solid fa-x p-[12px] ease-out duration-[0.4s] hover:scale-[1.1]"></i>
+                        </div>
+                    </button>
+                </div>
+                <ul class="flex flex-col">
+                    <div class="relative mb-4">
+                        <input type="text" placeholder="Search for products..." class="relative border-[1px] border-[#646464] bg-transparent w-full p-[6px] rounded-e-[5px] rounded-s-[5px] placeholder:text-[#808080]">
+                        <i class="fa-solid fa-magnifying-glass absolute top-[25%] right-3 cursor-pointer"></i>
+                    </div>
+                    <li class="pb-[15px]">
+                        <a href="#" class="no-underline font-semibold text-[20px] transition-colors hover:text-[#4169E1]">Orders</a>
+                    </li>
+                </ul>
+            </div>
         </header>
+        <div class="sidebar fixed top-0 left-[-100%] bg-[#fff] p-4 w-full h-full z-40">
+            <div class="mb-4">
+                <button class="closed">
+                    <div class="relative border border-[#a3a3a3] rounded w-[40px] h-[40px]">
+                        <i class="fa-solid fa-x p-[12px] ease-out duration-[0.4s] hover:scale-[1.1]"></i>
+                    </div>
+                </button>
+            </div>
+            <ul class="flex flex-col">
+                <div class="relative mb-4">
+                    <input type="text" placeholder="Search for products..." class="relative border-[1px] border-[#646464] bg-transparent w-full p-[6px] rounded-e-[5px] rounded-s-[5px] placeholder:text-[#808080]">
+                    <i class="fa-solid fa-magnifying-glass absolute top-[25%] right-3 cursor-pointer"></i>
+                </div>
+                <li class="pb-[15px]">
+                    <a href="#" class="no-underline font-semibold text-[20px] transition-colors hover:text-[#4169E1]">Orders</a>
+                </li>
+            </ul>
+        </div>
         <?= $this->section("page") ?>
         <!-- cart -->
         <div class="cart-shop fixed top-0 right-0 bg-[#FFFAFA] w-full md:w-[500px] h-full z-20 transition-all duration-500 translate-x-[100%]">

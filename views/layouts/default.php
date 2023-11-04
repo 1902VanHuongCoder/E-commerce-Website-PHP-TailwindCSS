@@ -25,11 +25,7 @@
                 <div class="relative flex items-center justify-center">
                     <p class="text-[25px] md:text-[18px] font-bold uppercase">JeiKei <span class="text-[#4169E1]">Store</span></p>
                     <ul class="ml-3 hidden md:flex lg:ml-4">
-                        <li class="px-[15px] lg:px-[20px] text-[18px]"><a href="#" class="no-underline font-semibold text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">All</a>
-                        </li>
-                        <li class="px-[15px] lg:px-[20px] text-[18px]"><a href="#" class="no-underline font-semibold text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Shirts</a>
-                        </li>
-                        <li class="px-[15px] lg:px-[20px] text-[18px]"><a href="#" class="no-underline font-semibold text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Stickers</a>
+                        <li class="px-[15px] lg:px-[20px] text-[18px]"><a href="#" class="no-underline font-semibold text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Orders</a>
                         </li>
                     </ul>
                     <div class="ml-[50px] hidden md:block">
@@ -64,9 +60,26 @@
                     <?php endif ?>
                 </ul>
             </nav>
+            <div class="sidebar fixed top-0 left-[-100%] bg-[#fff] p-4 w-full h-full z-40">
+                <div class="mb-4">
+                    <button class="closed">
+                        <div class="relative border border-[#a3a3a3] rounded w-[40px] h-[40px]">
+                            <i class="fa-solid fa-x p-[12px] ease-out duration-[0.4s] hover:scale-[1.1]"></i>
+                        </div>
+                    </button>
+                </div>
+                <ul class="flex flex-col">
+                    <div class="relative mb-4">
+                        <input type="text" placeholder="Search for products..." class="relative border-[1px] border-[#646464] bg-transparent w-full p-[6px] rounded-e-[5px] rounded-s-[5px] placeholder:text-[#808080]">
+                        <i class="fa-solid fa-magnifying-glass absolute top-[25%] right-3 cursor-pointer"></i>
+                    </div>
+                    <li class="pb-[15px]">
+                        <a href="#" class="no-underline font-semibold text-[20px] transition-colors hover:text-[#4169E1]">Orders</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </header>
-
 
     <?= $this->section("page") ?>
 
@@ -85,7 +98,15 @@
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </script>
+    <script>
+        $('.bar').click(function() {
+            $('.sidebar').toggleClass('left-[-100%]');
+        })
 
+        $('.closed').click(function() {
+            $('.sidebar').toggleClass('left-[-100%]');
+        })
+    </script>
     <?= $this->section("page_specific_js") ?>
 </body>
 
