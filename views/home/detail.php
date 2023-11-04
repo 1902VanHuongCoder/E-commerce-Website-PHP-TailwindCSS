@@ -21,7 +21,7 @@
             $colorArray = explode(",", $product->color);
             for ($i = 0; $i < count($colorArray); $i++) {
             ?>
-            <input type="checkbox"><?php echo $colorArray[$i] ?></input>
+                <input type="checkbox"><?php echo $colorArray[$i] ?></input>
             <?php } ?>
         </div>
         <div>
@@ -31,7 +31,7 @@
                 $sizeArray = explode("/", $product->size);
                 for ($i = 0; $i < count($sizeArray); $i++) {
                 ?>
-                <input type="checkbox"><?php echo $sizeArray[$i] ?></input>
+                    <input type="checkbox"><?php echo $sizeArray[$i] ?></input>
                 <?php } ?>
             </div>
         </div>

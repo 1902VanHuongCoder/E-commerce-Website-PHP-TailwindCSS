@@ -1,8 +1,8 @@
 <?php $this->layout("layouts/default", ["title" => "Orders"]) ?>
 
 <?php $this->start("page") ?>
-<div class="container mx-auto">
-    <a href="/">Home</a>
+<div class="container">
+    <i class="fa-solid fa-arrow-left ml-4 "></i> <a href="/" class="font-bold transition-all duration-300 hover:text-[#4169E1] text-[20px]">Home</a>
 
     <?php if ($orderState) {
     ?>
@@ -22,20 +22,20 @@
         <h1 class="text-[30px] font-semibold">Order</h1>
         <div class="absolute bottom-0 w-24 h-1 bg-[#4169E1]"></div>
     </div>
-    <div class="max-w-full h-full grid grid-cols-1 md:grid-cols-3 gap-7 border rounded-xl p-5 shadow-md">
+    <div class="w-full h-full grid grid-cols-1 md:grid-cols-3 gap-7 border rounded-xl p-5 shadow-md justify-center items-center">
         <div class="w-full flex items-center justify-center">
             <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($product['image']); ?>" />
         </div>
         <form action="/orders/<?= $this->e($product->id) ?>" method="POST" class="col-span-2">
             <h1 class="text-xl font-semibold py-2"><?php echo $this->e($product->name); ?></h1>
-            <p class="text-[18px] font-normal">Price : <span class="text-red-500">$<?php echo $this->e($product->price); ?></span></p>
-            <div class="flex gap-x-2 items-center py-2">
-                <p class="text-[18px] font-normal">Color :</p>
+            <p class="text-[20px] font-semibold">Price : <span class="text-red-500">$<?php echo $this->e($product->price); ?></span></p>
+            <div class="flex gap-x-2 items-center py-2 flex-wrap">
+                <p class="text-[20px] font-semibold">Color :</p>
                 <?php
                 $colorArray = explode(",", $product->color);
                 for ($i = 0; $i < count($colorArray); $i++) {
                 ?>
-                    <span class="flex justify-center items-center ml-2">
+                    <span class="flex justify-center ml-2 items-center">
                         <input type="checkbox" name="color_<?= $i  + 1 ?>" value="<?php echo $colorArray[$i] ?>">
                         <span class="px-2 py-1 transition-all duration-300"><?php echo $colorArray[$i] ?></span>
                     </span>
@@ -46,8 +46,8 @@
                     <strong><i class="fa-solid fa-triangle-exclamation"></i> <?= $this->e($errors['color']) ?></strong>
                 </span>
             <?php endif ?>
-            <div class="flex gap-x-2 items-center py-2">
-                <p class="text-[18px] font-normal">Size :</p>
+            <div class="flex gap-x-2 items-center py-2 flex-wrap">
+                <p class="text-[20px] font-semibold">Size :</p>
                 <?php
                 $sizeArray = explode(",", $product->size);
                 for ($i = 0; $i < count($sizeArray); $i++) {
@@ -63,9 +63,9 @@
                     <strong><i class="fa-solid fa-triangle-exclamation"></i> <?= $this->e($errors['size']) ?></strong>
                 </span>
             <?php endif ?>
-            <p class="text-[18px] font-normal py-2 flex justify-start items-center gap-x-2">Warehouse:<span class="text-[#4169e1] flex justify-center items-center gap-x-1"><?php echo $this->e($product->quantity); ?> <small>products available</small></span></p>
+            <p class="text-[20px] font-semibold py-2 flex justify-start items-center gap-x-2">Warehouse:<span class="text-[#4169e1] flex justify-center items-center gap-x-1"><?php echo $this->e($product->quantity); ?> <small>products available</small></span></p>
             <div class="py-2">
-                <p>Choose product quantity: </p>
+                <p class="text-[20px] font-semibold">Choose product quantity: </p>
                 <div class="py-2 flex gap-1">
                     <button type="button" class="text-xl border border-1 border-slate-950 py-1 px-3">-</button>
                     <input name="total_amount" value="1" style="appearance: textfield;" type="number" min="1" class="border border-1 border-slate-950 h-10 w-12 flex justify-center items-center" />
@@ -77,7 +77,7 @@
                     </span>
                 <?php endif ?>
             </div>
-            <p class="font-semibold text-[18px] mb-2">Choose Delivery Method :</p>
+            <p class="text-[20px] font-semibold mb-2">Choose Delivery Method :</p>
             <select class="relative mb-2" name="payment">
                 <div class="flex justify-between items-center p-[10px] border border-[#7a7a7a] rounded-[10px] cursor-pointer clickdown_2">
                     <p>Direct payment</p>

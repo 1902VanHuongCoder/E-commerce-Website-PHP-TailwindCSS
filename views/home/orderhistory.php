@@ -2,7 +2,7 @@
 
 <?php $this->start("page") ?>
 <div class="container mx-auto">
-    <i class="fa-solid fa-arrow-left"></i> <a href="/" class="font-bold">Home</a>
+    <i class="fa-solid fa-arrow-left ml-4 "></i> <a href="/" class="font-bold transition-all duration-300 hover:text-[#4169E1] text-[20px]">Home</a>
     <div class="relative w-full flex justify-center mb-3">
         <h1 class="text-[30px] font-semibold">Order history</h1>
         <div class="absolute bottom-0 w-24 h-1 bg-[#4169E1]"></div>

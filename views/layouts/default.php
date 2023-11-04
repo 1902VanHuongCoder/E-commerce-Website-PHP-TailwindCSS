@@ -14,7 +14,7 @@
     <?= $this->section("page_specific_css") ?>
 </head>
 
-<body class="relative w-full min-h-screen">
+<body class="relative w-full min-h-screen max-w-[1200px] mx-auto">
     <header>
         <div class="relative flex items-center justify-between py-[40px]">
             <nav class="absolute flex items-center justify-between top-0 left-0 w-full px-4 py-[15px]">
