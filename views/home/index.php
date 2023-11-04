@@ -7,7 +7,7 @@
             <h2 class="py-2"><i class="fa-solid fa-store text-blue-500"></i><strong> Collection</strong></h2>
             <hr />
             <ol>
-            <li class="mt-1 ml-5 py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md" id="all"> <small class="text-[10px] text-blue-500"><i class="fa-solid fa-greater-than"></i></small> All</li>
+                <li class="mt-1 ml-5 py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md" id="all"> <small class="text-[10px] text-blue-500"><i class="fa-solid fa-greater-than"></i></small> All</li>
                 <li class="mt-1 ml-5 py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md" id="shirts"> <small class="text-[10px] text-blue-500"><i class="fa-solid fa-greater-than"></i></small> Shirts</li>
                 <li class="ml-5 py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md" id="shoes"> <small class="text-[10px] text-blue-500"><i class="fa-solid fa-greater-than"></i></small> Shoes</li>
                 <li class="ml-5 py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md" id="hats"> <small class="text-[10px] text-blue-500"><i class="fa-solid fa-greater-than"></i></small> Hats</li>
@@ -15,7 +15,7 @@
                 <li class="ml-5 py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md" id="backpacks"> <small class="text-[10px] text-blue-500"><i class="fa-solid fa-greater-than"></i></small> Backpacks</li>
             </ol>
         </div>
-        <div class="relative lg:hidden w-full">
+        <div class="relative block lg:hidden w-full">
             <div class="relative border border-[#a3a3a3] rounded p-3 cursor-pointer clickdown_2">
                 <div class="flex items-center justify-between">
                     <h2 class="py-2"><i class="fa-solid fa-store text-blue-500"></i><strong> Collection</strong></h2>
@@ -23,11 +23,12 @@
                 </div>
             </div>
             <ul class="absolute top-[100%] left-0 z-40 hidden w-full bg-[#e6e6e6] p-3 rounded list_2">
-                <li class="mt-1 py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md font-medium"> <small class="text-[10px] text-blue-500"></small> Shirts</li>
-                <li class="py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md font-medium"> <small class="text-[10px] text-blue-500"></small> Shoes</li>
-                <li class="py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md font-medium"> <small class="text-[10px] text-blue-500"></small> Hats</li>
-                <li class="py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md font-medium"> <small class="text-[10px] text-blue-500"></small> Skirts</li>
-                <li class="py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md font-medium"> <small class="text-[10px] text-blue-500"></small> Backpacks</li>
+                <li class="mt-1 py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md font-medium" id="all_1"> <small class="text-[10px] text-blue-500"></small>All</li>
+                <li class="mt-1 py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md font-medium" id="shirts_1"> <small class="text-[10px] text-blue-500"></small>Shirts</li>
+                <li class="py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md font-medium" id="shoes_1"> <small class="text-[10px] text-blue-500"></small>Shoes</li>
+                <li class="py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md font-medium" id="hats_1"> <small class="text-[10px] text-blue-500"></small>Hats</li>
+                <li class="py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md font-medium" id="skirts_1"> <small class="text-[10px] text-blue-500"></small>Skirts</li>
+                <li class="py-1 px-3 cursor-pointer hover:bg-slate-200 mb-1 rounded-md font-medium" id="backpacks_1"> <small class="text-[10px] text-blue-500"></small>Backpacks</li>
             </ul>
         </div>
 
@@ -132,6 +133,7 @@
 
         //filter products 
         $("#shirts").click(function() {
+            $(".shirts").show();
             $(".shoes").hide();
             $(".hats").hide();
             $(".backpacks").hide();
@@ -166,6 +168,46 @@
             $(".skirts").hide();
         });
         $("#all").click(function() {
+            $(".style").show();
+        })
+
+        //filter mobile
+        $("#shirts_1").click(function() {
+            $(".shirts").show();
+            $(".shoes").hide();
+            $(".hats").hide();
+            $(".backpacks").hide();
+            $(".skirts").hide();
+        });
+        $("#shoes_1").click(function() {
+            $(".shoes").show();
+            $(".hats").hide();
+            $(".shirts").hide();
+            $(".backpacks").hide();
+            $(".skirts").hide();
+        });
+        $("#skirts_1").click(function() {
+            $(".skirts").show();
+            $(".shirts").hide();
+            $(".hats").hide();
+            $(".backpacks").hide();
+            $(".shoes").hide();
+        });
+        $("#hats_1").click(function() {
+            $(".hats").show();
+            $(".shoes").hide();
+            $(".shirts").hide();
+            $(".backpacks").hide();
+            $(".skirts").hide();
+        });
+        $("#backpacks_1").click(function() {
+            $(".backpacks").show();
+            $(".shoes").hide();
+            $(".hats").hide();
+            $(".shirts").hide();
+            $(".skirts").hide();
+        });
+        $("#all_1").click(function() {
             $(".style").show();
         })
     });
