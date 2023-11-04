@@ -83,8 +83,8 @@
                     <textarea id="description" name="description" class="outline-0 p-2 block w-full rounded-md border shadow-md focus:border-blue-300 focus:ring focus:ring-blue-300 focus:ring-opacity-50  disabled:cursor-not-allowed disabled:bg-gray-50" rows="3" placeholder="Leave a message"></textarea>
                 </div>
             </div>
-            <label>Select Image File:</label>
-            <input type="file" name="image">
+            <label class="font-bold mb-1 block text-sm text-gray-700 after:ml-0.5 after:text-red-500 after:content-['*']">Select Image File:</label>
+            <input type="file" name="image" class="text-[#4169E1] font-bold">
             <?php if (isset($errors['image'])) : ?>
                 <span class="text-red-500 mt-1 text-sm">
                     <strong><?= $this->e($errors['image']) ?></strong>
