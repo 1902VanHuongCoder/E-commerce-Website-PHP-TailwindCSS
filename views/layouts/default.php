@@ -14,7 +14,7 @@
     <?= $this->section("page_specific_css") ?>
 </head>
 
-<body>
+<body class="relative w-full min-h-screen">
     <header>
         <div class="relative flex items-center justify-between py-[40px]">
             <nav class="absolute flex items-center justify-between top-0 left-0 w-full px-4 py-[15px]">
@@ -70,7 +70,7 @@
 
     <?= $this->section("page") ?>
 
-    <footer class="mt-28 bg-[#333] text-[#fff] p-5">
+    <footer class="bg-[#333] text-[#fff] p-5 absolute bottom-[-100%] left-0 w-full">
         <div class="max-w-[1200px] mx-auto flex justify-center flex-col md:flex-row md:justify-between items-center">
             <div class="flex flex-col md:flex-row md:text-sm">
                 <p class="mr-5">© 2023 JeiKei, Inc. All rights reserved.</p>

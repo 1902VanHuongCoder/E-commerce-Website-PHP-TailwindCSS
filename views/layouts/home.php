@@ -19,7 +19,7 @@
 </head>
 
 
-<body class="relative">
+<body class="relative w-full min-h-screen">
     <div class="relative w-full max-w-[1200px] m-auto md:flex-row min-h-screen overflow-hidden">
         <header>
             <nav class="flex items-center justify-between top-0 left-0 w-full px-4 py-[15px]">
@@ -36,7 +36,7 @@
                     </ul>
                     <form action="/search" method="POST" class="ml-[50px] hidden md:block">
                         <input name="search" type="text" placeholder="Search for products..." class="relative border-[1px] border-[#646464] bg-transparent w-[200px] lg:w-[420px] p-[6px] rounded-e-[5px] rounded-s-[5px] placeholder:text-[#808080]">
-                        <button type="submit"><i class="fa-solid fa-magnifying-glass absolute top-[10px] left-[95%] translate-x-[50%] cursor-pointer"></i>
+                        <button type="submit"><i class="fa-solid fa-magnifying-glass absolute top-[10px] left-[93%] translate-x-[50%] cursor-pointer"></i>
                         </button>
                     </form>
                 </div>
@@ -165,7 +165,7 @@
                 </a>
             </div>
         </div>
-        <footer class="bg-[#333] text-[#fff] p-5 absolute bottom-0 left-0 w-full">
+        <footer class="bg-[#333] text-[#fff] p-5 absolute bottom-[0] left-0 w-full">
             <div class="max-w-[1200px] mx-auto flex justify-center flex-col md:flex-row md:justify-between items-center">
                 <div class="flex flex-col md:flex-row md:text-sm">
                     <p class="mr-5">© 2023 JeiKei, Inc. All rights reserved.</p>

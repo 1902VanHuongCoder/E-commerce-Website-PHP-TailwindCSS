@@ -3,7 +3,7 @@
 <?php $this->start("page") ?>
 <div class="w-full mb-20 mx-auto">
     <div class="w-full flex justify-between items-start p-4 gap-x-1 md:gap-x-[45px]">
-        <div class="p-2 w-[15%]">
+        <div class="p-2 w-[15%] hidden lg:block flex-col">
             <h2 class="py-2"><i class="fa-solid fa-store text-blue-500"></i><strong> Collection</strong></h2>
             <hr />
             <ol>
@@ -15,7 +15,7 @@
             </ol>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 gap-y-5  w-[80%]">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 w-[100%] justify-center">
             <?php
             $type = [
                 ["type" => "shirts", "imgHeight" => "h-64"], ["type" => "shoes", "imgHeight" => "h-36"],
@@ -28,7 +28,7 @@
             ?>
                         <div class="<?php echo $type[$i]["type"] ?>group flex justify-between flex-col items-center w-full overflow-hidden rounded-md bg-white shadow-md">
                             <div class="p-4">
-                                <div class="<?php echo $type[$i]["imgHeight"] ?> overflow-hidden relative">
+                                <div class="<?php echo $type[$i]["imgHeight"] ?> overflow-hidden relative transition-all duration-500 hover:scale-110">
                                     <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($product['image']); ?>" />
                                     <a class="w-full h-full absolute cursor-pointer top-0 left-0" href="/detail/<?php echo $this->e($product->id) ?>"></a>
                                 </div>
@@ -50,8 +50,6 @@
             } ?>
         </div>
     </div>
-
-
 </div>
 <!-- ALERT BOX -->
 <?php $this->stop() ?>
