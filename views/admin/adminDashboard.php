@@ -2,7 +2,7 @@
 
 <?php $this->start("page") ?>
 <div class="container mt-5">
-    <div class="ml-4">
+    <div class="ml-4 mb-4 text-center">
         <h2 class="text-[#333] font-bold text-xl">Admin Info</h2>
     </div>
     <?php

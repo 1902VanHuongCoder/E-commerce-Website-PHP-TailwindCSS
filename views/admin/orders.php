@@ -2,13 +2,13 @@
 
 <?php $this->start("page") ?>
 <div class="container">
-    <h1>
-        Admin Info
-    </h1>
+    <div class="ml-4 mb-4 text-center">
+        <h2 class="text-[#333] font-bold text-xl">Admin Info</h2>
+    </div>
     <div class="row">
         <div class="col-12">
             <!-- FLASH MESSAGES -->
-            <div class="">
+            <div class="overflow-x-auto">
                 <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
                     <thead class="bg-gray-50">
                         <tr>
@@ -37,9 +37,9 @@
                                 <td class="px-6 py-4"><?= $this->e($order->total_amount) ?></td>
                                 <td class="px-6 py-4"><?= $this->e($order->username) ?></td>
                                 <td class="flex justify-end gap-4 px-6 py-4 font-medium">
-                                    <a href="/admin/editproduct/<?= $order->id ?>" class="text-primary-700">Edit</a>
+                                    <a href="/admin/editproduct/<?= $order->id ?>" class="text-center bg-[#4169E1] px-4 py-2 text-[#fff]">Edit</a>
                                     <form class="form-inline ml-1" action="/admin/delete/<?= $order->id ?>" method="POST">
-                                        <button type="submit" class="" name="delete-product">
+                                        <button type="submit" class="text-primary-700 bg-[#DC143C] px-4 py-2 text-[#fff]" name="delete-product">
                                             <i alt="Delete"></i> Delete
                                         </button>
                                     </form>
