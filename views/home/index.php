@@ -57,7 +57,7 @@
                             </div>
                             <div class="w-full">
                                 <div class="px-3 py-6 w-full flex items-center justify-between">
-                                    <button class="rounded-sm bg-transparent border border-1 border-slate-950 px-4 py-1 text-slate-950 ring-purple-500/30 ring-offset-2 hover:opacity-60 focus-visible:outline-none focus-visible:ring active:opacity-60/90">Add</button>
+                                    <button class="rounded-sm bg-transparent border border-1 border-slate-950 px-4 py-1 text-slate-950 ring-purple-500/30 ring-offset-2 hover:opacity-60 focus-visible:outline-none focus-visible:ring active:opacity-60/90 add">Add</button>
                                     <a href="/orders/<?php echo $this->e($product->id) ?>" class="rounded-sm bg-[#1e90ff] px-4 py-1 text-white ring-purple-500/30 ring-offset-2 hover:opacity-60 focus-visible:outline-none focus-visible:ring active:opacity-60/90">Buy Now</a>
                                 </div>
                             </div>
@@ -210,6 +210,47 @@
         $("#all_1").click(function() {
             $(".style").show();
         })
+
+        //add products
+        $('.add').click(function() {
+            // Lấy thông tin sản phẩm từ phần tử gần nhất được chọn
+            var productElement = $(this).closest('.style');
+            console.log(productElement);
+            var productName = productElement.find('.text-base').text().trim();
+            console.log(productName);
+            var productPrice = productElement.find('.text-gray-500').text().trim();
+            console.log(productPrice);
+            var productWarehouse = productElement.find('.text-red-400').text().trim().split(':')[1].trim();
+            console.log(productWarehouse);
+            var productImage = productElement.find('img').attr('src');
+            console.log(productImage);
+
+            var product = `
+                    <div class="flex justify-start gap-2 border-b-2 border-[#333] py-[20px]">
+                        <div class="w-1/3">
+                            <img src="${productImage}">
+                        </div>
+                        <div class="text-sm flex justify-center flex-col gap-[6px] font-semibold">
+                            <h1>${productName}</h1>
+                            <p>Price : <span class="text-[#4169E1]">${productPrice}</span></p>
+                            <p>Warehouse: <span class="text-[#DC143C] warehouse">${productWarehouse}</span></p>
+                            <div class="flex items-center gap-2">
+                                <p>Quantity : </p>
+                                <div>
+                                    <button class="border border-[#a4a4a4] w-[25px]">-</button>
+                                    <input type="number" class="w-[35px] border border-[#a4a4a4] text-center" value="1">
+                                    <button class="border border-[#a4a4a4] w-[25px]">+</button>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <button class="px-[18px] py-[6px] bg-[#FFD700] transition-all duration-500 hover:text-[#fff] hover:bg-[#4169E1]"><i class="fa-solid fa-cart-shopping"></i> Buy Now</button>
+                                <button class="px-[18px] py-[6px] bg-[#DC143C] transition-all duration-500 hover:text-[#fff]">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+            `
+            $('.cart_product').append(product);
+        });
     });
 </script>
 <?php $this->stop() ?>
