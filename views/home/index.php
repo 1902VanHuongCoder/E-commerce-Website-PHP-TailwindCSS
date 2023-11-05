@@ -216,13 +216,13 @@
         $('.add').click(function() {
             var productElement = $(this).closest('.style');
             var productName = productElement.find('.text-base').text().trim();
-            var productPrice = productElement.find('.text-gray-500').text().trim().split('$')[0].trim();
-            let price = parseFloat(productPrice);
+            let price = parseFloat(productElement.find('.text-gray-500').text().trim().split('$')[0].trim());
             var productWarehouse = productElement.find('.text-red-400').text().trim().split(':')[1].trim();
             var productImage = productElement.find('img').attr('src');
             add_to_cart(productName, price, productWarehouse, productImage);
         });
 
+        //Hàm này dùng để kiểm tra xem sản phẩm có không
         function find_CartItem(productName) {
             for (var i = 0; i < cart_items.length; i++) {
                 if (cart_items[i].name === productName) {
@@ -232,11 +232,13 @@
             return -1;
         }
 
+        //Hàm này thêm giỏ hàng
         function add_to_cart(name, price, warehousem, image) {
             var productIndex = find_CartItem(name);
-            console.log(productIndex);
+            var totalPrice = 0;
             if (productIndex !== -1) {
                 cart_items[productIndex].quantity++;
+                cart_items[productIndex].price = price * cart_items[productIndex].quantity;
             } else {
                 var products = {
                     name: name,
@@ -248,43 +250,83 @@
                 cart_items.push(products);
             }
             render_CartItems();
+            updateTotalPrice()
         }
 
         function render_CartItems() {
             $('.cart_product').empty();
+            var totalPrice = 0;
             for (var i = 0; i < cart_items.length; i++) {
                 var product = `
                     <div class="flex justify-start gap-2 border-b-2 border-[#333] py-[20px] cart">
                         <div class="w-1/3">
                             <img src="${cart_items[i].image}">
                         </div>
-                        <div class="text-sm flex justify-center flex-col gap-[6px] font-semibold">
+                        <div class="text-sm flex justify-center flex-col gap-[8px] font-semibold">
                             <h1>${cart_items[i].name}</h1>
-                            <p>Price : <span class="text-[#4169E1]">${cart_items[i].price}.00$</span></p>
+                            <p>Price : <span class="text-[#4169E1] price">${cart_items[i].price}.00$</span></p>
                             <p>Warehouse: <span class="text-[#DC143C] warehouse">${cart_items[i].warehousem}</span></p>
-                            <div class="flex items-center gap-2">
+                            <div class="flex items-center gap-4">
                                 <p>Quantity : </p>
-                                <div>
-                                    <button class="border border-[#a4a4a4] w-[25px]">-</button>
-                                    <input type="number" class="w-[35px] border border-[#a4a4a4] text-center quantity" value="${cart_items[i].quantity}">
-                                    <button class="border border-[#a4a4a4] w-[25px]">+</button>
+                                <div class="flex items-center gap-2">
+                                    <button class="border border-[#333] w-[30px] text-[22px] h-[30px] font-bold minus">-</button>
+                                    <input type="number" class="w-[50px] h-[30px] font-bold border border-[#a4a4a4] text-center quantity" value="${cart_items[i].quantity}">
+                                    <button class="border border-[#333] w-[30px] text-[22px] h-[30px] font-bold plus">+</button>
                                 </div>
                             </div>
-                            <div class="flex items-center gap-3">
+                            <div class="flex items-center gap-4">
                                 <button class="px-[18px] py-[6px] bg-[#FFD700] transition-all duration-500 hover:text-[#fff] hover:bg-[#4169E1]"><i class="fa-solid fa-cart-shopping"></i> Buy Now</button>
                                 <button class="px-[18px] py-[6px] bg-[#DC143C] transition-all duration-500 hover:text-[#fff] del">Delete</button>
                             </div>
                         </div>
                     </div>
-            `
+                `
                 $('.cart_product').append(product);
             }
+
+            $('.plus').click(function() {
+                var productElement = $(this).closest('.cart');
+                var productNameCart = productElement.find('h1').text();
+                var productIndex = find_CartItem(productNameCart);
+                var initialPrice = cart_items[productIndex].price;
+                cart_items[productIndex].quantity++;
+                var currentPrice = cart_items[productIndex].quantity * initialPrice;
+                productElement.find('.price').text(currentPrice + ".00$");
+                productElement.find('.quantity').val(cart_items[productIndex].quantity);
+            })
+
+            $('.minus').click(function() {
+                var productElement = $(this).closest('.cart');
+                var productNameCart = productElement.find('h1').text();
+                var productIndex = find_CartItem(productNameCart);
+                var initialPrice = cart_items[productIndex].price;
+                if (cart_items[productIndex].quantity > 1) {
+                    cart_items[productIndex].quantity--;
+                    var currentPrice = cart_items[productIndex].quantity * initialPrice;
+                    productElement.find('.price').text(currentPrice + ".00$");
+                    productElement.find('.quantity').val(cart_items[productIndex].quantity);
+                } else {
+                    productElement.remove();
+                }
+            })
+
+            $('.del').click(function() {
+                var productElement = $(this).closest('.cart');
+                var productNameCart = productElement.find('h1').text();
+                var productIndex = find_CartItem(productNameCart);
+                cart_items.splice(productIndex, 1);
+                productElement.remove();
+            })
         }
-        //     $('.del').click(function() {
-        //         var productElement = $(this).closest('.cart');
-        //         productElement.remove();
-        //     })
-        // });
+
+        function updateTotalPrice() {
+            var totalPrice = 0;
+            for (var i = 0; i<cart_items.length; i++) {
+                var productTotalPrice = cart_items[i].price * cart_items[i].quantity;
+                totalPrice += productTotalPrice;
+            }
+            $('.total').text(totalPrice.toFixed(2) +" " + "$");
+        }
     });
 </script>
 <?php $this->stop() ?>
