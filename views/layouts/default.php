@@ -82,7 +82,7 @@
     </header>
 
     <?= $this->section("page") ?>
-
+    
     <footer class="bg-[#333] text-[#fff] p-5 absolute bottom-[-100%] left-0 w-full">
         <div class="max-w-[1200px] mx-auto flex justify-center flex-col md:flex-row md:justify-between items-center">
             <div class="flex flex-col md:flex-row md:text-sm">

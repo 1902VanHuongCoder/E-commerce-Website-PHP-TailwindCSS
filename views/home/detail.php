@@ -1,7 +1,8 @@
 <?php $this->layout("layouts/default", ["title" => "Products detail"]) ?>
 
 <?php $this->start("page") ?>
-<div class="relative grid grid-cols-1 w-[95%] gap-y-6 min-h-screen mx-auto lg:grid-cols-4 lg:gap-x-6">
+<i class="fa-solid fa-arrow-left ml-4 "></i> <a href="/" class="font-bold transition-all duration-300 hover:text-[#4169E1] text-[20px]">Home</a>
+<div class="relative grid grid-cols-1 w-[95%] gap-y-6 min-h-screen mx-auto lg:grid-cols-4 lg:gap-x-6 mt-3">
     <div class="w-full">
         <div class="w-full <img src=" data:image/jpg;charset=utf8;base64,<?php echo base64_encode($product['image']); ?>" />
         <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($product['image']); ?>" />

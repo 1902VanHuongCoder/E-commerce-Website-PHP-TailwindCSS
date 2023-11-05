@@ -213,20 +213,25 @@
 
         //add products
         $('.add').click(function() {
-            // Lấy thông tin sản phẩm từ phần tử gần nhất được chọn
             var productElement = $(this).closest('.style');
-            console.log(productElement);
             var productName = productElement.find('.text-base').text().trim();
-            console.log(productName);
             var productPrice = productElement.find('.text-gray-500').text().trim();
-            console.log(productPrice);
             var productWarehouse = productElement.find('.text-red-400').text().trim().split(':')[1].trim();
-            console.log(productWarehouse);
             var productImage = productElement.find('img').attr('src');
-            console.log(productImage);
+
+            var cartItems =[
+                {
+                name : productName,
+                price : productPrice,
+                warehouse : productWarehouse,
+                image : productImage
+                },
+            ]
+
+            if (cartItems)
 
             var product = `
-                    <div class="flex justify-start gap-2 border-b-2 border-[#333] py-[20px]">
+                    <div class="flex justify-start gap-2 border-b-2 border-[#333] py-[20px] cart">
                         <div class="w-1/3">
                             <img src="${productImage}">
                         </div>
@@ -244,12 +249,16 @@
                             </div>
                             <div class="flex items-center gap-3">
                                 <button class="px-[18px] py-[6px] bg-[#FFD700] transition-all duration-500 hover:text-[#fff] hover:bg-[#4169E1]"><i class="fa-solid fa-cart-shopping"></i> Buy Now</button>
-                                <button class="px-[18px] py-[6px] bg-[#DC143C] transition-all duration-500 hover:text-[#fff]">Delete</button>
+                                <button class="px-[18px] py-[6px] bg-[#DC143C] transition-all duration-500 hover:text-[#fff] del">Delete</button>
                             </div>
                         </div>
                     </div>
             `
             $('.cart_product').append(product);
+            $('.del').click(function() {
+                var productElement = $(this).closest('.cart');
+                productElement.remove();
+            })
         });
     });
 </script>

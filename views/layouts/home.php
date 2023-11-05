@@ -86,7 +86,6 @@
                 <div class="bg-[#333] w-full p-2 text-center cursor-pointer close-cart">Close</div>
             </div>
         </div>
-        <div class="opacity-toggle absolute top-0 left-0 w-full opacity-50 bg-[#333] h-full z-10 hidden transition-all duration-500"></div>
         <!-- Dropdown Menu -->
         <div id="user_info_panel" class="absolute top-14 right-[-100%] transition-all z-10 mt-2 w-60 divide-y divide-gray-100 rounded-lg border border-gray-100 bg-white text-left text-sm shadow-lg">
             <div class="py-3 px-4">
@@ -130,6 +129,7 @@
             </div>
         </footer>
     </div>
+    <div class="opacity-toggle absolute top-0 left-0 w-full opacity-50 bg-[#333] h-full z-10 hidden transition-all duration-500"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <?= $this->section("page_specific_js") ?>
 </body>
