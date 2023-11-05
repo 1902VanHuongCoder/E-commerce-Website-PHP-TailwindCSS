@@ -49,7 +49,7 @@
                         <div class="relative border border-[#a3a3a3] rounded">
                             <i class="fa-sharp fa-solid fa-cart-shopping p-[12px] ease-out duration-[0.4s] hover:scale-[1.1]"></i>
                         </div>
-                        <div class="absolute top-[-25%] right-[-20%] bg-[#1E90FF] w-6 h-6 flex justify-center items-center rounded-[50%] font-medium text-[#fff]">0</div>
+                        <div class="absolute top-[-25%] right-[-20%] bg-[#1E90FF] w-6 h-6 flex justify-center items-center rounded-[50%] font-medium text-[#fff] quantity">0</div>
                     </button>
                 </div>
             </nav>
@@ -82,7 +82,7 @@
                 <div class="flex justify-center items-center flex-col m-[30px] cart_product"></div>
             </div>
             <div class="absolute bottom-0 w-full grid grid-cols-2 font-semibold text-[#fff]">
-                <div class="bg-[#4169E1] w-full p-2 text-center">0 đ</div>
+                <div class="bg-[#4169E1] w-full p-2 text-center total"></div>
                 <div class="bg-[#333] w-full p-2 text-center cursor-pointer close-cart">Close</div>
             </div>
         </div>

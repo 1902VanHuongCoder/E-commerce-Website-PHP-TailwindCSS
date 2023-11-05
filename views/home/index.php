@@ -218,17 +218,16 @@
             var productPrice = productElement.find('.text-gray-500').text().trim();
             var productWarehouse = productElement.find('.text-red-400').text().trim().split(':')[1].trim();
             var productImage = productElement.find('img').attr('src');
-
-            var cartItems =[
-                {
-                name : productName,
-                price : productPrice,
-                warehouse : productWarehouse,
-                image : productImage
-                },
-            ]
-
-            if (cartItems)
+            
+            var cartItems =[];
+            function quantity_Product() {
+                var total = 0;
+                cartItems.forEach(function(value,key) {
+                    total += value.price;
+                })
+                $('.total').text(total.toLocaleString());
+                $('.quantity').text(cartItems.length);
+            }
 
             var product = `
                     <div class="flex justify-start gap-2 border-b-2 border-[#333] py-[20px] cart">
@@ -254,6 +253,16 @@
                         </div>
                     </div>
             `
+            var newCart = {
+                name : productName,
+                price : productPrice,
+                warehouse : productWarehouse,
+                image : productImage
+            }
+
+            cartItems.push(newCart);
+            console.log(cartItems);
+            quantity_Product();
             $('.cart_product').append(product);
             $('.del').click(function() {
                 var productElement = $(this).closest('.cart');
