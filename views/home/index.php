@@ -212,37 +212,61 @@
         })
 
         //add products
+        let cart_items = [];
         $('.add').click(function() {
             var productElement = $(this).closest('.style');
             var productName = productElement.find('.text-base').text().trim();
-            var productPrice = productElement.find('.text-gray-500').text().trim();
+            var productPrice = productElement.find('.text-gray-500').text().trim().split('$')[0].trim();
+            let price = parseFloat(productPrice);
             var productWarehouse = productElement.find('.text-red-400').text().trim().split(':')[1].trim();
             var productImage = productElement.find('img').attr('src');
-            
-            var cartItems =[];
-            function quantity_Product() {
-                var total = 0;
-                cartItems.forEach(function(value,key) {
-                    total += value.price;
-                })
-                $('.total').text(total.toLocaleString());
-                $('.quantity').text(cartItems.length);
-            }
+            add_to_cart(productName, price, productWarehouse, productImage);
+        });
 
-            var product = `
+        function find_CartItem(productName) {
+            for (var i = 0; i < cart_items.length; i++) {
+                if (cart_items[i].name === productName) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        function add_to_cart(name, price, warehousem, image) {
+            var productIndex = find_CartItem(name);
+            console.log(productIndex);
+            if (productIndex !== -1) {
+                cart_items[productIndex].quantity++;
+            } else {
+                var products = {
+                    name: name,
+                    price: price,
+                    warehousem: warehousem,
+                    image: image,
+                    quantity: 1
+                }
+                cart_items.push(products);
+            }
+            render_CartItems();
+        }
+
+        function render_CartItems() {
+            $('.cart_product').empty();
+            for (var i = 0; i < cart_items.length; i++) {
+                var product = `
                     <div class="flex justify-start gap-2 border-b-2 border-[#333] py-[20px] cart">
                         <div class="w-1/3">
-                            <img src="${productImage}">
+                            <img src="${cart_items[i].image}">
                         </div>
                         <div class="text-sm flex justify-center flex-col gap-[6px] font-semibold">
-                            <h1>${productName}</h1>
-                            <p>Price : <span class="text-[#4169E1]">${productPrice}</span></p>
-                            <p>Warehouse: <span class="text-[#DC143C] warehouse">${productWarehouse}</span></p>
+                            <h1>${cart_items[i].name}</h1>
+                            <p>Price : <span class="text-[#4169E1]">${cart_items[i].price}.00$</span></p>
+                            <p>Warehouse: <span class="text-[#DC143C] warehouse">${cart_items[i].warehousem}</span></p>
                             <div class="flex items-center gap-2">
                                 <p>Quantity : </p>
                                 <div>
                                     <button class="border border-[#a4a4a4] w-[25px]">-</button>
-                                    <input type="number" class="w-[35px] border border-[#a4a4a4] text-center" value="1">
+                                    <input type="number" class="w-[35px] border border-[#a4a4a4] text-center quantity" value="${cart_items[i].quantity}">
                                     <button class="border border-[#a4a4a4] w-[25px]">+</button>
                                 </div>
                             </div>
@@ -253,22 +277,14 @@
                         </div>
                     </div>
             `
-            var newCart = {
-                name : productName,
-                price : productPrice,
-                warehouse : productWarehouse,
-                image : productImage
+                $('.cart_product').append(product);
             }
-
-            cartItems.push(newCart);
-            console.log(cartItems);
-            quantity_Product();
-            $('.cart_product').append(product);
-            $('.del').click(function() {
-                var productElement = $(this).closest('.cart');
-                productElement.remove();
-            })
-        });
+        }
+        //     $('.del').click(function() {
+        //         var productElement = $(this).closest('.cart');
+        //         productElement.remove();
+        //     })
+        // });
     });
 </script>
 <?php $this->stop() ?>
