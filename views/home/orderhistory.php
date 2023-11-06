@@ -1,4 +1,4 @@
-<?php $this->layout("layouts/default", ["title" => "Orders"]) ?>
+<?php $this->layout("layouts/home", ["title" => "Orders"]) ?>
 
 <?php $this->start("page") ?>
 <div class="container mx-auto">
@@ -13,7 +13,7 @@
     ?>
         <div class="max-w-full h-full grid grid-cols-1 md:grid-cols-3 gap-7 border rounded-xl p-5 shadow-md">
             <div class="w-full flex items-center justify-center">
-                <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($order->image); ?>" />
+                <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($order['image']); ?>" />
             </div>
             <div class="col-span-2 flex flex-col gap-y-3">
                 <h1 class="text-xl font-semibold py-2"><?php echo $this->e($order->name); ?></h1>
@@ -63,61 +63,4 @@
     <?php } ?>
 
 </div>
-<?php $this->stop() ?>
-<?php $this->start("page_specific_js") ?>
-<script>
-    $(document).ready(function() {
-        //sidebar
-        $('.bar').click(function() {
-            $('.sidebar').toggleClass('left-[-100%]');
-        })
-
-        $('.closed').click(function() {
-            $('.sidebar').toggleClass('left-[-100%]');
-        })
-
-        //ẩn hiện thanh ngang
-        $('.clickdown_2').click(function() {
-            $('.list_1').addClass('hidden');
-            $('.dropdown_1').addClass('rotate-180');
-            if (!$('.list_2').hasClass('hidden')) {
-                $('.list_2').addClass('hidden');
-            } else {
-                $('.list_2').removeClass('hidden');
-            }
-
-            $('.dropdown_2').toggleClass('rotate-180');
-        });
-
-        $('.clickdown_1').click(function() {
-            $('.list_2').addClass('hidden');
-            if (!$('.list_1').hasClass('hidden')) {
-                $('.list_1').addClass('hidden');
-            } else {
-                $('.list_1').removeClass('hidden');
-            }
-
-            $('.dropdown_1').toggleClass('rotate-180');
-        });
-
-        //cart
-        $('.close-cart').click(function() {
-            $('.cart-shop').addClass('translate-x-[100%]');
-            $('.opacity-toggle').addClass('hidden');
-        })
-
-        $('.fa-cart-shopping').click(function() {
-            $('.cart-shop').removeClass('translate-x-[100%]');
-            $('.opacity-toggle').removeClass('hidden');
-        })
-        // Notifications
-        const successNotification = $('#success-notification');
-        if (successNotification.length > 0) {
-            successNotification.css('display', 'block');
-        }
-        setTimeout(() => {
-            successNotification.css('display', 'none');
-        }, 5000);
-    });
-</script>
 <?php $this->stop() ?>

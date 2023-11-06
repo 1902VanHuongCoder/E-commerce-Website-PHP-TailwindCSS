@@ -1,0 +1,3 @@
+            $this->sendPage('/admin/adminDashboard', ['success' => 'User has been created successfully.']);
+        }
+        $this->sendPage('/admin/auth/adminregister', ['errors' => "Admin account registration failed"]);

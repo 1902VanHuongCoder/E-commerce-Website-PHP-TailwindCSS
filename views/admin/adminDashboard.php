@@ -6,7 +6,7 @@
         <h2 class="text-[#333] font-bold text-xl">Admin Info</h2>
     </div>
     <?php
-    if ($success) {
+    if (isset($success)) {
     ?>
         <div id="success-notification" class="bg-green-500 text-white px-4 py-2 fixed top-0 right-0 m-4 rounded-md shadow-lg animate__animated animate__backInRight">
             <p class="font-bold"><i class="fa-solid fa-check"></i> Logged in successfully</p>

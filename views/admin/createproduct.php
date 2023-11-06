@@ -32,13 +32,13 @@
             <div class="">
                 <div>
                     <label for="size" class="font-bold mb-1 block text-sm text-gray-700 after:ml-0.5 after:text-red-500 after:content-['*']">Size</label>
-                    <input name="size" required autofocus type="text" id="size" class="<?= isset($errors['size']) ? 'border-red-500' : '' ?> outline-0 p-2 block w-full rounded-md border shadow-md focus:border-blue-300 focus:ring focus:ring-blue-300 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500" placeholder="10$" />
+                    <input name="size" required autofocus type="text" id="size" class="<?= isset($errors['size']) ? 'border-red-500' : '' ?> outline-0 p-2 block w-full rounded-md border shadow-md focus:border-blue-300 focus:ring focus:ring-blue-300 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500" placeholder="SM,..." />
                     <?php if (isset($errors['size'])) : ?>
                         <span class="text-red-500 mt-1 text-sm">
                             <strong><?= $this->e($errors['size']) ?></strong>
                         </span>
                     <?php endif ?>
-                    <i>(Enter product dimensions, separated by 1 comma)</i>
+                    <i>(Enter product colors, separated by 1 comma)</i>
                 </div>
             </div>
 
@@ -79,7 +79,7 @@
             </div>
             <div class="">
                 <div>
-                    <label for="5" class="font-bold mb-1 block text-sm text-gray-700 after:ml-0.5 after:text-red-500 after:content-['*']">Message</label>
+                    <label for="5" class="font-bold mb-1 block text-sm text-gray-700 after:ml-0.5 after:text-red-500 after:content-['*']">Description</label>
                     <textarea id="description" name="description" class="outline-0 p-2 block w-full rounded-md border shadow-md focus:border-blue-300 focus:ring focus:ring-blue-300 focus:ring-opacity-50  disabled:cursor-not-allowed disabled:bg-gray-50" rows="3" placeholder="Leave a message"></textarea>
                 </div>
             </div>

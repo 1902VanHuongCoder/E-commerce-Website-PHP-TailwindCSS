@@ -28,13 +28,13 @@
                     </div>
                 </button>
                 <div class="relative flex items-center justify-center">
-                    <p class="text-[25px] md:text-[18px] font-bold uppercase">JeiKei <span class="text-[#4169E1]">Store</span></p>
+                    <a href="/home" class="text-[25px] md:text-[18px] font-bold uppercase">JeiKei <span class="text-[#4169E1]">Store</span></a>
 
                     <ul class="ml-3 hidden md:flex lg:ml-4">
                         <li class="px-[15px] lg:px-[20px] text-[18px]"><a href="/orderhistory" class="no-underline font-semibold text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Orders</a>
                         </li>
                     </ul>
-                    <form action="/search" method="POST" class="ml-[50px] hidden md:block">
+                    <form action="/search" method="post" class="ml-[50px] hidden md:block">
                         <input name="search" type="text" placeholder="Search for products..." class="relative border-[1px] border-[#646464] bg-transparent w-[200px] lg:w-[420px] p-[6px] rounded-e-[5px] rounded-s-[5px] placeholder:text-[#808080]">
                         <button type="submit"><i class="fa-solid fa-magnifying-glass absolute top-[10px] left-[93%] translate-x-[50%] cursor-pointer"></i>
                         </button>
@@ -131,7 +131,281 @@
     </div>
     <div class="opacity-toggle absolute top-0 left-0 w-full opacity-50 bg-[#333] h-full z-10 hidden transition-all duration-500"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <?= $this->section("page_specific_js") ?>
+    <script>
+        $(document).ready(function() {
+            const successNotification = $('#success-notification');
+            if (successNotification.length > 0) {
+                successNotification.css('display', 'block');
+            }
+            setTimeout(() => {
+                successNotification.css('display', 'none');
+            }, 5000);
+
+            //sidebar
+            $('.bar').click(function() {
+                $('.sidebar').toggleClass('left-[-100%]');
+            })
+
+            $('.closed').click(function() {
+                $('.sidebar').toggleClass('left-[-100%]');
+            })
+
+            //ẩn hiện thanh ngang
+            $('.clickdown_2').click(function() {
+                $('.list_1').addClass('hidden');
+                $('.dropdown_1').addClass('rotate-180');
+                if (!$('.list_2').hasClass('hidden')) {
+                    $('.list_2').addClass('hidden');
+                } else {
+                    $('.list_2').removeClass('hidden');
+                }
+
+                $('.dropdown_2').toggleClass('rotate-180');
+            });
+
+            //cart
+            $('.close-cart').click(function() {
+                $('.cart-shop').addClass('translate-x-[100%]');
+                $('.opacity-toggle').addClass('hidden');
+            })
+
+            $('.fa-cart-shopping').click(function() {
+                $('.cart-shop').removeClass('translate-x-[100%]');
+                $('.opacity-toggle').removeClass('hidden');
+            })
+
+
+            $("#user_info").click(function() {
+                $("#user_info_panel").toggleClass("right-4");
+            });
+
+            //filter products 
+            $("#shirts").click(function() {
+                $(".shirts").show();
+                $(".shoes").hide();
+                $(".hats").hide();
+                $(".backpacks").hide();
+                $(".skirts").hide();
+            });
+            $("#shoes").click(function() {
+                $(".shoes").show();
+                $(".hats").hide();
+                $(".shirts").hide();
+                $(".backpacks").hide();
+                $(".skirts").hide();
+            });
+            $("#skirts").click(function() {
+                $(".skirts").show();
+                $(".shirts").hide();
+                $(".hats").hide();
+                $(".backpacks").hide();
+                $(".shoes").hide();
+            });
+            $("#hats").click(function() {
+                $(".hats").show();
+                $(".shoes").hide();
+                $(".shirts").hide();
+                $(".backpacks").hide();
+                $(".skirts").hide();
+            });
+            $("#backpacks").click(function() {
+                $(".backpacks").show();
+                $(".shoes").hide();
+                $(".hats").hide();
+                $(".shirts").hide();
+                $(".skirts").hide();
+            });
+            $("#all").click(function() {
+                $(".style").show();
+            })
+
+            //filter mobile
+            $("#shirts_1").click(function() {
+                $(".shirts").show();
+                $(".shoes").hide();
+                $(".hats").hide();
+                $(".backpacks").hide();
+                $(".skirts").hide();
+            });
+            $("#shoes_1").click(function() {
+                $(".shoes").show();
+                $(".hats").hide();
+                $(".shirts").hide();
+                $(".backpacks").hide();
+                $(".skirts").hide();
+            });
+            $("#skirts_1").click(function() {
+                $(".skirts").show();
+                $(".shirts").hide();
+                $(".hats").hide();
+                $(".backpacks").hide();
+                $(".shoes").hide();
+            });
+            $("#hats_1").click(function() {
+                $(".hats").show();
+                $(".shoes").hide();
+                $(".shirts").hide();
+                $(".backpacks").hide();
+                $(".skirts").hide();
+            });
+            $("#backpacks_1").click(function() {
+                $(".backpacks").show();
+                $(".shoes").hide();
+                $(".hats").hide();
+                $(".shirts").hide();
+                $(".skirts").hide();
+            });
+            $("#all_1").click(function() {
+                $(".style").show();
+            })
+
+            //add products
+            let cart_items = [];
+            $('.add').click(function() {
+                var productElement = $(this).closest('.style');
+                var productName = productElement.find('.text-base').text().trim();
+                let price = parseFloat(productElement.find('.text-gray-500').text().trim().split('$')[0].trim());
+                var productWarehouse = productElement.find('.text-red-400').text().trim().split(':')[1].trim();
+                var productImage = productElement.find('img').attr('src');
+                add_to_cart(productName, price, productWarehouse, productImage);
+            });
+
+            //Hàm này dùng để kiểm tra xem sản phẩm có không
+            function find_CartItem(productName) {
+                for (var i = 0; i < cart_items.length; i++) {
+                    if (cart_items[i].name === productName) {
+                        return i;
+                    }
+                }
+                return -1;
+            }
+
+            //Hàm này thêm giỏ hàng
+            function add_to_cart(name, price, warehousem, image) {
+                var productIndex = find_CartItem(name);
+                var totalPrice = 0;
+                if (productIndex !== -1) {
+                    cart_items[productIndex].quantity++;
+                    cart_items[productIndex].price = price * cart_items[productIndex].quantity;
+                } else {
+                    var products = {
+                        name: name,
+                        price: price,
+                        warehousem: warehousem,
+                        image: image,
+                        quantity: 1
+                    }
+                    cart_items.push(products);
+                }
+                updateCount();
+                updateTotalPrice();
+                render_CartItems();
+            }
+
+            function render_CartItems() {
+                $('.cart_product').empty();
+                var totalPrice = 0;
+                for (var i = 0; i < cart_items.length; i++) {
+                    var product = `
+                    <div class="flex justify-start gap-2 border-b-2 border-[#333] py-[20px] cart">
+                        <div class="w-1/3">
+                            <img src="${cart_items[i].image}">
+                        </div>
+                        <div class="text-sm flex justify-center flex-col gap-[8px] font-semibold">
+                            <h1>${cart_items[i].name}</h1>
+                            <p>Price : <span class="text-[#4169E1] price">${cart_items[i].price}.00$</span></p>
+                            <p>Warehouse: <span class="text-[#DC143C] warehouse">${cart_items[i].warehousem}</span></p>
+                            <div class="flex items-center gap-4">
+                                <p>Quantity : </p>
+                                <div class="flex items-center gap-2">
+                                    <button class="border border-[#333] w-[30px] text-[22px] h-[30px] font-bold minus">-</button>
+                                    <input type="number" class="w-[50px] h-[30px] font-bold border border-[#a4a4a4] text-center quantity" value="${cart_items[i].quantity}">
+                                    <button class="border border-[#333] w-[30px] text-[22px] h-[30px] font-bold plus">+</button>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <button class="px-[18px] py-[6px] bg-[#FFD700] transition-all duration-500 hover:text-[#fff] hover:bg-[#4169E1]"><a href="/orders<?php echo ""; ?>" class="fa-solid fa-cart-shopping"></a> Buy Now</button>
+                                <button class="px-[18px] py-[6px] bg-[#DC143C] transition-all duration-500 hover:text-[#fff] del">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                `
+                    $('.cart_product').append(product);
+                }
+
+                $('.plus').click(function() {
+                    var productElement = $(this).closest('.cart');
+                    var productNameCart = productElement.find('h1').text();
+                    var productIndex = find_CartItem(productNameCart);
+                    var initialPrice = cart_items[productIndex].price;
+                    cart_items[productIndex].quantity++;
+                    var currentPrice = cart_items[productIndex].quantity * initialPrice;
+                    productElement.find('.price').text(currentPrice + ".00$");
+                    productElement.find('.quantity').val(cart_items[productIndex].quantity);
+                    updateTotalPrice();
+                })
+
+                $('.minus').click(function() {
+                    var productElement = $(this).closest('.cart');
+                    var productNameCart = productElement.find('h1').text();
+                    var productIndex = find_CartItem(productNameCart);
+                    var initialPrice = cart_items[productIndex].price;
+                    if (cart_items[productIndex].quantity > 1) {
+                        cart_items[productIndex].quantity--;
+                        var currentPrice = cart_items[productIndex].quantity * initialPrice;
+                        productElement.find('.price').text(currentPrice + ".00$");
+                        productElement.find('.quantity').val(cart_items[productIndex].quantity);
+                    } else {
+                        productElement.remove();
+                        cart_items.splice(productIndex, 1);
+                        //cart_items[productIndex].quantity = 0;
+                        updateCount();
+                    }
+                    updateTotalPrice();
+                })
+
+                $('.del').click(function() {
+                    var productElement = $(this).closest('.cart');
+                    var productNameCart = productElement.find('h1').text();
+                    var productIndex = find_CartItem(productNameCart);
+                    cart_items.splice(productIndex, 1);
+                    productElement.remove();
+                    updateTotalPrice();
+                    updateCount();
+                })
+            }
+
+            function updateTotalPrice() {
+                var totalPrice = 0;
+                for (var i = 0; i < cart_items.length; i++) {
+                    var productTotalPrice = cart_items[i].price * cart_items[i].quantity;
+                    totalPrice += productTotalPrice;
+                }
+                $('.total').text(totalPrice.toFixed(2) + " " + "$");
+            }
+
+            function updateCount() {
+                var count = 0;
+                count += cart_items.length;
+                $('.count_products').text(count);
+            }
+
+            // Decrease the quantity of product
+            $("#decrease").click(function() {
+                if (parseInt($("#quantity").val()) === 1) {
+                    $("#quantity").val(1);
+                } else {
+                    var quantity = parseInt($("#quantity").val()) - 1;
+                    $("#quantity").val(quantity);
+                }
+            });
+
+            $("#increase").click(function() {
+                var quantity = parseInt($("#quantity").val()) + 1;
+                $("#quantity").val(quantity);
+            });
+        });
+    </script>
 </body>
 
 </html>

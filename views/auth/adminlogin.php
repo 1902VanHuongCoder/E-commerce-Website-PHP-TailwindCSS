@@ -38,17 +38,6 @@
                         <strong><?= $this->e($errors['password']) ?></strong>
                     </span>
                 <?php endif ?>
-
-                <!-- -->
-                <!-- <div class="flex items-center justify-between">
-                    <div class="flex items-center justify-center gap-1">
-                        <input type="checkbox" class="cursor-pointer w-4 h-4 boder border-gray-400">
-                        <p class="text-[#333] text-[16px] font-normal">Remember me</p>
-                    </div>
-                    <a href="#" class="text-[16px] text-[#4169E1] font-semibold cursor-pointer hover:underline">Forgot Password?</a>
-                </div> -->
-
-
                 <button class="mt-4 block bg-[#00BFFF] p-2 font-bold rounded-2xl transition-all duration-300 hover:bg-[#2ea9d2] focus:ring focus:bg-[#4169E1] active:bg-[#4169E1]">Login</button>
                 <div class="flex items-center gap-1">
                     <p class="text-[15px] text-[#333]">Don’t have an account yet?</p>

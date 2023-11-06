@@ -1,23 +1,18 @@
-<?php $this->layout("layouts/default", ["title" => "Orders"]) ?>
+<?php $this->layout("layouts/home", ["title" => "Orders"]) ?>
 
 <?php $this->start("page") ?>
 <div class="container">
-    <i class="fa-solid fa-arrow-left ml-4 "></i> <a href="/" class="font-bold transition-all duration-300 hover:text-[#4169E1] text-[20px]">Home</a>
+    <?php if (isset($errors)) {
+    ?> <div id="success-notification" class="bg-red-500 text-white px-4 py-2 fixed top-0 right-0 m-4 rounded-md shadow-lg animate__animated animate__backInRight">
+            <p class="font-bold"><i class="fa-solid fa-triangle-exclamation"></i> Failed</p>
+            <p><?php echo $errors;?></p>
+        </div> <?php } ?>
 
-    <?php if ($orderState) {
-    ?>
-        <div id="success-notification" class="bg-green-500 text-white px-4 py-2 fixed top-0 right-0 m-4 rounded-md shadow-lg animate__animated animate__backInRight">
-            <p class="font-bold"><i class="fa-solid fa-check"></i> Order success</p>
-            <p>Your order will be quickly delivered to you</p>
-        </div>
-    <?php } else if (!$orderState && isset($errors)) { ?>
-        <div id="success-notification" class="bg-red-500 text-white px-4 py-2 fixed top-0 right-0 m-4 rounded-md shadow-lg animate__animated animate__backInRight">
-            <p class="font-bold"><i class="fa-solid fa-check"></i> Order failed</p>
-            <p>Check order information</p>
-        </div>
-
-    <?php } ?>
-
+    <?php if (isset($success)) {
+    ?><div id="success-notification" class="bg-green-500 text-white px-4 py-2 fixed top-0 right-0 m-4 rounded-md shadow-lg animate__animated animate__backInRight">
+            <p class="font-bold"><i class="fa-solid fa-check"></i> Success</p>
+            <p><?php echo $success;?></p>
+        </div> <?php } ?>
     <div class="relative w-full flex justify-center mb-3">
         <h1 class="text-[30px] font-semibold">Order</h1>
         <div class="absolute bottom-0 w-24 h-1 bg-[#4169E1]"></div>
@@ -67,9 +62,9 @@
             <div class="py-2">
                 <p class="text-[20px] font-semibold">Choose product quantity: </p>
                 <div class="py-2 flex gap-1">
-                    <button type="button" class="text-xl border border-1 border-slate-950 py-1 px-3 font-semibold">-</button>
-                    <input name="total_amount" value="1" style="appearance: textfield;" type="number" min="1" class="border border-1 font-semibold border-slate-950 h-10 w-12 text-center" />
-                    <button type="button" class="text-xl border border-1 border-slate-950 py-1 px-3 font-semibold">+</button>
+                    <button type="button" id="decrease" class="text-xl border border-1 border-slate-950 py-1 px-3 font-semibold">-</button>
+                    <input id="quantity" name="total_amount" value="1" style="appearance: textfield;" type="number" min="1" class="border border-1 font-semibold border-slate-950 h-10 w-12 text-center" />
+                    <button type="button" id="increase" class="text-xl border border-1 border-slate-950 py-1 px-3 font-semibold">+</button>
                 </div>
                 <?php if (isset($errors['total_amount'])) : ?>
                     <span class="text-red-500 mt-1 text-sm">
@@ -109,61 +104,4 @@
         </form>
     </div>
 </div>
-<?php $this->stop() ?>
-<?php $this->start("page_specific_js") ?>
-<script>
-    $(document).ready(function() {
-        //sidebar
-        $('.bar').click(function() {
-            $('.sidebar').toggleClass('left-[-100%]');
-        })
-
-        $('.closed').click(function() {
-            $('.sidebar').toggleClass('left-[-100%]');
-        })
-
-        //ẩn hiện thanh ngang
-        $('.clickdown_2').click(function() {
-            $('.list_1').addClass('hidden');
-            $('.dropdown_1').addClass('rotate-180');
-            if (!$('.list_2').hasClass('hidden')) {
-                $('.list_2').addClass('hidden');
-            } else {
-                $('.list_2').removeClass('hidden');
-            }
-
-            $('.dropdown_2').toggleClass('rotate-180');
-        });
-
-        $('.clickdown_1').click(function() {
-            $('.list_2').addClass('hidden');
-            if (!$('.list_1').hasClass('hidden')) {
-                $('.list_1').addClass('hidden');
-            } else {
-                $('.list_1').removeClass('hidden');
-            }
-
-            $('.dropdown_1').toggleClass('rotate-180');
-        });
-
-        //cart
-        $('.close-cart').click(function() {
-            $('.cart-shop').addClass('translate-x-[100%]');
-            $('.opacity-toggle').addClass('hidden');
-        })
-
-        $('.fa-cart-shopping').click(function() {
-            $('.cart-shop').removeClass('translate-x-[100%]');
-            $('.opacity-toggle').removeClass('hidden');
-        })
-        // Notifications
-        const successNotification = $('#success-notification');
-        if (successNotification.length > 0) {
-            successNotification.css('display', 'block');
-        }
-        setTimeout(() => {
-            successNotification.css('display', 'none');
-        }, 5000);
-    });
-</script>
 <?php $this->stop() ?>
