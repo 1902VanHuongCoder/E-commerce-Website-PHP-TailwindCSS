@@ -2,6 +2,7 @@
 
 <?php $this->start("page") ?>
 <div class="container">
+<a href="/admin" class="ml-4 text-[20px] font-bold transition-all duration-500 hover:text-[#4169E1]"> Admin Dashboard </a>
     <div class="ml-4 mb-4 text-center">
         <h2 class="text-[#333] font-bold text-xl">Admin Info</h2>
     </div>

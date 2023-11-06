@@ -2,7 +2,8 @@
 
 <?php $this->start("page") ?>
 <div class="container">
-    <h1 class="text-[#333] font-bold ml-4 mb-4">
+<a href="/admin" class="ml-4 text-[20px] font-bold transition-all duration-500 hover:text-[#4169E1]"> Admin Dashboard </a>
+    <h1 class="text-[#333] font-bold ml-4 my-4">
         Customers
         <?php echo date('Y-m-d H:i:s') ?>
     </h1>
