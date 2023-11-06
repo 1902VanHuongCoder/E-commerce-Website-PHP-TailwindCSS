@@ -7,7 +7,7 @@ use App\Controllers\Controller;
 use App\SessionGuard as Guard;
 
 class LoginController extends Controller
-{
+{ 
     public function create()
     {
         if (Guard::isUserLoggedIn()) {

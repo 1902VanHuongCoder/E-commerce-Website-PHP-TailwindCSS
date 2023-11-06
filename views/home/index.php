@@ -1,6 +1,6 @@
 <?php $this->layout("layouts/home", ["title" => APPNAME]) ?>
 
-<?php $this->start("page") ?>
+<?php $this->start("page") ?> 
 <div class="w-full mb-20 mx-auto">
     <div class="w-full flex justify-between items-start p-4 gap-x-1 md:gap-x-[45px]">
         <div class="p-2 w-[15%]">
