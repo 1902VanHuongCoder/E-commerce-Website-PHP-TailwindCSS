@@ -19,7 +19,7 @@
 </head>
 
 
-<body class="relative">
+<body class="relative w-full min-h-screen">
     <div class="relative w-full max-w-[1200px] m-auto md:flex-row min-h-screen overflow-hidden">
         <header>
             <nav class="flex items-center justify-between top-0 left-0 w-full px-4 py-[15px]">
@@ -36,7 +36,7 @@
                     </ul>
                     <form action="/search" method="POST" class="ml-[50px] hidden md:block">
                         <input name="search" type="text" placeholder="Search for products..." class="relative border-[1px] border-[#646464] bg-transparent w-[200px] lg:w-[420px] p-[6px] rounded-e-[5px] rounded-s-[5px] placeholder:text-[#808080]">
-                        <button type="submit"><i class="fa-solid fa-magnifying-glass absolute top-[10px] left-[95%] translate-x-[50%] cursor-pointer"></i>
+                        <button type="submit"><i class="fa-solid fa-magnifying-glass absolute top-[10px] left-[93%] translate-x-[50%] cursor-pointer"></i>
                         </button>
                     </form>
                 </div>
@@ -49,11 +49,28 @@
                         <div class="relative border border-[#a3a3a3] rounded">
                             <i class="fa-sharp fa-solid fa-cart-shopping p-[12px] ease-out duration-[0.4s] hover:scale-[1.1]"></i>
                         </div>
-                        <div class="absolute top-[-25%] right-[-20%] bg-[#1E90FF] w-6 h-6 flex justify-center items-center rounded-[50%] font-medium text-[#fff]">0</div>
+                        <div class="absolute top-[-25%] right-[-20%] bg-[#1E90FF] w-6 h-6 flex justify-center items-center rounded-[50%] font-medium text-[#fff] count_products">0</div>
                     </button>
-
                 </div>
             </nav>
+            <div class="sidebar fixed top-0 left-[-100%] bg-[#fff] p-4 w-full h-full z-40">
+                <div class="mb-4">
+                    <button class="closed">
+                        <div class="relative border border-[#a3a3a3] rounded w-[40px] h-[40px]">
+                            <i class="fa-solid fa-x p-[12px] ease-out duration-[0.4s] hover:scale-[1.1]"></i>
+                        </div>
+                    </button>
+                </div>
+                <ul class="flex flex-col">
+                    <div class="relative mb-4">
+                        <input type="text" placeholder="Search for products..." class="relative border-[1px] border-[#646464] bg-transparent w-full p-[6px] rounded-e-[5px] rounded-s-[5px] placeholder:text-[#808080]">
+                        <i class="fa-solid fa-magnifying-glass absolute top-[25%] right-3 cursor-pointer"></i>
+                    </div>
+                    <li class="pb-[15px]">
+                        <a href="#" class="no-underline font-semibold text-[20px] transition-colors hover:text-[#4169E1]">Orders</a>
+                    </li>
+                </ul>
+            </div>
         </header>
         <?= $this->section("page") ?>
         <!-- cart -->
@@ -62,78 +79,13 @@
                 <div class="relative mt-[20px]">
                     <h1 class="text-center font-bold text-2xl uppercase text-[#333]">JeiKei <span class="text-[#4169E1]">Store</span> Cart</h1>
                 </div>
-                <div class="flex justify-center items-center flex-col m-[30px]">
-                    <div class="flex justify-start gap-2 border-b-2 border-[#333] py-[20px]">
-                        <div class="w-1/3">
-                            <img src="img/41l1iOm08+L._AC_UY575_.jpg" class="w-[100%]">
-                        </div>
-                        <div class="text-sm flex justify-center flex-col gap-[6px] font-semibold">
-                            <h1>Nike Men's Air Force 1 '07 Basketball Shoe</h1>
-                            <p>Price : <span class="text-[#DC143C]">$132</span></p>
-                            <div class="flex items-center gap-2">
-                                <p>Quantity : </p>
-                                <div>
-                                    <button class="border border-[#a4a4a4] w-[25px]">-</button>
-                                    <input type="number" class="w-[35px] border border-[#a4a4a4] text-center" value="1">
-                                    <button class="border border-[#a4a4a4] w-[25px]">+</button>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <button class="px-[18px] py-[6px] bg-[#FFD700] transition-all duration-500 hover:text-[#fff] hover:bg-[#4169E1]"><i class="fa-solid fa-cart-shopping"></i> Buy Now</button>
-                                <button class="px-[18px] py-[6px] bg-[#DC143C] transition-all duration-500 hover:text-[#fff]">Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex justify-start gap-2 border-b-2 border-[#333] py-[20px]">
-                        <div class="w-1/3">
-                            <img src="img/5183zo0U+2L._AC_UX679_.jpg" class="w-[100%]">
-                        </div>
-                        <div class="text-sm flex justify-center flex-col gap-[6px] font-semibold">
-                            <h1>DICKIES MEN'S HEAVYWEIGHT CREW NECK SHORT SLEEVE TEE</h1>
-                            <p>Price : <span class="text-[#DC143C]">$23</span></p>
-                            <div class="flex items-center gap-2">
-                                <p>Quantity : </p>
-                                <div>
-                                    <button class="border border-[#a4a4a4] w-[25px]">-</button>
-                                    <input type="number" class="w-[35px] border border-[#a4a4a4] text-center" value="1">
-                                    <button class="border border-[#a4a4a4] w-[25px]">+</button>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <button class="px-[18px] py-[6px] bg-[#FFD700] transition-all duration-500 hover:text-[#fff] hover:bg-[#4169E1]"><i class="fa-solid fa-cart-shopping"></i> Buy Now</button>
-                                <button class="px-[18px] py-[6px] bg-[#DC143C] transition-all duration-500 hover:text-[#fff]">Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex justify-start gap-2 border-b-2 border-[#333] py-[20px]">
-                        <div class="w-1/3">
-                            <img src="img/51lAjVqM7dL._AC_UY575_.jpg" class="w-[100%]">
-                        </div>
-                        <div class="text-sm flex justify-center flex-col gap-[6px] font-semibold">
-                            <h1>DICKIES MEN'S HEAVYWEIGHT CREW NECK SHORT SLEEVE TEE</h1>
-                            <p>Price : <span class="text-[#DC143C]">$23</span></p>
-                            <div class="flex items-center gap-2">
-                                <p>Quantity : </p>
-                                <div>
-                                    <button class="border border-[#a4a4a4] w-[25px]">-</button>
-                                    <input type="number" class="w-[35px] border border-[#a4a4a4] text-center" value="1">
-                                    <button class="border border-[#a4a4a4] w-[25px]">+</button>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <button class="px-[18px] py-[6px] bg-[#FFD700] transition-all duration-500 hover:text-[#fff] hover:bg-[#4169E1]"><i class="fa-solid fa-cart-shopping"></i> Buy Now</button>
-                                <button class="px-[18px] py-[6px] bg-[#DC143C] transition-all duration-500 hover:text-[#fff]">Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="flex justify-center items-center flex-col m-[30px] cart_product"></div>
             </div>
             <div class="absolute bottom-0 w-full grid grid-cols-2 font-semibold text-[#fff]">
-                <div class="bg-[#4169E1] w-full p-2 text-center">0 đ</div>
+                <div class="bg-[#4169E1] w-full p-2 text-center total">0 đ</div>
                 <div class="bg-[#333] w-full p-2 text-center cursor-pointer close-cart">Close</div>
             </div>
         </div>
-        <div class="opacity-toggle absolute top-0 left-0 w-full opacity-50 bg-[#333] h-full z-10 hidden transition-all duration-500"></div>
         <!-- Dropdown Menu -->
         <div id="user_info_panel" class="absolute top-14 right-[-100%] transition-all z-10 mt-2 w-60 divide-y divide-gray-100 rounded-lg border border-gray-100 bg-white text-left text-sm shadow-lg">
             <div class="py-3 px-4">
@@ -165,7 +117,7 @@
                 </a>
             </div>
         </div>
-        <footer class="bg-[#333] text-[#fff] p-5 absolute bottom-0 left-0 w-full">
+        <footer class="bg-[#333] text-[#fff] p-5 absolute bottom-[0] left-0 w-full">
             <div class="max-w-[1200px] mx-auto flex justify-center flex-col md:flex-row md:justify-between items-center">
                 <div class="flex flex-col md:flex-row md:text-sm">
                     <p class="mr-5">© 2023 JeiKei, Inc. All rights reserved.</p>
@@ -177,6 +129,7 @@
             </div>
         </footer>
     </div>
+    <div class="opacity-toggle absolute top-0 left-0 w-full opacity-50 bg-[#333] h-full z-10 hidden transition-all duration-500"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <?= $this->section("page_specific_js") ?>
 </body>

@@ -15,56 +15,79 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
+<body class="relative w-full min-h-full max-w-[1200px] mx-auto">
     <header>
-        <div class="relative flex items-center justify-between py-[40px]">
+        <div class="relative flex items-center justify-center py-[40px]">
             <nav class="absolute flex items-center justify-between top-0 left-0 w-full px-4 py-[15px]">
                 <button class="md:hidden bar">
                     <div class="relative border border-[#a3a3a3] rounded"><i class="fa-solid fa-bars p-[12px] ease-out duration-[0.4s] hover:scale-[1.1]"></i>
                     </div>
                 </button>
-                <div class="relative flex items-center justify-center">
-                    <p class="text-[25px] md:text-[18px] font-bold uppercase"> <span class="text-[#4169E1]">JeiKei</span> Dashboard</p>
-                </div>
-                <ul class="ml-3 hidden md:flex lg:ml-4">
-                    <li class="px-[15px] lg:px-[20px] text-[18px]"><a href="/admin/register" class="no-underline font-semibold text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Add Admin User</a>
-                    </li>
-                    <li class="px-[15px] lg:px-[20px] text-[18px]"><a href="/admin/orders" class="no-underline font-semibold text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Orders</a>
-                    </li>
-                    <li class="px-[15px] lg:px-[20px] text-[18px]"><a href="/admin/customers" class="no-underline font-semibold text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Customers List</a>
-                    </li>
-                    <li class="px-[15px] lg:px-[20px] text-[18px]"><a href="/admin/addproduct" class="no-underline font-semibold text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Add product</a>
-                    </li>
-                </ul>
-                <ul>
-                    <?php if (!\App\SessionGuard::isAdminLoggedIn()) : ?>
-                        <li class=""><a class="" href="/login">Login</a></li>
-                        <li class=""><a class="" href="/register">Register</a></li>
-                    <?php else : ?>
-                        <li class="">
-                            <a class="" href="#" role="button" data-toggle="dropdown">
-                                <?= $this->e(\App\SessionGuard::admin()->name) ?> <span class="caret"></span>
-                            </a>
-
-                            <div class="">
-                                <a class="" href="/admin/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    Logout
-                                </a>
-                                <form id="logout-form" class="d-none" action="/admin/logout" method="POST">
-
-                                </form>
-                            </div>
+                <div class="flex items-center  justify-center md:justify-between w-full gap-3">
+                    <p class="text-[20px] font-bold uppercase"> <span class="text-[#4169E1]">JeiKei</span> Store</p>
+                    <ul class="ml-3 hidden md:flex lg:ml-4">
+                        <li class="px-[15px] lg:px-[20px] text-[18px]"><a href="/admin/register" class="no-underline font-semibold text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Add Admin</a>
                         </li>
-                    <?php endif ?>
-                </ul>
+                        <li class="px-[15px] lg:px-[20px] text-[18px]"><a href="/admin/orders" class="no-underline font-semibold text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Orders</a>
+                        </li>
+                        <li class="px-[15px] lg:px-[20px] text-[18px]"><a href="/admin/customers" class="no-underline font-semibold text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Customers List</a>
+                        </li>
+                        <li class="px-[15px] lg:px-[20px] text-[18px]"><a href="/admin/addproduct" class="no-underline font-semibold text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Add product</a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <?php if (!\App\SessionGuard::isAdminLoggedIn()) : ?>
+                            <li class=""><a class="" href="/login">Login</a></li>
+                            <li class=""><a class="" href="/register">Register</a></li>
+                        <?php else : ?>
+                            <li class="text-[#333] text-[15px] flex flex-col justify-end w-full">
+                                <a class="" href="#" role="button" data-toggle="dropdown">
+                                    <?= $this->e(\App\SessionGuard::admin()->name) ?> <span class="caret"></span>
+                                </a>
+
+                                <div class="">
+                                    <a class="" href="/admin/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        Logout
+                                    </a>
+                                    <form id="logout-form" class="d-none" action="/admin/logout" method="POST">
+
+                                    </form>
+                                </div>
+                            </li>
+                        <?php endif ?>
+                    </ul>
+                </div>
             </nav>
+            <div class="sidebar fixed top-0 left-[-100%] bg-[#fff] p-4 w-full h-full z-100">
+                <div class="mb-4">
+                    <button class="closed">
+                        <div class="relative border border-[#a3a3a3] rounded w-[40px] h-[40px]">
+                            <i class="fa-solid fa-x p-[12px] ease-out duration-[0.4s] hover:scale-[1.1]"></i>
+                        </div>
+                    </button>
+                </div>
+                <ul class="flex flex-col">
+                    <li class="pb-[15px]">
+                        <a href="#" class="no-underline font-semibold text-[20px] transition-colors hover:text-[#4169E1]">Add Admin</a>
+                    </li>
+                    <li class="pb-[15px]">
+                        <a href="#" class="no-underline font-semibold text-[20px] transition-colors hover:text-[#4169E1]">Orders</a>
+                    </li>
+                    <li class="pb-[15px]">
+                        <a href="#" class="no-underline font-semibold text-[20px] transition-colors hover:text-[#4169E1]">Customers List</a>
+                    </li>
+                    <li class="pb-[15px]">
+                        <a href="#" class="no-underline font-semibold text-[20px] transition-colors hover:text-[#4169E1]">Add product</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </header>
 
 
     <?= $this->section("page") ?>
 
-    <footer class="mt-28 bg-[#333] text-[#fff] p-5">
+    <footer class="mt-28 bg-[#333] text-[#fff] p-5 absolute bottom-[-100%] left-0 w-full">
         <div class="max-w-[1200px] mx-auto flex justify-center flex-col md:flex-row md:justify-between items-center">
             <div class="flex flex-col md:flex-row md:text-sm">
                 <p class="mr-5">© 2023 JeiKei, Inc. All rights reserved.</p>
@@ -80,5 +103,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <?= $this->section("page_specific_js") ?>
 </body>
+<script>
+    $(document).ready(function() {
+        $('.bar').click(function() {
+            $('.sidebar').removeClass('left-[-100%]');
+        })
+        $('.closed').click(function() {
+            $('.sidebar').addClass('left-[-100%]');
+        })
+    })
+</script>
 
 </html>

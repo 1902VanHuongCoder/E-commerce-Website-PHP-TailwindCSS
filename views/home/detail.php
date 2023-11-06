@@ -1,7 +1,8 @@
 <?php $this->layout("layouts/default", ["title" => "Products detail"]) ?>
 
 <?php $this->start("page") ?>
-<div class="relative grid grid-cols-1 w-[95%] gap-y-6 min-h-screen mx-auto lg:grid-cols-4 lg:gap-x-6">
+<i class="fa-solid fa-arrow-left ml-4 "></i> <a href="/" class="font-bold transition-all duration-300 hover:text-[#4169E1] text-[20px]">Home</a>
+<div class="relative grid grid-cols-1 w-[95%] gap-y-6 min-h-screen mx-auto lg:grid-cols-4 lg:gap-x-6 mt-3">
     <div class="w-full">
         <div class="w-full <img src=" data:image/jpg;charset=utf8;base64,<?php echo base64_encode($product['image']); ?>" />
         <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($product['image']); ?>" />
@@ -15,13 +16,13 @@
             <p class="text-[#333] text-[20px] font-medium">Price :<span class="font-normal text-[#DC143C]">
                     $<?php echo $this->e($product->price); ?></span></p>
         </div>
-        <div class="flex gap-x-4 items-center">
-            <p class="text-[20px]">Color :</p>
+        <div class="flex gap-x-4 justify-start flex-wrap md:flex-row">
+            <p class="text-[20px] font-medium">Color :</p>
             <?php
             $colorArray = explode(",", $product->color);
             for ($i = 0; $i < count($colorArray); $i++) {
             ?>
-                <button class="border border-[#A9A9A9] px-2 py-1 transition-all duration-300 hover:bg-black hover:text-[#fff]"><?php echo $colorArray[$i] ?></button>
+                <input type="checkbox"><?php echo $colorArray[$i] ?></input>
             <?php } ?>
         </div>
         <div>
@@ -31,7 +32,7 @@
                 $sizeArray = explode("/", $product->size);
                 for ($i = 0; $i < count($sizeArray); $i++) {
                 ?>
-                    <button class="border border-[#A9A9A9] px-5 py-1 transition-all duration-300 hover:bg-black hover:text-[#fff]"><?php echo $sizeArray[$i] ?></button>
+                    <input type="checkbox"><?php echo $sizeArray[$i] ?></input>
                 <?php } ?>
             </div>
         </div>

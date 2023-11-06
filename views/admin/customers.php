@@ -2,7 +2,8 @@
 
 <?php $this->start("page") ?>
 <div class="container">
-    <h1>
+<a href="/admin" class="ml-4 text-[20px] font-bold transition-all duration-500 hover:text-[#4169E1]"> Admin Dashboard </a>
+    <h1 class="text-[#333] font-bold ml-4 my-4">
         Customers
         <?php echo date('Y-m-d H:i:s') ?>
     </h1>
@@ -10,7 +11,7 @@
     <div class="row">
         <div class="col-12">
             <!-- FLASH MESSAGES -->
-            <div class="">
+            <div class="overflow-x-auto">
                 <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
                     <thead class="bg-gray-50">
                         <tr>
@@ -27,14 +28,14 @@
                         <?php foreach ($customers as $customer) : ?>
                             <tr>
                                 <th class="px-6 py-4 font-medium text-gray-900"><?= $this->e($customer->id) ?></th>
-                                <td class="px-6 py-4"><?= $this->e($customer->name) ?></td>
-                                <td class="px-6 py-4"><?= $this->e($customer->email) ?></td>
-                                <td class="px-6 py-4"><?= $this->e($customer->phone) ?></td>
-                                <td class="px-6 py-4"><?= $this->e($customer->address) ?></td>
-                                <td class="px-6 py-4"><?= $this->e($customer->created_at) ?></td>
-                                <td class="flex justify-end gap-4 px-6 py-4 font-medium">
+                                <td class="px-6 py-4 whitespace-nowrap"><?= $this->e($customer->name) ?></td>
+                                <td class="px-6 py-4 whitespace-nowrap"><?= $this->e($customer->email) ?></td>
+                                <td class="px-6 py-4 whitespace-nowrap"><?= $this->e($customer->phone) ?></td>
+                                <td class="px-6 py-4 whitespace-nowrap"><?= $this->e($customer->address) ?></td>
+                                <td class="px-6 py-4 whitespace-nowrap"><?= $this->e($customer->created_at) ?></td>
+                                <td class="flex justify-end gap-4 px-6 py-4 font-medium whitespace-nowrap">
                                     <form class="form-inline ml-1" action="/admin/delete/user/<?= $customer->id ?>" method="POST">
-                                        <button type="submit" class="" name="delete-product">
+                                        <button type="submit" class="text-primary-700 bg-[#DC143C] px-[14px] py-2 text-[#fff]" name="delete-product">
                                             <i alt="Delete"></i> Delete User
                                         </button>
                                     </form>
