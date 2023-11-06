@@ -67,9 +67,9 @@
             <div class="py-2">
                 <p class="text-[20px] font-semibold">Choose product quantity: </p>
                 <div class="py-2 flex gap-1">
-                    <button type="button" class="text-xl border border-1 border-slate-950 py-1 px-3">-</button>
-                    <input name="total_amount" value="1" style="appearance: textfield;" type="number" min="1" class="border border-1 border-slate-950 h-10 w-12 flex justify-center items-center" />
-                    <button type="button" class="text-xl border border-1 border-slate-950 py-1 px-3">+</button>
+                    <button type="button" class="text-xl border border-1 border-slate-950 py-1 px-3 font-semibold">-</button>
+                    <input name="total_amount" value="1" style="appearance: textfield;" type="number" min="1" class="border border-1 font-semibold border-slate-950 h-10 w-12 text-center" />
+                    <button type="button" class="text-xl border border-1 border-slate-950 py-1 px-3 font-semibold">+</button>
                 </div>
                 <?php if (isset($errors['total_amount'])) : ?>
                     <span class="text-red-500 mt-1 text-sm">
@@ -78,7 +78,7 @@
                 <?php endif ?>
             </div>
             <p class="text-[20px] font-semibold mb-2">Choose Delivery Method :</p>
-            <select class="relative mb-2" name="payment">
+            <select class="relative mb-2 border border-[#333] p-2 rounded-md cursor-pointer outline-none" name="payment">
                 <div class="flex justify-between items-center p-[10px] border border-[#7a7a7a] rounded-[10px] cursor-pointer clickdown_2">
                     <p>Direct payment</p>
                     <i class="fa-solid fa-caret-down rotate-180 ease-out duration-500 dropdown_2"></i>
