@@ -10,12 +10,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title><?= $this->e($title) ?></title>
-    <link rel="icon" type="image/x-icon" href="./assets/favicon-32x32.png"/>
+    <link rel="icon" type="image/x-icon" href="./assets/favicon-32x32.png" />
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <?= $this->section("page_specific_css") ?>
+    <!-- <link rel="stylesheet" href="./css/output.css"> -->
 </head>
 
 
@@ -101,6 +100,10 @@
                 </div>
             </div>
             <div class="p-1">
+                <a href="/profile" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-gray-700 hover:bg-gray-100"><i class="fa-regular fa-user"></i> Profile</a>
+                <a href="/editprofile" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-gray-700 hover:bg-gray-100"><i class="fa-solid fa-wrench"></i> Edit profile</a>
+            </div>
+            <div class="p-1">
                 <a href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-gray-700 hover:bg-gray-100">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
@@ -112,7 +115,6 @@
                         <kbd class="min-w-[1em] font-sans">Q</kbd>
                     </span>
                     <form id="logout-form" class="d-none" action="/logout" method="POST">
-
                     </form>
                 </a>
             </div>
@@ -130,7 +132,8 @@
         </footer>
     </div>
     <div class="opacity-toggle absolute top-0 left-0 w-full opacity-50 bg-[#333] h-full z-10 hidden transition-all duration-500"></div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <?= $this->section("page_specific_js") ?>
     <script>
         $(document).ready(function() {
             const successNotification = $('#success-notification');
@@ -405,6 +408,21 @@
             $("#increase").click(function() {
                 var quantity = parseInt($("#quantity").val()) + 1;
                 $("#quantity").val(quantity);
+            });
+
+
+
+            $(document).ready(function() {
+                $('#imageInput').change(function() {
+                    var file = this.files[0];
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $("#imagePreview").removeClass("hidden");
+                        $("#image_icon").addClass("hidden");
+                        $('#imagePreview').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(file);
+                });
             });
         });
     </script>

@@ -23,6 +23,9 @@ $router->post('/orders/(\d+)', '\App\Controllers\HomeController@ordered');
 $router->get('/detail/(\d+)', '\App\Controllers\HomeController@detail');
 $router->get('/orderhistory', '\App\Controllers\HomeController@orderhistory');
 $router->post('/search', '\App\Controllers\HomeController@search');
+$router->get('/profile', '\App\Controllers\HomeController@showprofile');
+$router->get('/editprofile', '\App\Controllers\HomeController@editprofile');
+$router->post('/editprofile', '\App\Controllers\HomeController@saveprofile');
 
 // Admin routes
 $router->post('/admin/logout', '\App\Controllers\Auth\AdminLoginController@destroy');

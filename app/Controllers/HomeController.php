@@ -146,4 +146,36 @@ class HomeController extends Controller
             $this->sendPage("home/searchresult", ["resultArray" => $resultArray]);
         }
     }
+
+    public function showprofile()
+    {
+        $user = Guard::user();
+        $customer = User::find(Guard::user()->id);
+        $orders = $customer->orders;
+
+        $countOrders = count($orders);
+        $this->sendPage("home/profile", ["user_data" => $user, "amountoforder" => $countOrders]);
+    }
+
+    public function editprofile()
+    {
+        $user = Guard::user();
+        $this->sendPage("home/editprofile", ["user_data" => $user]);
+    }
+
+    public function saveprofile()
+    {
+
+        $data = $_POST;
+        $image = $_FILES['image']['name'];
+        $tmp_image = $_FILES['image']['tmp_name'];
+        $target_dir = "assets/";
+        $target_file = $target_dir . basename($image);
+        move_uploaded_file($tmp_image, $target_file);
+        $data["image"] = $target_file;
+        $user = new User();
+        $user->fill($data);
+        $user->save();
+        redirect("/profile", ["success" => "User information has been updated"]);
+    }
 }
