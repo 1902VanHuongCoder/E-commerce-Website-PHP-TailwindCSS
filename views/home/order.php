@@ -1,17 +1,18 @@
 <?php $this->layout("layouts/home", ["title" => "Orders"]) ?>
 
 <?php $this->start("page") ?>
-<div class="container">
+<i class="fa-solid fa-arrow-left ml-4 "></i> <a href="/" class="font-bold transition-all duration-300 hover:text-[#4169E1] text-[20px]">Home</a>
+<div class="container mx-auto">
     <?php if (isset($errors)) {
     ?> <div id="success-notification" class="bg-red-500 text-white px-4 py-2 fixed top-0 right-0 m-4 rounded-md shadow-lg animate__animated animate__backInRight">
             <p class="font-bold"><i class="fa-solid fa-triangle-exclamation"></i> Failed</p>
-            <p><?php echo $errors;?></p>
+            <p><?php echo $errors; ?></p>
         </div> <?php } ?>
 
     <?php if (isset($success)) {
     ?><div id="success-notification" class="bg-green-500 text-white px-4 py-2 fixed top-0 right-0 m-4 rounded-md shadow-lg animate__animated animate__backInRight">
             <p class="font-bold"><i class="fa-solid fa-check"></i> Success</p>
-            <p><?php echo $success;?></p>
+            <p><?php echo $success; ?></p>
         </div> <?php } ?>
     <div class="relative w-full flex justify-center mb-3">
         <h1 class="text-[30px] font-semibold">Order</h1>

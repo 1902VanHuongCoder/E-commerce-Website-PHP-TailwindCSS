@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title><?= $this->e($title) ?></title>
-
+    <link rel="icon" type="image/x-icon" href="./assets/favicon-32x32.png"/>
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" />
@@ -19,9 +19,9 @@
 </head>
 
 
-<body class="relative w-full min-h-screen">
-    <div class="relative w-full max-w-[1200px] m-auto md:flex-row min-h-screen overflow-hidden">
-        <header>
+<body class="relative w-full min-h-screen overflow-x-hidden">
+    <div class="relative w-full max-w-[1200px] m-auto md:flex-row min-h-screen">
+        <header class="">
             <nav class="flex items-center justify-between top-0 left-0 w-full px-4 py-[15px]">
                 <button class="md:hidden bar">
                     <div class="relative border border-[#a3a3a3] rounded"><i class="fa-solid fa-bars p-[12px] ease-out duration-[0.4s] hover:scale-[1.1]"></i>
@@ -31,19 +31,19 @@
                     <a href="/home" class="text-[25px] md:text-[18px] font-bold uppercase">JeiKei <span class="text-[#4169E1]">Store</span></a>
 
                     <ul class="ml-3 hidden md:flex lg:ml-4">
-                        <li class="px-[15px] lg:px-[20px] text-[18px]"><a href="/orderhistory" class="no-underline font-semibold text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Orders</a>
+                        <li class="px-[15px] lg:px-[20px] text-[18px]"><a href="/orderhistory" class="no-underline font-semibold text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Order History</a>
                         </li>
                     </ul>
                     <form action="/search" method="post" class="ml-[50px] hidden md:block">
                         <input name="search" type="text" placeholder="Search for products..." class="relative border-[1px] border-[#646464] bg-transparent w-[200px] lg:w-[420px] p-[6px] rounded-e-[5px] rounded-s-[5px] placeholder:text-[#808080]">
-                        <button type="submit"><i class="fa-solid fa-magnifying-glass absolute top-[10px] left-[93%] translate-x-[50%] cursor-pointer"></i>
+                        <button type="submit"><i class="text-[#4169e1] fa-solid fa-magnifying-glass absolute top-[10px] left-[93%] translate-x-[50%] cursor-pointer"></i>
                         </button>
                     </form>
                 </div>
 
                 <div class="flex justify-center items-center gap-4">
                     <div id="user_info" class="w-10 h-10 border border-1 border-slate-950 rounded-full flex justify-center items-center cursor-pointer">
-                        <i class="fa-solid fa-user"></i>
+                        <i class="fa-solid fa-user text-[#4169e1]"></i>
                     </div>
                     <button class="relative">
                         <div class="relative border border-[#a3a3a3] rounded">
@@ -117,7 +117,7 @@
                 </a>
             </div>
         </div>
-        <footer class="bg-[#333] text-[#fff] p-5 absolute bottom-[0] left-0 w-full">
+        <footer class="bg-[#333] text-[#fff] p-5 w-full">
             <div class="max-w-[1200px] mx-auto flex justify-center flex-col md:flex-row md:justify-between items-center">
                 <div class="flex flex-col md:flex-row md:text-sm">
                     <p class="mr-5">© 2023 JeiKei, Inc. All rights reserved.</p>
@@ -267,7 +267,8 @@
                 let price = parseFloat(productElement.find('.text-gray-500').text().trim().split('$')[0].trim());
                 var productWarehouse = productElement.find('.text-red-400').text().trim().split(':')[1].trim();
                 var productImage = productElement.find('img').attr('src');
-                add_to_cart(productName, price, productWarehouse, productImage);
+                var productID = productElement.find(".productID").text();
+                add_to_cart(productName, price, productWarehouse, productImage, productID);
             });
 
             //Hàm này dùng để kiểm tra xem sản phẩm có không
@@ -281,7 +282,7 @@
             }
 
             //Hàm này thêm giỏ hàng
-            function add_to_cart(name, price, warehousem, image) {
+            function add_to_cart(name, price, warehousem, image, productID) {
                 var productIndex = find_CartItem(name);
                 var totalPrice = 0;
                 if (productIndex !== -1) {
@@ -293,7 +294,8 @@
                         price: price,
                         warehousem: warehousem,
                         image: image,
-                        quantity: 1
+                        quantity: 1,
+                        productID: productID
                     }
                     cart_items.push(products);
                 }
@@ -324,7 +326,7 @@
                                 </div>
                             </div>
                             <div class="flex items-center gap-4">
-                                <button class="px-[18px] py-[6px] bg-[#FFD700] transition-all duration-500 hover:text-[#fff] hover:bg-[#4169E1]"><a href="/orders<?php echo ""; ?>" class="fa-solid fa-cart-shopping"></a> Buy Now</button>
+                                <a href="/orders/${cart_items[i].productID}" class="px-[18px] py-[6px] bg-[#FFD700] transition-all duration-500 hover:text-[#fff] hover:bg-[#4169E1]"><i class="fa-solid fa-cart-shopping"></i> Buy Now</a>
                                 <button class="px-[18px] py-[6px] bg-[#DC143C] transition-all duration-500 hover:text-[#fff] del">Delete</button>
                             </div>
                         </div>

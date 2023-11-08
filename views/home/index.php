@@ -55,6 +55,7 @@
                                     <small class="text-red-400">Warehouse: <?php echo $this->e($product->quantity) ?></small>
                                 </div>
                             </div>
+                            <div type="hidden" class="productID hidden"><?php echo $this->e($product->id) ?></div>
                             <div class="w-full">
                                 <div class="px-3 py-6 w-full flex items-center justify-between">
                                     <button class="rounded-sm bg-transparent border border-1 border-slate-950 px-4 py-1 text-slate-950 ring-purple-500/30 ring-offset-2 hover:opacity-60 focus-visible:outline-none focus-visible:ring active:opacity-60/90 add">Add</button>
