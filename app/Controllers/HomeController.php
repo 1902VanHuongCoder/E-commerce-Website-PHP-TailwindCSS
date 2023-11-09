@@ -171,11 +171,19 @@ class HomeController extends Controller
         $tmp_image = $_FILES['image']['tmp_name'];
         $target_dir = "assets/";
         $target_file = $target_dir . basename($image);
-        move_uploaded_file($tmp_image, $target_file);
+        if (!file_exists($target_file)) {
+            move_uploaded_file($tmp_image, $target_file);
+        }
         $data["image"] = $target_file;
-        $user = new User();
-        $user->fill($data);
+        $user = User::find(Guard::user()->id);
+        $user->name = $data["name"];
+        $user->email = $data["email"];
+        $user->phone = $data["phone"];
+        $user->address = $data["address"];
+        $user->image = $target_file;
         $user->save();
-        redirect("/profile", ["success" => "User information has been updated"]);
+
+        $user_data = Guard::user();
+        redirect("/profile", ["success" => "User information has been updated", "user_data" => $user_data]);
     }
 }
