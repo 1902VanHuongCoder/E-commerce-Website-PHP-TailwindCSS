@@ -41,8 +41,13 @@
                 </div>
 
                 <div class="flex justify-center items-center gap-4">
-                    <div id="user_info" class="w-10 h-10 border border-1 border-slate-950 rounded-full flex justify-center items-center cursor-pointer">
-                        <i class="fa-solid fa-user text-[#4169e1]"></i>
+                    <div id="user_info" class="w-10 h-10 border border-1 border-slate-950 rounded-full flex justify-center items-center cursor-pointer bg-center bg-cover" style="<?php
+                                                                                                                                                                                    if (isset(\App\SessionGuard::user()->image)) {
+                                                                                                                                                                                        echo "background-image:url('" . \App\SessionGuard::user()->image . "')";
+                                                                                                                                                                                    } else {
+                                                                                                                                                                                        echo "background-image:url('./assets/user_avatar.jpg')";
+                                                                                                                                                                                    }
+                                                                                                                                                                                    ?>">
                     </div>
                     <button class="relative">
                         <div class="relative border border-[#a3a3a3] rounded">
@@ -90,7 +95,20 @@
             <div class="py-3 px-4">
                 <div class="flex items-center gap-3">
                     <div class="relative h-10 w-10">
-                        <div class="w-10 h-10 rounded-full bg-slate-200 text-slate-500 flex justify-center items-center"> <i class="fa-solid fa-user"></i> </div>
+                        <div class="w-10 h-10 rounded-full bg-slate-200 text-slate-500 flex justify-center items-center bg-center bg-cover" style="<?php
+                                                                                                                                                    if (isset(\App\SessionGuard::user()->image)) {
+                                                                                                                                                        echo "background-image:url('" . \App\SessionGuard::user()->image . "')";
+                                                                                                                                                    } else {
+                                                                                                                                                        echo "background-image:url('./assets/user_avatar.jpg')";
+                                                                                                                                                    }
+                                                                                                                                                    ?>">
+                            <?php
+                            if (!isset(\App\SessionGuard::user()->image)) {
+                                echo '<i class="fa-solid fa-user"></i>';
+                            }
+                            ?>
+
+                        </div>
                         <span class="absolute right-0 bottom-0 h-2 w-2 rounded-full bg-green-400 ring ring-white"></span>
                     </div>
                     <div class="text-xs">

@@ -7,19 +7,12 @@ $hour = ceil(($currentDate - $timestamp) / 3600);
 
 ?>
 <i class="fa-solid fa-arrow-left ml-4 "></i> <a href="/" class="font-bold transition-all duration-300 hover:text-[#4169E1] text-[20px]">Home</a>
-<div class="w-[95%] min-h-screen mx-auto mt-3 mb-36">
-
-    <?php if (isset($success)) {
-
-    ?><div id="success-notification" class="bg-green-500 text-white px-4 py-2 fixed top-0 right-0 m-4 rounded-md shadow-lg animate__animated animate__backInRight">
-            <p class="font-bold"><i class="fa-solid fa-check"></i> Success</p>
-            <p><?php echo $success; ?></p>
-        </div> <?php } ?>
+<div class="w-[95%] h-[647px] sm:h-[570px] mx-auto mt-3 mb-36">
     <div class="relative h-[300px] w-full bg-center bg-cover rounded-sm" style="
             background-image: url('./assets/aviv-rachmadian-7F7kEHj72MQ-unsplash.jpg');
           ">
 
-        <div class="w-[90%] bg-[#fdfdfd] h-[500px] absolute top-32 left-[50%] translate-x-[-50%] mx-auto shadow-lg rounded-md pt-[50px] px-10">
+        <div class="w-[90%] bg-[#fdfdfd] sm:h-[500px] absolute top-32 left-[50%] translate-x-[-50%] mx-auto shadow-lg rounded-md pt-[50px] px-2 sm:px-10 pb-10 sm:pb-0 h-fit ">
             <div style="<?php
                         if (isset($user_data["image"])) {
                             echo "background-image:url('" . $user_data['image'] . "')";
@@ -29,14 +22,14 @@ $hour = ceil(($currentDate - $timestamp) / 3600);
                         ?>" class="w-[100px] h-[100px] rounded-full shadow-lg absolute left-1/2 translate-x-[-50%] -top-[50px] bg-center bg-cover">
 
             </div>
-            <div class="flex justify-between items-center px-24">
+            <div class="flex justify-between items-center px-2 lg:px-24">
                 <ul class="flex gap-x-6">
                     <li class="flex flex-col items-center"><span class="font-bold text-lg text-[#4169e1]"><?php echo $amountoforder ?></span><span class="text-slate-400">Ordered</span></li>
                     <li class="flex flex-col items-center"><span class="font-bold text-lg text-[#4169e1]"><?php echo  $hour ?></span><span class="text-slate-400">Hours</span></li>
                 </ul>
-                <a href="/editprofile" class="px-5 py-2 bg-[#4169e1] rounded-md font-bold text-white">EDIT PROFILE</a>
+                <a href="/editprofile" class="px-2 py-1 sm:px-5 sm:py-2 bg-[#4169e1] text-sm sm:text-md rounded-md font-medium sm:font-bold text-white">EDIT PROFILE</a>
             </div>
-            <div class="text-center mt-12">
+            <div class="text-center mt-12 pb-4">
                 <h3 class="text-4xl font-semibold leading-normal mb-2 text-blueGray-700">
                     <?= htmlspecialchars($user_data["name"]) ?>
                 </h3>
