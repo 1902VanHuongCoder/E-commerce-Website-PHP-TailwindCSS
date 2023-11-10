@@ -1,9 +1,9 @@
 <?php $this->layout("layouts/home", ["title" => APPNAME]) ?>
 
 <?php $this->start("page") ?>
-<div class="w-full mx-auto mb-[150px]">
+<div class="w-full mx-auto mb-8">
     <div class="w-full flex justify-between items-start flex-col lg:flex-row p-4 gap-3 lg:gap-1 md:gap-x-[45px]">
-        <div class="p-2 w-[20%] hidden lg:block flex-col">
+        <div class="w-[20%] hidden lg:block flex-col py-1 px-2">
             <h2 class="py-2"><i class="fa-solid fa-store text-blue-500"></i><strong> Collection</strong></h2>
             <hr />
             <ol>
@@ -16,7 +16,7 @@
             </ol>
         </div>
         <div class="relative block lg:hidden w-full">
-            <div class="relative border border-[#a3a3a3] rounded p-3 cursor-pointer clickdown_2">
+            <div class="relative border border-[#a3a3a3] rounded py-1 px-2 cursor-pointer clickdown_2">
                 <div class="flex items-center justify-between">
                     <h2 class="py-2"><i class="fa-solid fa-store text-blue-500"></i><strong> Collection</strong></h2>
                     <i class="fa-solid fa-caret-down rotate-180 ease-out duration-500 dropdown_2"></i>
@@ -58,7 +58,7 @@
                             <div type="hidden" class="productID hidden"><?php echo $this->e($product->id) ?></div>
                             <div class="w-full">
                                 <div class="px-3 py-6 w-full flex items-center justify-between">
-                                    <button class="rounded-sm bg-transparent border border-1 border-slate-950 px-4 py-1 text-slate-950 ring-purple-500/30 ring-offset-2 hover:opacity-60 focus-visible:outline-none focus-visible:ring active:opacity-60/90 add">Add</button>
+                                    <button class="add_to_cart rounded-sm bg-transparent border border-1 border-slate-950 px-4 py-1 text-slate-950 ring-purple-500/30 ring-offset-2 hover:opacity-60 focus-visible:outline-none focus-visible:ring active:opacity-60/90 add">Add</button>
                                     <a href="/orders/<?php echo $this->e($product->id) ?>" class="rounded-sm bg-[#1e90ff] px-4 py-1 text-white ring-purple-500/30 ring-offset-2 hover:opacity-60 focus-visible:outline-none focus-visible:ring active:opacity-60/90">Buy Now</a>
                                 </div>
                             </div>
@@ -67,6 +67,10 @@
                 }
             } ?>
         </div>
+    </div>
+    <!-- Notifications -->
+    <div id="added_to_cart_successfully" class="hidden bg-green-500 text-white px-4 py-2 fixed top-0 right-2 mt-2 rounded-md shadow-lg animate__animated animate__backInRight">
+        <p class="font-bold"><i class="fa-solid fa-check"></i> Added product to cart successfully!</p>
     </div>
 </div>
 <!-- ALERT BOX -->

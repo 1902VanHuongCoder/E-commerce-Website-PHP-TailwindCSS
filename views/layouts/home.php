@@ -2,33 +2,29 @@
 <html>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="utf-8">
+    <title><?= $this->e($title) ?></title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title><?= $this->e($title) ?></title>
     <link rel="icon" type="image/x-icon" href="./assets/favicon-32x32.png" />
-    <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- <link rel="stylesheet" href="./css/output.css"> -->
 </head>
 
-
-<body class="relative w-full min-h-screen overflow-x-hidden">
-    <div class="relative w-full max-w-[1200px] m-auto md:flex-row min-h-screen">
-        <header class="">
+<body>
+    <div class="relative w-full max-w-[1200px] m-auto md:flex-row min-h-screen overflow-x-hidden">
+        <!-- header -->
+        <header name="top">
             <nav class="flex items-center justify-between top-0 left-0 w-full px-4 py-[15px]">
-                <button class="md:hidden bar">
-                    <div class="relative border border-[#a3a3a3] rounded"><i class="fa-solid fa-bars p-[12px] ease-out duration-[0.4s] hover:scale-[1.1]"></i>
+                <button class="flex items-center gap-x-4">
+                    <div class="md:hidden bar relative border border-[#a3a3a3] rounded"><i class="fa-solid fa-bars p-[12px] ease-out duration-[0.4s] hover:scale-[1.1]"></i>
                     </div>
+                    <a href="/home" class="text-[16px] md:text-[18px] font-bold uppercase">JeiKei <span class="text-[#4169E1]">Store</span></a>
                 </button>
                 <div class="relative flex items-center justify-center">
-                    <a href="/home" class="text-[25px] md:text-[18px] font-bold uppercase">JeiKei <span class="text-[#4169E1]">Store</span></a>
-
                     <ul class="ml-3 hidden md:flex lg:ml-4">
                         <li class="px-[15px] lg:px-[20px] text-[18px]"><a href="/orderhistory" class="no-underline font-semibold text-[18px] border-b-[2px] border-[transparent] ease-in-out duration-[0.4s] hover:border-b-[2px] hover:border-[#000]">Order History</a>
                         </li>
@@ -66,18 +62,25 @@
                     </button>
                 </div>
                 <ul class="flex flex-col">
-                    <div class="relative mb-4">
-                        <input type="text" placeholder="Search for products..." class="relative border-[1px] border-[#646464] bg-transparent w-full p-[6px] rounded-e-[5px] rounded-s-[5px] placeholder:text-[#808080]">
+                    <form action="/search" method="post" class="relative mb-4">
+                        <input type="text" name="search" placeholder="Search for products..." class="relative border-[1px] border-[#646464] bg-transparent w-full p-[6px] rounded-e-[5px] rounded-s-[5px] placeholder:text-[#808080]">
                         <i class="fa-solid fa-magnifying-glass absolute top-[25%] right-3 cursor-pointer"></i>
-                    </div>
+                    </form>
                     <li class="pb-[15px]">
-                        <a href="#" class="no-underline font-semibold text-[20px] transition-colors hover:text-[#4169E1]">Orders</a>
+                        <a href="/orderhistory" class="no-underline font-semibold text-[20px] transition-colors hover:text-[#4169E1]">Orders History</a>
                     </li>
                 </ul>
             </div>
         </header>
+
+        <!-- Navigation button to Home page-->
+        <div class="px-4">
+            <i class="fa-solid fa-arrow-left text-[#4169E1]"></i> <a href="/" class="font-bold transition-all duration-300 hover:text-[#4169E1] text-[20px]">Home</a>
+        </div>
+        <!-- main content -->
         <?= $this->section("page") ?>
-        <!-- cart -->
+
+        <!-- shopping cart -->
         <div class="cart-shop fixed top-0 right-0 bg-[#FFFAFA] w-full md:w-[500px] h-full z-20 transition-all duration-500 translate-x-[100%]">
             <div class="w-full overflow-y-auto h-full">
                 <div class="relative mt-[20px]">
@@ -90,8 +93,22 @@
                 <div class="bg-[#333] w-full p-2 text-center cursor-pointer close-cart">Close</div>
             </div>
         </div>
+
+        <!-- footer -->
+        <footer class="bg-[#333] text-[#fff] p-5 w-full">
+            <div class="max-w-[1200px] mx-auto flex justify-center flex-col md:flex-row md:justify-between items-center">
+                <div class="flex flex-col md:flex-row md:text-sm">
+                    <p class="mr-5">© 2023 JeiKei, Inc. All rights reserved.</p>
+                    <p class="md:border-l-2 md:border-l-[#fff] px-4">Designed by JeiKei & PaulTo</p>
+                </div>
+                <div class="md:text-sm">
+                    <p>The last upgrade was on August 26, 2023</p>
+                </div>
+            </div>
+        </footer>
+
         <!-- Dropdown Menu -->
-        <div id="user_info_panel" class="absolute top-14 right-[-100%] transition-all z-10 mt-2 w-60 divide-y divide-gray-100 rounded-lg border border-gray-100 bg-white text-left text-sm shadow-lg">
+        <div id="user_info_panel" class="absolute top-14 right-[-100%] transition-all z-10 mt-2 w-60 divide-y divide-gray-100 rounded-lg border border-gray-100 bg-white text-left text-sm shadow-lg transition-all">
             <div class="py-3 px-4">
                 <div class="flex items-center gap-3">
                     <div class="relative h-10 w-10">
@@ -102,12 +119,6 @@
                                                                                                                                                         echo "background-image:url('./assets/user_avatar.jpg')";
                                                                                                                                                     }
                                                                                                                                                     ?>">
-                            <?php
-                            if (!isset(\App\SessionGuard::user()->image)) {
-                                echo '<i class="fa-solid fa-user"></i>';
-                            }
-                            ?>
-
                         </div>
                         <span class="absolute right-0 bottom-0 h-2 w-2 rounded-full bg-green-400 ring ring-white"></span>
                     </div>
@@ -137,19 +148,15 @@
                 </a>
             </div>
         </div>
-        <footer class="bg-[#333] text-[#fff] p-5 w-full">
-            <div class="max-w-[1200px] mx-auto flex justify-center flex-col md:flex-row md:justify-between items-center">
-                <div class="flex flex-col md:flex-row md:text-sm">
-                    <p class="mr-5">© 2023 JeiKei, Inc. All rights reserved.</p>
-                    <p class="md:border-l-2 md:border-l-[#fff] px-4">Designed by JeiKei & PaulTo</p>
-                </div>
-                <div class="md:text-sm">
-                    <p>The last upgrade was on August 26, 2023</p>
-                </div>
-            </div>
-        </footer>
+
+        <!-- Black background when open Side bar -->
+        <div class="opacity-toggle absolute top-0 left-0 w-full opacity-50 bg-[#333] h-full z-10 hidden transition-all duration-500"></div>
+
+        <!-- Arrow to top -->
+        <a href="#top" id="backtotop" class="hidden fixed bottom-5 right-5 z-30 w-12 h-12 bg-[#4169E1] rounded-full justify-center items-center text-white font-semibold shadow-md"><i class="fa-solid fa-arrow-up"></i></a>
     </div>
-    <div class="opacity-toggle absolute top-0 left-0 w-full opacity-50 bg-[#333] h-full z-10 hidden transition-all duration-500"></div>
+
+    <!-- Javascript and Jquery code -->
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <?= $this->section("page_specific_js") ?>
     <script>
@@ -161,6 +168,15 @@
             setTimeout(() => {
                 successNotification.css('display', 'none');
             }, 5000);
+
+            // show notify when user hit ADD button in home page
+            $(".add_to_cart").click(function() {
+                const notify = $('#added_to_cart_successfully');
+                notify.css("display", "block");
+                setTimeout(() => {
+                    notify.css("display", "none");
+                }, 4000);
+            })
 
             //sidebar
             $('.bar').click(function() {
@@ -339,14 +355,6 @@
                             <p>Price : <span class="text-[#4169E1] price">${cart_items[i].price}.00$</span></p>
                             <p>Warehouse: <span class="text-[#DC143C] warehouse">${cart_items[i].warehousem}</span></p>
                             <div class="flex items-center gap-4">
-                                <p>Quantity : </p>
-                                <div class="flex items-center gap-2">
-                                    <button class="border border-[#333] w-[30px] text-[22px] h-[30px] font-bold minus">-</button>
-                                    <input type="number" class="w-[50px] h-[30px] font-bold border border-[#a4a4a4] text-center quantity" value="${cart_items[i].quantity}">
-                                    <button class="border border-[#333] w-[30px] text-[22px] h-[30px] font-bold plus">+</button>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-4">
                                 <a href="/orders/${cart_items[i].productID}" class="px-[18px] py-[6px] bg-[#FFD700] transition-all duration-500 hover:text-[#fff] hover:bg-[#4169E1]"><i class="fa-solid fa-cart-shopping"></i> Buy Now</a>
                                 <button class="px-[18px] py-[6px] bg-[#DC143C] transition-all duration-500 hover:text-[#fff] del">Delete</button>
                             </div>
@@ -381,7 +389,6 @@
                     } else {
                         productElement.remove();
                         cart_items.splice(productIndex, 1);
-                        //cart_items[productIndex].quantity = 0;
                         updateCount();
                     }
                     updateTotalPrice();
@@ -428,20 +435,29 @@
                 $("#quantity").val(quantity);
             });
 
-
-
-            $(document).ready(function() {
-                $('#imageInput').change(function() {
-                    var file = this.files[0];
-                    var reader = new FileReader();
-                    reader.onload = function(e) {
-                        $("#imagePreview").removeClass("hidden");
-                        $("#image_icon").addClass("hidden");
-                        $('#imagePreview').attr('src', e.target.result);
-                    }
-                    reader.readAsDataURL(file);
-                });
+            //  Show image when uploading image
+            $('#imageInput').change(function() {
+                var file = this.files[0];
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $("#imagePreview").removeClass("hidden");
+                    $("#image_icon").addClass("hidden");
+                    $('#imagePreview').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(file);
             });
+
+            // Hide and show the back to top button
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 500) {
+                    $("#backtotop").addClass("flex");
+                    $("#backtotop").removeClass("hidden");
+                } else {
+                    $("#backtotop").addClass("hidden");
+                    $("#backtotop").removeClass("flex");
+                }
+            })
+
         });
     </script>
 </body>

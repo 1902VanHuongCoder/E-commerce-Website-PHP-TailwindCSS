@@ -1,8 +1,7 @@
 <?php $this->layout("layouts/home", ["title" => "Products detail"]) ?>
 
 <?php $this->start("page") ?>
-<i class="fa-solid fa-arrow-left ml-4 "></i> <a href="/" class="font-bold transition-all duration-300 hover:text-[#4169E1] text-[20px]">Home</a>
-<div class="relative grid grid-cols-1 w-[95%] gap-y-6 min-h-screen mx-auto lg:grid-cols-4 lg:gap-x-6 mt-3">
+<div class="grid grid-cols-1 lg:grid-cols-4 lg:gap-x-6 gap-y-6 w-[95%] min-h-screen mx-auto mt-3 mb-5 p-5">
     <div class="w-full">
         <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($product['image']); ?>" />
     </div>
@@ -80,7 +79,6 @@
             <p class="text-[18px] font-medium">After the warranty period, no returns</p>
         </div>
     </div>
-</div>
 </div>
 
 <?php $this->stop() ?>

@@ -3,7 +3,6 @@
 <?php $this->start("page");
 
 ?>
-<i class="fa-solid fa-arrow-left ml-4 "></i> <a href="/" class="font-bold transition-all duration-300 hover:text-[#4169E1] text-[20px]">Home</a>
 <div class="w-[95%] min-h-screen mx-auto mt-3 mb-4">
 
     <div class="container max-w-screen-lg mx-auto">

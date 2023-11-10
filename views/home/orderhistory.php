@@ -1,8 +1,7 @@
 <?php $this->layout("layouts/home", ["title" => "Orders"]) ?>
 
 <?php $this->start("page") ?>
-<div class="container mx-auto mb-10">
-    <i class="fa-solid fa-arrow-left ml-4 "></i> <a href="/" class="font-bold transition-all duration-300 hover:text-[#4169E1] text-[20px]">Home</a>
+<div class="mx-auto mb-5 p-5">
     <div class="relative w-full flex justify-center mb-3">
         <h1 class="text-[30px] font-semibold">Order history</h1>
         <div class="absolute bottom-0 w-24 h-1 bg-[#4169E1]"></div>
@@ -11,7 +10,7 @@
     <?php
     foreach ($orders as $order) {
     ?>
-        <div class="max-w-full h-full grid grid-cols-1 md:grid-cols-3 gap-7 border rounded-xl p-5 shadow-md">
+        <div class="max-w-full h-full grid grid-cols-1 md:grid-cols-3 gap-7 border rounded-xl p-5 shadow-md mb-5">
             <div class="w-full flex items-center justify-center">
                 <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($order['image']); ?>" />
             </div>

@@ -6,7 +6,6 @@ $currentDate = strtotime(date('Y-m-d'));
 $hour = ceil(($currentDate - $timestamp) / 3600);
 
 ?>
-<i class="fa-solid fa-arrow-left ml-4 "></i> <a href="/" class="font-bold transition-all duration-300 hover:text-[#4169E1] text-[20px]">Home</a>
 <div class="w-[95%] h-[647px] sm:h-[570px] mx-auto mt-3 mb-36">
     <div class="relative h-[300px] w-full bg-center bg-cover rounded-sm" style="
             background-image: url('./assets/aviv-rachmadian-7F7kEHj72MQ-unsplash.jpg');
