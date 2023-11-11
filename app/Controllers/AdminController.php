@@ -148,8 +148,15 @@ class AdminController extends Controller
     public function deleteuser($userId)
     {
         $user = User::find($userId);
-        if (!$user) {
+        $orders = $user->orders;
+
+        echo var_dump(count($orders));
+        if (!$user && !$orders) {
             $this->sendNotFound();
+        }
+
+        for ($i = 0; $i < count($orders); $i++) {
+            $orders[$i]->delete();
         }
         $user->delete();
         redirect("/admin/customers");
@@ -159,6 +166,28 @@ class AdminController extends Controller
     {
         $orders = Order::all();
         $this->sendPage("/admin/orders", ["orders" => $orders]);
-        // echo "Hello world!";
+    }
+
+    // Delete order
+    public function deleteorder($orderId)
+    {
+        $order = Order::find($orderId);
+        if (!$order) {
+            $this->sendNotFound();
+        }
+        $order->delete();
+        redirect("/admin/orders");
+    }
+
+    // Update order state
+    public function updateorder($orderId)
+    {
+        $order = Order::find($orderId);
+        if (!$order) {
+            $this->sendNotFound();
+        }
+        $order->state = 1;
+        $order->save();
+        redirect("/admin/orders");
     }
 }

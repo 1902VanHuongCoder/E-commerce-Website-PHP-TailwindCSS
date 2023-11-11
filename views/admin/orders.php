@@ -7,8 +7,8 @@
     </div>
     <div id="all_products" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-5 justify-items-center w-full overflow-x-scroll overflow-y-scroll">
         <?php foreach ($orders as $order) : ?>
-            <div class="w-[250px] h-[413px] bg-[#272a2f] text-white">
-                <div class="h-[150px] bg-cover bg-center" style="background-image: url('data:image/jpg;charset=utf8;base64,<?php echo base64_encode($order['image']); ?>')"></div>
+            <div class="relative w-[250px] h-[413px] bg-white text-black border border-1">
+                <div class="h-[150px] bg-contain bg-no-repeat bg-center" style="background-image: url('data:image/jpg;charset=utf8;base64,<?php echo base64_encode($order['image']); ?>')"></div>
                 <div class="p-4">
                     <h3 class="mb-3"><?= $this->e($order->name) ?></h3>
                     <p><?= $this->e($order->username) ?></p>
@@ -23,10 +23,29 @@
                         <p> <small>Method: </small>payment via card
                         </p>
                     </div>
-                    <div class="flex justify-end items-center">
-                        <a href="/admin/delete/<?= $order->id ?>" class="px-4 py-2 bg-red-400 rounded-md">Delete</a>
+                    <div class="flex justify-between items-center">
+                        <form action="/admin/deleteorder/<?= $order->id ?>" method="post">
+                            <button type="submit" class="px-4 py-2 bg-red-400 rounded-md">Delete</button>
+                        </form>
+                        <form action="/admin/updateorder/<?= $order->id ?>" method="post">
+                            <button type="submit" class="px-4 py-2 bg-[#1e3a8a] text-white rounded-md">Update</button>
+                        </form>
                     </div>
                 </div>
+                <?php
+                if ($order->state == 1) {
+                    echo '<div class="absolute -right-4 top-4">
+                    <span class="w-fit h-fit bg-green-400 px-3 py-2">Đã giao</span>
+                    <span class="absolute right-0 w-[27px] h-[39px] bg-green-600 z-[-1] skew-y-[333deg]"></span>
+                </div>';
+                } else {
+                    echo ' <div class="absolute -right-4 top-4">
+                    <span class="w-fit h-fit bg-yellow-400 px-3 py-2">Chưa giao </span>
+                    <span class="absolute right-0 w-[27px] h-[39px] bg-yellow-600 z-[-1] skew-y-[333deg]"></span>
+                </div>';
+                }
+                ?>
+
             </div>
         <?php endforeach ?>
     </div>

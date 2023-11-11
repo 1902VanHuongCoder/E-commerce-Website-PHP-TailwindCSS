@@ -36,16 +36,16 @@
 </style>
 
 <body>
-    <div class="relative w-full max-w-[1200px] mx-auto overflow-x-hidden">
+    <div class="relative w-full max-w-[1200px] overflow-x-hidden mx-auto">
         <div id="dashboard" class="w-full sm:flex">
             <!-- Dashboard controller -->
             <div class="w-full sm:w-[20%] h-[60px] sm:h-full bg-[#272a2f]">
-                <div class="flex justify-between sm:justify-center items-center sm:flex-col gap-x-2 sm:gap-y-1 w-full h-[60px] sm:h-[100px] px-4 sm:px-0 bg-blue-900 text-white text-xl">
+                <div class="flex justify-between sm:justify-center items-center sm:flex-col gap-x-2 sm:gap-y-1 w-full h-[60px] sm:h-[100px] px-4 sm:px-0 bg-[#00b8ff] text-white text-xl">
                     <div id="opensidebar" class="block sm:hidden">
                         <i class="fa-solid fa-bars"></i>
                     </div>
                     <div>
-                        <i class="fa-solid fa-fire"></i>
+                        <i class="fa-solid fa-fire text-[#ee4d2d]"></i>
                         <a href="/admin">Dashboard</a>
                     </div>
                 </div>
@@ -64,25 +64,18 @@
                         <p class="font-bold"><?= $this->e(\App\SessionGuard::admin()->name) ?></p>
                         <small class="opacity-70"><?= $this->e(\App\SessionGuard::admin()->email) ?></small>
                     </div>
-                    <a href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="bg-red-400 px-3 py-1 rounded-lg text-white">Log out</a>
+                    <form action="/admin/logout" method="post">
+                        <button class="bg-[#ee4d2d] px-3 py-1 rounded-lg text-white">Log out</button>
+                    </form>
                 </div>
                 <div id="dashboarContent" class="w-full">
                     <?= $this->section("page") ?>
                 </div>
             </div>
         </div>
-        <!-- Sidebar -->
-        <div id="sidebar" class="fixed bg-[#272a2f] w-[80%] h-screen top-0 -left-[100%] p-5 transition-all">
-            <div id="closesidebar" class="text-white mb-2"><i class="fa-solid fa-arrow-left"></i></div>
-            <div> <a class="w-full flex items-center gap-x-1 px-4 py-2 text-white hover:bg-white hover:text-black" href="/admin/register"><i class="fa-solid fa-user-plus"></i> Add Admin</a>
-                <a class="w-full flex items-center gap-x-1 px-4 py-2 text-white hover:bg-white hover:text-black" href="/admin/orders"><i class="fa-solid fa-cart-shopping"></i> Orders</a>
-                <a class="w-full flex items-center gap-x-1 px-4 py-2 text-white hover:bg-white hover:text-black" href="/admin/customers"><i class="fa-solid fa-users"></i> Customers List</a>
-                <a class="w-full flex items-center gap-x-1 px-4 py-2 text-white hover:bg-white hover:text-black" href="/admin/addproduct"><i class="fa-solid fa-plus"></i> Add product</a>
-            </div>
-        </div>
         <!-- Footer -->
-        <footer class="bg-[#333] text-[#fff] md:px-5 py-3 w-full">
-            <div class="max-w-[1200px] mx-auto flex justify-center flex-col md:flex-row md:justify-between items-center">
+        <footer class="bg-[#333] text-[#fff] md:px-5 py-3 max-w-[1200px] mx-auto">
+            <div class="flex justify-center flex-col md:flex-row md:justify-between items-center">
                 <div class="flex flex-col md:flex-row text-[14px] md:text-sm">
                     <p class="mr-5">© 2023 JeiKei, Inc. All rights reserved.</p>
                     <p class="md:border-l-2 md:border-l-[#fff] px-4">Designed by JeiKei & PaulTo</p>
@@ -92,6 +85,15 @@
                 </div>
             </div>
         </footer>
+        <!-- Sidebar -->
+        <div id="sidebar" class="fixed bg-[#272a2f] w-[80%] h-screen top-0 -left-[100%] p-5 transition-all">
+            <div id="closesidebar" class="text-white mb-2"><i class="fa-solid fa-arrow-left"></i></div>
+            <div> <a class="w-full flex items-center gap-x-1 px-4 py-2 text-white hover:bg-white hover:text-black" href="/admin/register"><i class="fa-solid fa-user-plus"></i> Add Admin</a>
+                <a class="w-full flex items-center gap-x-1 px-4 py-2 text-white hover:bg-white hover:text-black" href="/admin/orders"><i class="fa-solid fa-cart-shopping"></i> Orders</a>
+                <a class="w-full flex items-center gap-x-1 px-4 py-2 text-white hover:bg-white hover:text-black" href="/admin/customers"><i class="fa-solid fa-users"></i> Customers List</a>
+                <a class="w-full flex items-center gap-x-1 px-4 py-2 text-white hover:bg-white hover:text-black" href="/admin/addproduct"><i class="fa-solid fa-plus"></i> Add product</a>
+            </div>
+        </div>
     </div>
 
     <!-- Scripts -->

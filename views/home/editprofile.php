@@ -4,7 +4,6 @@
 
 ?>
 <div class="w-[95%] min-h-screen mx-auto mt-3 mb-4">
-
     <div class="container max-w-screen-lg mx-auto">
         <div>
             <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">

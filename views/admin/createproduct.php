@@ -1,10 +1,11 @@
 <?php $this->layout("layouts/admin", ["title" => "Add Product"]) ?>
 
 <?php $this->start("page") ?>
-<div class="container max-w-[1200px] mx-auto">
-    <a href="/admin" class="ml-4 text-[20px] font-bold transition-all duration-100 hover:text-[#4169E1]"> Admin Dashboard </a>
-    <h1 class="text-[23px] font-bold text-center my-4">Add product</h1>
-    <form action="/admin/addproduct" method="POST" enctype="multipart/form-data">
+<div class="w-[95%] mx-auto h-[100%]">
+    <div class="text-center py-4">
+        <h2 class="text-[#333] font-bold text-xl">All Products</h2>
+    </div>
+    <form action="/admin/addproduct" method="POST" enctype="multipart/form-data" id="all_products" class="w-full overflow-y-scroll">
         <div class="flex flex-col w-full md:w-[70%] mx-auto gap-4 border-2 rounded-xl shadow-md p-5 m-2">
             <div class="">
                 <div>
