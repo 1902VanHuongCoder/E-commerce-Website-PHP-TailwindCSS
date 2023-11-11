@@ -6,9 +6,9 @@ use App\Models\Order;
 use App\SessionGuard as Guard;
 use App\Models\Products;
 use App\Models\User;
-use Illuminate\Support\Facades\Process;
-use League\Plates\Template\Func;
 
+// use Illuminate\Support\Facades\Process;
+// use League\Plates\Template\Func;
 // use App\Models\Contact;
 
 class AdminController extends Controller
@@ -26,7 +26,6 @@ class AdminController extends Controller
     {
         $this->sendPage('admin/adminDashboard', [
             'productinfo' => Products::all(),
-            'success' => 'success'
         ]);
     }
 

@@ -1,14 +1,37 @@
 <?php $this->layout("layouts/admin", ["title" => "Orders"]) ?>
 
 <?php $this->start("page") ?>
-<div class="container">
-<a href="/admin" class="ml-4 text-[20px] font-bold transition-all duration-500 hover:text-[#4169E1]"> Admin Dashboard </a>
-    <div class="ml-4 mb-4 text-center">
-        <h2 class="text-[#333] font-bold text-xl">Admin Info</h2>
+<div class="w-[95%] mx-auto h-[100%]">
+    <div class="text-center py-4">
+        <h2 class="text-[#333] font-bold text-xl">All Orders</h2>
     </div>
-    <div class="row">
+    <div id="all_products" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-5 justify-items-center w-full overflow-x-scroll overflow-y-scroll">
+        <?php foreach ($orders as $order) : ?>
+            <div class="w-[250px] h-[413px] bg-[#272a2f] text-white">
+                <div class="h-[150px] bg-cover bg-center" style="background-image: url('data:image/jpg;charset=utf8;base64,<?php echo base64_encode($order['image']); ?>')"></div>
+                <div class="p-4">
+                    <h3 class="mb-3"><?= $this->e($order->name) ?></h3>
+                    <p><?= $this->e($order->username) ?></p>
+                    <div class="flex justify-between items-center">
+                        <span><small>Date:</small> <?= $this->e($order->order_date) ?></span>
+                        <span><small>Price: $</small><?= $this->e($order->price) ?></span>
+                    </div>
+                    <div>
+                        <p><small>Total: $</small><?= $this->e($order->total_amount) ?></p>
+                    </div>
+                    <div class="mb-3">
+                        <p> <small>Method: </small>payment via card
+                        </p>
+                    </div>
+                    <div class="flex justify-end items-center">
+                        <a href="/admin/delete/<?= $order->id ?>" class="px-4 py-2 bg-red-400 rounded-md">Delete</a>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach ?>
+    </div>
+    <!-- <div class="row">
         <div class="col-12">
-            <!-- FLASH MESSAGES -->
             <div class="overflow-x-auto">
                 <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
                     <thead class="bg-gray-50">
@@ -49,10 +72,10 @@
                         <?php endforeach ?>
                     </tbody>
                 </table>
-            </div>
-            <!-- Table Ends Here -->
-        </div>
-    </div>
+            </div> -->
+    <!-- Table Ends Here -->
+</div>
+</div>
 </div>
 <!-- ALERT BOX -->
 <?php $this->stop() ?>

@@ -44,8 +44,8 @@
                     if ($product->type == $type[$i]["type"]) {
             ?>
                         <div class="<?php echo $type[$i]["type"] ?> group flex justify-between flex-col items-center w-full overflow-hidden rounded-md bg-white shadow-md style">
-                            <div class="p-4">
-                                <div class="<?php echo $type[$i]["imgHeight"] ?> overflow-hidden relative transition-all duration-500 hover:scale-110">
+                            <div class="p-4 bg-[#f7f7f7e6]">
+                                <div class="<?php echo $type[$i]["imgHeight"] ?> overflow-hidden relative transition-all duration-100 hover:scale-110">
                                     <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($product['image']); ?>" />
                                     <a class="w-full h-full absolute cursor-pointer top-0 left-0" href="/detail/<?php echo $this->e($product->id) ?>"></a>
                                 </div>

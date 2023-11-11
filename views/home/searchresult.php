@@ -1,16 +1,15 @@
 <?php $this->layout("layouts/home", ["title" => APPNAME]) ?>
 
 <?php $this->start("page") ?>
-<div class="w-full mb-20 mx-auto">
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-3 gap-y-5 w-full">
+<div class="w-[90%] mb-5 mx-auto">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-3 gap-y-5 px-5">
         <?php
 
 
         foreach ($resultArray as $result) {
         ?>
             <div class="group flex justify-between flex-col items-center w-full overflow-hidden rounded-md bg-white shadow-md">
-                <div class="p-4">
+                <div class="p-4 bg-[#f7f7f7e6]">
                     <div class="overflow-hidden relative">
                         <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($result['image']); ?>" />
                         <a class="w-full h-full absolute cursor-pointer top-0 left-0" href="/detail/<?php echo $this->e($result->id) ?>"></a>
