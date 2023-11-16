@@ -128,13 +128,14 @@ class AdminController extends Controller
 
     public function destroy($productId)
     {
-        $order = Order::find(31);
         $product = Products::find($productId);
+
+        if($product->orders->isNotEmpty()){
+            $product->orders()->delete();
+        }
         if (!$product) {
             $this->sendNotFound();
         }
-        echo var_dump($order);
-        $order->delete();
         $product->delete();
         redirect('/admin');
     }
