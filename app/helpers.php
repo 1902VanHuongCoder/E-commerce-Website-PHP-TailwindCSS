@@ -1,13 +1,4 @@
 <?php
-
-if (!function_exists('http_accept_json')) {
-    function http_accept_json()
-    {
-        return isset($_SERVER['HTTP_ACCEPT']) &&
-            (strpos(strtolower($_SERVER['HTTP_ACCEPT']), 'application/json') !== false);
-    }
-}
-
 if (!function_exists('redirect')) {
     // Chuyển hướng đến một trang khác
     function redirect($location, array $data = [])

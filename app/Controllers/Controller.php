@@ -10,7 +10,7 @@ class Controller
 
     public function __construct()
     {
-        $this->view = new Engine(ROOTDIR . 'views');
+        $this->view = new Engine(ROOTDIR . 'views');  
     }
 
     public function sendPage($page, array $data = [])

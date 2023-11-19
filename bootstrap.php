@@ -1,6 +1,6 @@
 <?php
 
-define('ROOTDIR', __DIR__ . DIRECTORY_SEPARATOR);
+define('ROOTDIR', __DIR__ . DIRECTORY_SEPARATOR); 
 
 require_once ROOTDIR . 'vendor/autoload.php';
 

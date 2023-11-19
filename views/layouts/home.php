@@ -14,7 +14,6 @@
 
     <!-- Use tailwind library through cdn (Content Delivery Network) -->
     <script src="https://cdn.tailwindcss.com"></script>
-
     <!-- Tailwindcss local using -->
     <!-- <link rel="stylesheet" href="./css/output.css"> -->
 </head>

@@ -1,5 +1,4 @@
 <?php $this->layout("layouts/home", ["title" => "Products detail"]) ?>
-
 <?php $this->start("page") ?>
 <div class="grid grid-cols-1 lg:grid-cols-4 lg:gap-x-6 gap-y-6 w-[95%] min-h-screen mx-auto mt-3 mb-5 p-5">
     <div class="w-full">

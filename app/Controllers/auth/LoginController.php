@@ -50,7 +50,7 @@ class LoginController extends Controller
         Guard::logout();
         redirect('/login');
     }
-
+    
     protected function filterUserCredentials(array $data)
     {
         return [

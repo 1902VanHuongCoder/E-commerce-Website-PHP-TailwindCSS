@@ -10,7 +10,7 @@ class Products extends Model
     protected $fillable = ['name', 'description', 'price', 'image', 'size', 'color', 'type', 'quantity', 'created_at', 'updated_at'];
     public function orders()
     {
-        return $this->hasMany(Order::class, 'product_id');
+        return $this->hasMany(Order::class, 'product_id'); 
     }
     public static function validate(array $data) // Sửa hàm  ràng buộc này lại 
     { // Ở đây t chỉ làm cơ bản thôi 

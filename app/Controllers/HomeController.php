@@ -111,7 +111,7 @@ class HomeController extends Controller
 
     public function detail($productId)
     {
-        $product = Products::find($productId);
+        $product = Products::find($productId); 
         if (!$product) {
             $this->sendNotFound();
         }
