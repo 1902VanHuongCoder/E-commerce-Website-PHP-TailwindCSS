@@ -3,7 +3,7 @@ namespace App;
 use App\Models\User;
 use App\Models\Admin;
 
-class SessionGuard // Lớp dùng để quản lý phiên đăng nhập của User 
+class SessionGuard 
 {
     protected static $user;
     protected static $admin;
@@ -17,7 +17,7 @@ class SessionGuard // Lớp dùng để quản lý phiên đăng nhập của Us
         return $verified;
     }
 
-    public static function user() // trả về user đã đăng nhập  
+    public static function user()
     {
         if (!static::$user && static::isUserLoggedIn()) {
             static::$user = User::find($_SESSION['user_id']);

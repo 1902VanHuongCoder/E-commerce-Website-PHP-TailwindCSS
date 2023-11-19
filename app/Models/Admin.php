@@ -5,8 +5,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Admin extends Model
 {
-    protected $table = 'admins';
-    protected $fillable = ['name', 'email', 'password'];
+    protected $table = 'admins'; // Bảng dữ liệu tương ứng với model
+    protected $fillable = ['name', 'email', 'password']; // trường dữ liệu có thể gán trực tiếp
 
     public static function validate(array $data)
     {

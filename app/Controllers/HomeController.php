@@ -6,7 +6,6 @@ use App\Models\Order;
 use App\Models\Products;
 use App\Models\User;
 use App\SessionGuard as Guard;
-use Illuminate\Support\Facades\Process;
 
 class HomeController extends Controller
 {
@@ -33,20 +32,14 @@ class HomeController extends Controller
         if (!$product) {
             $this->sendNotFound();
         }
-
         $this->sendPage("home/order", ["product" => $product]);
     }
 
     public function ordered($productId)
     {
-        // Get the product corresponding to the product ID
         $product = Products::find($productId);
-
-        // 
         $user = Guard::user();
-        // Receive the product color and size the customer has selected
         $string1 = 'color_';
-        $string2 = 'size_';
         $color = "";
         $filteredColorKeys = array_filter(array_keys($_POST), function ($key) use ($string1) {
             return strpos($key, $string1) !== false;
@@ -58,9 +51,10 @@ class HomeController extends Controller
                 $color = ',' . $_POST[$filteredColorKeys[$i]];
             }
         }
+        $string2 = 'size_';
         $size = "";
-        $filteredSizeKeys = array_filter(array_keys($_POST), function ($key) use ($string1) {
-            return strpos($key, $string1) !== false;
+        $filteredSizeKeys = array_filter(array_keys($_POST), function ($key) use ($string2) {
+            return strpos($key, $string2) !== false;
         });
         for ($i = 0; $i < count($filteredSizeKeys); $i++) {
             if ($i < 1) {
@@ -84,6 +78,7 @@ class HomeController extends Controller
         $data["address"] = $_POST["address"];
         $data["phone"] = $_POST["phone"];
         $data["image"] = $product->image;
+
         //Calculate the total amount that the customer must pay
         $total_pay = number_format(floatval($data["amount"]) * floatval($product->price), 2);
         $data["total_amount"] = $total_pay;
@@ -111,7 +106,7 @@ class HomeController extends Controller
 
     public function detail($productId)
     {
-        $product = Products::find($productId); 
+        $product = Products::find($productId);
         if (!$product) {
             $this->sendNotFound();
         }

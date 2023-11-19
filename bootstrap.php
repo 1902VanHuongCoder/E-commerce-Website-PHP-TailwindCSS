@@ -4,7 +4,7 @@ define('ROOTDIR', __DIR__ . DIRECTORY_SEPARATOR);
 
 require_once ROOTDIR . 'vendor/autoload.php';
 
-$dotenv = Dotenv\Dotenv::createImmutable(ROOTDIR);
+$dotenv = Dotenv\Dotenv::createImmutable(ROOTDIR); // Tạo 1 phiên bản không thể thay đổi của lớp Dotenv với đường dẫn đến thư mục gốc.
 $dotenv->load(); // Tải các biến môi trường từ .env file 
 
 use Illuminate\Database\Capsule\Manager;

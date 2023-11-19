@@ -28,7 +28,7 @@ class AdminLoginController extends Controller
         $admin_credentials = $this->filterUserCredentials($_POST);
         $errors = [];
         $admin = Admin::where('email', $admin_credentials['email'])->first();
-        
+
         if (!$admin) {
             $errors['email'] = 'Invalid email';
         } else if (Guard::adminlogin($admin, $admin_credentials)) {
@@ -36,7 +36,6 @@ class AdminLoginController extends Controller
         } else {
             $errors['password'] = 'Invalid password.';
         }
-        // Đăng nhập không thành công: lưu giá trị trong form, trừ password
         $this->saveFormValues($_POST, ['password']);
         redirect('/admin/login', ['errors' => $errors]);
     }

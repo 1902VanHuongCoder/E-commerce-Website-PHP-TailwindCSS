@@ -7,10 +7,6 @@ use App\SessionGuard as Guard;
 use App\Models\Products;
 use App\Models\User;
 
-// use Illuminate\Support\Facades\Process;
-// use League\Plates\Template\Func;
-// use App\Models\Contact;
-
 class AdminController extends Controller
 {
     public function __construct()
@@ -33,8 +29,7 @@ class AdminController extends Controller
     {
         $this->sendPage('admin/createproduct', [
             'errors' => session_get_once('errors'),
-            'old' => $this->getSavedFormValues(),
-            "test" => "Create product page is opened..."
+            'old' => $this->getSavedFormValues()
         ]);
     }
     public function store()
@@ -43,10 +38,8 @@ class AdminController extends Controller
             $file = $_FILES['image'];
             if ($file['error'] === 0 && getimagesize($file['tmp_name'])) {
                 $_POST["image"] = file_get_contents($file['tmp_name']);
-                $data = $this->filterProductData($_POST);
             } else {
                 $_POST['image'] = '';
-                $data = $this->filterProductData($_POST);
             }
         }
 
@@ -62,9 +55,7 @@ class AdminController extends Controller
             $product->save();
             redirect('/admin');
         }
-        // Lưu các giá trị của form vào $_SESSION['form']
         $this->saveFormValues($_POST);
-        // Lưu các thông báo lỗi vào $_SESSION['errors']
         redirect('/admin/addproduct', ['errors' => $model_errors]);
     }
     protected function filterProductData(array $data)
@@ -73,7 +64,7 @@ class AdminController extends Controller
             'name' => $data['name'] ?? '',
             'price' => $data['price'] ?? '',
             'image' => $data["image"] ?? '',
-            'size' => $data['size'] ?? 'M',
+            'size' => $data['size'] ?? '',
             'color' => $data["color"] ?? '',
             'quantity' => $data["quantity"] ?? '',
             'description' => $data["description"] ?? ''
@@ -95,6 +86,7 @@ class AdminController extends Controller
         ];
         $this->sendPage('/admin/editproduct', $data);
     }
+
     public function update($productId)
     {
         $product = Products::find($productId);
@@ -130,7 +122,7 @@ class AdminController extends Controller
     {
         $product = Products::find($productId);
 
-        if($product->orders->isNotEmpty()){
+        if ($product->orders->isNotEmpty()) {
             $product->orders()->delete();
         }
         if (!$product) {
@@ -151,7 +143,6 @@ class AdminController extends Controller
         $user = User::find($userId);
         $orders = $user->orders;
 
-        echo var_dump(count($orders));
         if (!$user && !$orders) {
             $this->sendNotFound();
         }

@@ -7,12 +7,11 @@ use App\Controllers\Controller;
 use App\SessionGuard as Guard;
 
 class LoginController extends Controller
-{ 
+{
     public function create()
     {
         if (Guard::isUserLoggedIn()) {
             redirect('/home');
-            echo "Create running";
         }
         $data = [
             'messages' => session_get_once('messages'),
@@ -30,17 +29,12 @@ class LoginController extends Controller
         $user = User::where('email', $user_credentials['email'])->first();
 
         if (!$user) {
-            // Người dùng không tồn tại...
             $errors['email'] = 'Invalid email';
         } else if (Guard::login($user, $user_credentials)) {
-            // Đăng nhập thành công...
             redirect('/home');
         } else {
-            // Sai mật khẩu...
             $errors['password'] = 'Invalid password.';
         }
-
-        // Đăng nhập không thành công: lưu giá trị trong form, trừ password
         $this->saveFormValues($_POST, ['password']);
         redirect('/login', ['errors' => $errors]);
     }
@@ -50,7 +44,7 @@ class LoginController extends Controller
         Guard::logout();
         redirect('/login');
     }
-    
+
     protected function filterUserCredentials(array $data)
     {
         return [

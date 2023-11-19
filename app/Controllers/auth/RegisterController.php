@@ -30,21 +30,15 @@ class RegisterController extends Controller
     public function store()
     {
         $this->saveFormValues($_POST, ['password', 'password_confirmation']);
-
         $data = $this->filterUserData($_POST);
         $model_errors = User::validate($data);
-
         $data['created_at'] = date('Y-m-d H:i:s');
 
         if (empty($model_errors)) {
-            // Dữ liệu hợp lệ...
             $this->createUser($data);
-
             $messages = ['success' => 'User has been created successfully.'];
             redirect('/login', ['messages' => $messages]);
         }
-
-        // Dữ liệu không hợp lệ...
         redirect('/register', ['errors' => $model_errors]);
     }
 

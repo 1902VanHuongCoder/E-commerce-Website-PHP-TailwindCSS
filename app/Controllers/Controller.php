@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use League\Plates\Engine; // Thư viện để tạo ra layout 
+use League\Plates\Engine; // Quản lý và render các template (layout and blocks)
 
 class Controller
 {
@@ -10,7 +10,7 @@ class Controller
 
     public function __construct()
     {
-        $this->view = new Engine(ROOTDIR . 'views');  
+        $this->view = new Engine(ROOTDIR . 'views');  // Tham số là đường dẫn thư mục chứa các view files
     }
 
     public function sendPage($page, array $data = [])

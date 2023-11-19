@@ -4,7 +4,6 @@ namespace App\Controllers\Auth;
 
 use App\Models\Admin;
 use App\Controllers\Controller;
-use App\SessionGuard as Guard;
 
 class AdminRegisterController extends Controller
 {

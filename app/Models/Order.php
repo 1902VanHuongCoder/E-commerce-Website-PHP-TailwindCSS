@@ -17,7 +17,7 @@ class Order extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id'); // Tạo liện giữa 2 bảng Order và User 
     }
 
     public function product()
